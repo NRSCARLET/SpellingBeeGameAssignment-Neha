@@ -5,6 +5,12 @@ window = tk.Tk()
 window.configure (bg = '#6693F5')
 window.title("Spelling Bee's Spelling Game!")
 window.geometry("300x300")
+def clear():
+    """This definition is to add a mechanism to clear the screan."""
+    if name == 'nt':
+        _ = system('cls')
+    else:
+        _ = system('clear')
 
 def login():
     b1.destroy()
@@ -13,11 +19,13 @@ def login():
     window.destroy()
     import UserLogin
     UserLogin
-    
+def exit():
+    quit()
 hello = tk.Label(text="Welcome to Spelling Bee's Spelling Game!", fg = 'white', bg = '#6693F5', font = 'helvetica 12 bold')
 hello.pack()
 b1 = tk.Button(text="Register (new user)", fg = 'white', bg = '#DA70D6', font = 'helvetica 9 bold')
 b1.pack()
 b2 = tk.Button(text="Login (old user)", fg = 'white', bg = '#DA70D6', font = 'helvetica 9 bold', command=login)
+b3 = tk.Button(text="Exit Game", fg = 'white', bg = '#DA70D6', font = 'helvetica 9 bold', command=exit)
 b2.pack()
 tk.mainloop()
