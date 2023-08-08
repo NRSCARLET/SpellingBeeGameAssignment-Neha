@@ -1,12 +1,10 @@
 import sys 
 from tkinter import *
-import tkinter as tk 
+import tkinter as tk
+from tkinter import simpledialog
 #PrintLogger code from Quora
 
-login = tk.Label(text="Please input a Username!")
-login.pack()
-
- 
+username = simpledialog.askstring("Login", "Please input your Username!")
 tk.mainloop()
 
     

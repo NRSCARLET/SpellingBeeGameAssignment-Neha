@@ -4,7 +4,7 @@ import tkinter as tk
 window = tk.Tk()
 window.configure (bg = '#6693F5')
 window.title("Spelling Bee's Spelling Game!")
-window.geometry("400x400")
+window.geometry("300x300")
 
 def login():
     b1.destroy()
