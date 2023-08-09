@@ -4,11 +4,11 @@ import tkinter as tk
 from tkinter import simpledialog
 #PrintLogger code from Quora
 def difficultystage():
-    login.destroy()
     E1.destroy()
     okb1.destroy()
     backb1.destroy()
     Userlogin.destroy()
+    login.destroy()
     import Difficulty
     Difficulty
 
@@ -17,8 +17,10 @@ def menu():
     okb1.destroy()
     backb1.destroy()
     Userlogin.destroy()
+    login.destroy()
     import MenuWindow
     MenuWindow
+    
 login = Tk()
 login.geometry("330x130")
 login.configure (bg = '#6693F5')
