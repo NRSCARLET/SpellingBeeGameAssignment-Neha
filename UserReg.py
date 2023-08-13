@@ -1,6 +1,7 @@
 import sys 
 from tkinter import *
 import tkinter as tk
+        
 def difficultystage():
     Userregister.destroy()
     E2.destroy()
@@ -12,8 +13,19 @@ def difficultystage():
     
 def sure():
     reg.destroy()
-    import AreYouSure
-    AreYouSure
+    rusure = Tk()
+    rusure.geometry('200x200')
+    rusure.configure (bg = '#6693F5')
+    rusure.title("Spelling Bee's Seplling Game")
+    user = E2.get()
+    print("Are you sure you want your username to be:", user)
+    check.pack()
+    yesb1 = tk.Button(text="Yes", command = difficultystage)
+    yesb1.pack()
+    nob1 = tk.Button(text="No")
+    nob1.pack()
+    backb3 = tk.Button(text="Menu")
+    backb3.pack()
     
     
 def menu():
@@ -25,6 +37,7 @@ def menu():
     import MenuWindow
     MenuWindow
 
+    
 reg = Tk()
 reg.geometry("330x130")
 reg.configure (bg = '#6693F5')
