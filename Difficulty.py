@@ -5,18 +5,18 @@ from tkinter import simpledialog
 
 def Easymode():
     diff.destroy()
-    import easyspell
-    easyspell
+    import Easyspell
+    Easyspell
 
 def Medmode():
     diff.destroy()
-    import medspell
-    medspell
+    import Medspell
+    Medspell
 
 def Hardmode():
     diff.destroy()
-    import hardspell
-    hardspell
+    import Hardspell
+    Hardspell
 
 diff = Tk()
 diff.geometry("200x130")
