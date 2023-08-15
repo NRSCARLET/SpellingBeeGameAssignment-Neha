@@ -25,7 +25,7 @@ yesb1 = tk.Button(text="Yes", command = difficultystage)
 yesb1.pack()
 nob1 = tk.Button(text="No", command = register)
 nob1.pack()
-backb3 = tk.Button(text="Menu", command = menu)
-backb3.pack()
+menub3 = tk.Button(text="Menu", command = menu)
+menub3.pack()
 
 

@@ -5,7 +5,7 @@ def difficultystage():
     Userregister.destroy()
     E2.destroy()
     okb2.destroy()
-    backb2.destroy()
+    menub2.destroy()
     reg.destroy()
     import Difficulty
     Difficulty
@@ -20,7 +20,7 @@ def menu():
     reg.destroy()
     E2.destroy()
     okb2.destroy()
-    backb2.destroy()
+    menub2.destroy()
     Userregister.destroy()
     import MenuWindow
     MenuWindow
@@ -35,6 +35,6 @@ E2 = Entry(reg, bd =5)
 E2.pack()
 okb2 = tk.Button(text="Enter", command = sure)
 okb2.pack()
-backb2 = tk.Button(text="Menu", command = menu)
-backb2.pack()
+menub2 = tk.Button(text="Menu", command = menu)
+menub2.pack()
 reg.mainloop()
