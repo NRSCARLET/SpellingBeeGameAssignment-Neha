@@ -39,7 +39,7 @@ my_dict = {
 key = random.choice(list(my_dict))
 print(key)  # 👉️ topic
 if key == 'name':
-    print("wow")
+    print('wow')
 
 """import random
 lst = ['WHO','YOU','THINK','ARE']
