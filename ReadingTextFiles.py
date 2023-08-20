@@ -30,3 +30,22 @@ file1.write("\n")
 #Close the text.txt file
 file1.close()"""
 
+#Trying code from YouTube video
+
+"""def reg():
+    db = open('names.txt', 'r')
+    username = input("Please create a username")
+    score = input("what is your score")
+    u = []
+    s = []
+    for i in db:
+        us, sc = i.split(", ")
+        sc = sc.strip()
+        u.append(us)
+        s.append(sc)
+        data = dict(zip(u, s))
+        print(data)
+
+reg()"""
+    
+    
