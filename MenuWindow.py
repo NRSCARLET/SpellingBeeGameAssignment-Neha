@@ -19,10 +19,8 @@ def register():
     window.destroy()
     import UserReg
     UserReg
+    
 def login():
-    b1.destroy()
-    b2.destroy()
-    hello.destroy()
     window.destroy()
     import UserLogin
     UserLogin

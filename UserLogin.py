@@ -3,7 +3,15 @@ from tkinter import *
 import tkinter as tk
 import UserReg
 #PrintLogger code from Quora
-def difficultystage():
+def check():
+    fileopen=open('username.txt', 'r')
+    if E1.get() == fileopen:
+        login.destroy()
+        import Difficulty
+        Difficulty
+    else:
+        import Errormessage
+        Errormessage
     
 
 def menu():
@@ -25,6 +33,3 @@ okb1.pack()
 menub1 = tk.Button(text="Menu", command = menu)
 menub1.pack()
 login.mainloop()
-
-"""username = simpledialog.askstring("Login", "Please input your Username!")
-tk.mainloop()"""
