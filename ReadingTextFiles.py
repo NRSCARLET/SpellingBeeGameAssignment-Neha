@@ -101,7 +101,7 @@ elif user =="No":
     
 print("Welcome to our game")"""
 
-#ChatGPT help
+"""#ChatGPT help
 def reg():
     username = input("Please create a username: ")
     with open('username.txt', 'a') as file:
@@ -131,20 +131,26 @@ def question():
         print("Invalid choice")
         question()
 
-question()
-
-"""Changes made:
-
-Used the with statement to properly open and close files, ensuring proper resource management.
-Read the lines from the file and stored them in the usernames list for comparison.
-Removed leading and trailing whitespace from the entered username using the strip() method.
-Changed the comparison to check if the entered username is in the list of usernames.
-Now the code should work as expected, allowing users to register and log in with their usernames."""
+question()"""
 
 
 
+import tkinter as tk
 
+def save():
+    a = t.get()
+    f = open((a + '.txt'), 'w')
+    f.write(a)
+    f.close()
+    return
 
+top = tk.Tk()
+t = tk.StringVar()
+e = tk.Entry(top, textvariable = t)
+e.pack()
+b = tk.Button(top, text = 'Save as a file', command = save)
+b.pack()
+top.mainloop()
 
     
 
