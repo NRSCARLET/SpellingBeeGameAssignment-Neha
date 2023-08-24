@@ -135,7 +135,7 @@ question()"""
 
 
 
-import tkinter as tk
+"""import tkinter as tk
 
 def save():
     a = t.get()
@@ -150,7 +150,25 @@ e = tk.Entry(top, textvariable = t)
 e.pack()
 b = tk.Button(top, text = 'Save as a file', command = save)
 b.pack()
-top.mainloop()
+top.mainloop()"""
 
     
 
+import sys 
+from tkinter import *
+import tkinter as tk
+def saveuser():
+    usernames = E2.get()
+    with open('username.txt', 'a') as useropen:
+        useropen.write(usernames + "\n")
+
+test = Tk()
+test.geometry("330x130")
+test.configure (bg = '#6693F5')
+test.title("Spelling Bee's Spelling Game!")
+word = Label(test, text="Please create a username")
+word.pack()
+E2 = Entry(test, bd = 5)
+E2.pack()
+savebutton = tk.Button(text="Save", command=saveuser)
+savebutton.pack()
