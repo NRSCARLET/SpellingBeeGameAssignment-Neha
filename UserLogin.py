@@ -3,15 +3,31 @@ from tkinter import *
 import tkinter as tk
 import UserReg
 #PrintLogger code from Quora
+
+def EM():
+    Userlogin.destroy()
+    E1.destroy()
+    okb1.destroy()
+    menub1.destroy()
+    error = Label(login, text="The Username you entered was not in our database.\nPlease enter a different username OR register as a user.")
+    error.pack()
+    Regbutton = tk.Button(text="Register")
+    Regbutton.pack()
+    Loginbutton = tk.Button(text="Login")
+    Loginbutton.pack()
+    menub3 = tk.Button(text="Menu")
+    menub3.pack()
+
 def check():
-    fileopen=open('username.txt', 'r')
-    if E1.get() == fileopen:
-        login.destroy()
-        import Difficulty
-        Difficulty
-    else:
-        import Errormessage
-        Errormessage
+    name_check = E1.get()
+    with open('username.txt', 'r') as file:
+        names = file.read().splitlines()
+        if name_check in names:
+            login.destroy()
+            import Difficulty
+            Difficulty
+        else:
+            EM()
     
 
 def menu():
