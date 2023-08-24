@@ -1,4 +1,4 @@
-"""import sys 
+import sys 
 from tkinter import *
 import tkinter as tk
 
@@ -31,4 +31,4 @@ okb2 = tk.Button(text="Enter", command = saveuser)
 okb2.pack()
 menub2 = tk.Button(text="Menu", command = menu)
 menub2.pack()
-reg.mainloop()"""
+reg.mainloop()

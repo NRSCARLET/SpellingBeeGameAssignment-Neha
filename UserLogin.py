@@ -1,7 +1,6 @@
 import sys 
 from tkinter import *
 import tkinter as tk
-import UserReg
 #PrintLogger code from Quora
 def reg():
     login.destroy()
