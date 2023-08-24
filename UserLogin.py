@@ -3,7 +3,16 @@ from tkinter import *
 import tkinter as tk
 import UserReg
 #PrintLogger code from Quora
+def reg():
+    login.destroy()
+    import UserReg
+    UserReg
 
+def log():
+    login.destroy()
+    import UserLogin
+    UserLogin
+    
 def EM():
     Userlogin.destroy()
     E1.destroy()
@@ -11,11 +20,11 @@ def EM():
     menub1.destroy()
     error = Label(login, text="The Username you entered was not in our database.\nPlease enter a different username OR register as a user.")
     error.pack()
-    Regbutton = tk.Button(text="Register")
+    Regbutton = tk.Button(text="Register", command=reg)
     Regbutton.pack()
-    Loginbutton = tk.Button(text="Login")
+    Loginbutton = tk.Button(text="Login", command =log)
     Loginbutton.pack()
-    menub3 = tk.Button(text="Menu")
+    menub3 = tk.Button(text="Menu", command=menu)
     menub3.pack()
 
 def check():
