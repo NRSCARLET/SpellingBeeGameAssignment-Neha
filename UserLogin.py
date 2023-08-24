@@ -1,12 +1,10 @@
 import sys 
 from tkinter import *
 import tkinter as tk
-from tkinter import simpledialog
+import UserReg
 #PrintLogger code from Quora
 def difficultystage():
-    login.destroy()
-    import Difficulty
-    Difficulty
+    
 
 def menu():
     login.destroy()
@@ -22,7 +20,7 @@ Userlogin = Label(login, text="Please enter your Username")
 Userlogin.pack()
 E1 = tk.Entry(login, bd =5)
 E1.pack()
-okb1 = tk.Button(text="Enter", command = difficultystage)
+okb1 = tk.Button(text="Enter", command = check)
 okb1.pack()
 menub1 = tk.Button(text="Menu", command = menu)
 menub1.pack()
