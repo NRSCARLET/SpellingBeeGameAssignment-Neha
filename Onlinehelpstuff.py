@@ -194,7 +194,7 @@ check_button_state()
 # Run the Tkinter event loop
 root.mainloop()"""
 
-import tkinter as tk
+"""import tkinter as tk
 import random
 
 root = tk.Tk()
@@ -231,5 +231,41 @@ label.pack()
 
 start_button = tk.Button(root, text="Start Easy Game", command=easygame)
 start_button.pack()
+
+root.mainloop()"""
+
+
+import tkinter as tk
+import random
+
+root = tk.Tk()
+root.title("Random Dictionary Key Check")
+
+# Dictionary
+my_dict = {
+    "name": "John",
+    "age": 25,
+    "topic": "Programming",
+    "city": "New York"
+}
+
+def check_key():
+    key = random.choice(list(my_dict))
+    label_key.config(text=f"Random Key: {key}")
+    if key == 'name':
+        label_result.config(text="Key is 'name': WOW!")
+    else:
+        label_result.config(text="Key is not 'name'")
+
+# Create labels
+label_key = tk.Label(root, text="", font=("Helvetica", 14))
+label_key.pack(pady=10)
+
+label_result = tk.Label(root, text="", font=("Helvetica", 16))
+label_result.pack(pady=10)
+
+# Button to check random key
+button_check = tk.Button(root, text="Check Random Key", command=check_key)
+button_check.pack(pady=10)
 
 root.mainloop()

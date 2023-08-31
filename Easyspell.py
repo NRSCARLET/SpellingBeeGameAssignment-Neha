@@ -73,6 +73,13 @@ class EasyButtons(Button):
 def easygame():
     maingamelabel = tk.Label(text="Choose the correct spelling of the word!")
     maingamelabel.pack()
+    key = random.choice(list(easy_spell_words))
+    """jumblelabel.config(text=f"Your word is {key}")
+    if key == "btut":
+        label_answer_test.config(text="WOW BUTT")
+    else:
+        label_answer_test.config(text="No butt:(")"""
+    
     
 
 def difficultywindow():
@@ -88,7 +95,11 @@ def menu():
 def easygamestart():
     Q1label = tk.Label(text="Unscramble the words and pick the correct spelling!")
     Q1label.pack()
-    easyokbutton = tk.Button(text="Okay!", command = change_label)
+   """ jumblelabel = tk.Label(ez, text="")
+    jumblelabel.pack()
+    label_answer_test = tk.Label(ez, text="")
+    label_answer_test.pack()"""
+    easyokbutton = tk.Button(text="Okay!", command = easygame)
     easyokbutton.pack()
     e.destroy()
     conbutton.destroy()
