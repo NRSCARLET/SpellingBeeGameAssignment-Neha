@@ -153,7 +153,7 @@ button.pack(padx=20, pady=10)
 # Run the Tkinter event loop
 root.mainloop()"""
 
-import tkinter as tk
+"""import tkinter as tk
 import random
 
 # List of words
@@ -192,4 +192,44 @@ button_apple.pack(padx=20, pady=10)
 check_button_state()
 
 # Run the Tkinter event loop
+root.mainloop()"""
+
+import tkinter as tk
+import random
+
+root = tk.Tk()
+root.title("Spelling Game")
+
+easy_spell_word_hint = ["btut", "apple", "grape", "banana"]  # Example word list
+used_hints = []
+
+def change_label():
+    if easy_spell_word_hint:
+        choose_word = random.choice(easy_spell_word_hint)
+        used_hints.append(choose_word)
+        label["text"] = choose_word
+        easy_spell_word_hint.remove(choose_word)
+
+def easygame():
+    maingamelabel = tk.Label(text="Choose the correct spelling of the word!")
+    maingamelabel.pack()
+
+    if label["text"] == 'btut':
+        W1 = tk.Button(text="bttu")
+        W1.pack()
+        W2 = tk.Button(text="tubt")
+        W2.pack()
+        C1 = tk.Button(text="butt")
+        C1.pack()
+
+    new_word_button = tk.Button(text="New Word", command=change_label)
+    new_word_button.pack()
+
+# Create a label initially with some default text
+label = tk.Label(root, text="")
+label.pack()
+
+start_button = tk.Button(root, text="Start Easy Game", command=easygame)
+start_button.pack()
+
 root.mainloop()
