@@ -43,9 +43,8 @@ easy_spell_words = {"btut":"butt",
                     "darh":"hard",
                     "ysea":"easy",
                     "rohn":"horn"}
-print(easy_spell_words)
+
 used_hints = []
-question_count = 0
 #words for hints (in order): butt, buzz, good, star, ball, fall, ache, name, itch, grow, tree, nose, mail, draw, yell, time, dash, cash, dead, bang, rude, kiss, bird, vase, rope, glue, push, pull, rest, tyre, west, east, song, vest, sick, knee, test, hard, easy, horn - 40 words (unjumbled words)
 class EasyButtons(Button):
     def __init__(self,*args, **kwargs):
@@ -55,14 +54,21 @@ class EasyButtons(Button):
         self['font'] = 'helvetica 9 bold'
 
 
-def change_label():
-    if easy_spell_word_hint:
-        choose_word = random.choice(easy_spell_word_hint)
-        used_hints.append(choose_word)
-        label["text"] = choose_word
-        easy_spell_word_hint.remove(choose_word)
-        easygame()
-
+"""def change_label():
+    question_count = 0
+    while question_count < 10:
+        if easy_spell_words:
+            choose_word = random.choice(list(easy_spell_words.keys()))
+            used_hints.append(choose_word)
+            print(choose_word)
+            question_count +1
+            if choose_word in used_hints:
+                print("REPEAT")
+                
+            else:
+                change_label()
+        if question_count == 10:
+            quit()"""
 
 def easygame():
     maingamelabel = tk.Label(text="Choose the correct spelling of the word!")
