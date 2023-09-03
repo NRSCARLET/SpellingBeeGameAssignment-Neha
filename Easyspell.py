@@ -57,8 +57,8 @@ class EasyLabels(Label):
     def __init__ (self, *args, **kwargs):
         Label.__init__(self, **kwargs)
         self['bg'] = '#6693F5'
-        self['fg'] = 'black'
-        self['font'] = 'helvetica 11 bold'
+        self['fg'] = 'purple'
+        self['font'] = 'helvetica 10 bold'
         
 """def change_label():
     question_count = 0
@@ -77,17 +77,19 @@ class EasyLabels(Label):
             quit()"""
 
 def easygame():
-    maingamelabel = EasyLabels(text="Choose the correct spelling of the word!")
-    maingamelabel.pack()
-    key = random.choice(list(easy_spell_words))
-    jumblelabel.config(text=f"Write the correct word!: {key}")
-    """jumblelabel.config(text=f"Your word is {key}")
-    if key == "btut":
-        label_answer_test.config(text="WOW BUTT")
-    else:
-        label_answer_test.config(text="No butt:(")"""
-    
-    
+    def actualgame():
+        key = random.choice(list(easy_spell_words))
+        jumblelabel.config(text=f"Write the correct word!: {key}")
+        if key == "btut":
+            label_answer_test.config(text="WOW BUTT")
+        else:
+            label_answer_test.config(text="No butt:(")
+    nextword = EasyButtons(text="Print word!", command= actualgame)
+    nextword.pack()
+
+def destroywidgets():
+    easyokbutton.destroy()
+    easygame()
 
 def difficultywindow():
     ez.destroy()
@@ -100,9 +102,10 @@ def menu():
     MenuWindow
 
 def easygamestart():
-    Q1label = EasyLabels(text="Unscramble the words and pick the correct spelling!")
-    Q1label.pack()
-    easyokbutton = EasyButtons(text="Okay!", command = easygame)
+    global easyokbutton
+    Gamestartlabel.config(text="Unscramble the words and pick the correct spelling!")
+    Gamestartlabel.pack()
+    easyokbutton = EasyButtons(text="Okay!", command = destroywidgets)
     easyokbutton.pack()
     e.destroy()
     conbutton.destroy()
@@ -123,13 +126,17 @@ ez = Tk()
 ez.geometry('200x200')
 ez.configure(bg = '#6693F5')
 ez.title("Spelling Bee's Spelling Game!")
-e = tk.Label(text="You've picked easy mode")
+e = EasyLabels(text="You've picked easy mode")
 e.pack()
-jumblelabel = EasyLabels(ez, text="")
-jumblelabel.pack()
 conbutton = EasyButtons(text="Continue", command = easygamestart)
 conbutton.pack()
 backb1 = EasyButtons(text="Back", command = difficultywindow)
 backb1.pack()
 menub4 = EasyButtons(text="Menu", command = menu)
 menub4.pack()
+jumblelabel = EasyLabels(ez, text="")
+jumblelabel.pack()
+Gamestartlabel = EasyLabels(ez, text="")
+Gamestartlabel.pack()
+label_answer_test = EasyLabels(ez, text="")
+label_answer_test.pack()
