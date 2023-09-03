@@ -80,16 +80,9 @@ def easygame():
     def actualgame():
         key = random.choice(list(easy_spell_words))
         jumblelabel.config(text=f"Write the correct word!: {key}")
-        if key == "btut":
-            label_answer_test.config(text="WOW BUTT")
-        else:
-            label_answer_test.config(text="No butt:(")
-    nextword = EasyButtons(text="Print word!", command= actualgame)
-    nextword.pack()
-
-def destroywidgets():
-    easyokbutton.destroy()
-    easygame()
+        AnswerEntry = tk.Entry(ez, bd =5)
+        AnswerEntry.grid(row=1, column=0, padx=10, pady=10)
+    wordbutton.config(text="Print (new) word!", command=actualgame)
 
 def difficultywindow():
     ez.destroy()
@@ -102,11 +95,13 @@ def menu():
     MenuWindow
 
 def easygamestart():
-    global easyokbutton
+    global wordbutton
     Gamestartlabel.config(text="Unscramble the words and pick the correct spelling!")
-    Gamestartlabel.pack()
-    easyokbutton = EasyButtons(text="Okay!", command = destroywidgets)
-    easyokbutton.pack()
+    Gamestartlabel.grid(row=0, column=0, padx=10, pady=10)
+    
+    wordbutton = EasyButtons(text="Okay!", command = easygame)
+    wordbutton.grid(row=2, column=0, padx=10, pady=10)
+    
     e.destroy()
     conbutton.destroy()
     backb1.destroy()
@@ -127,16 +122,22 @@ ez.geometry('200x200')
 ez.configure(bg = '#6693F5')
 ez.title("Spelling Bee's Spelling Game!")
 e = EasyLabels(text="You've picked easy mode")
-e.pack()
+e.grid(row=0, column=0, padx=10, pady=10)
+
 conbutton = EasyButtons(text="Continue", command = easygamestart)
-conbutton.pack()
+conbutton.grid(row=2, column=0, padx=10, pady=10)
+
 backb1 = EasyButtons(text="Back", command = difficultywindow)
-backb1.pack()
+backb1.grid(row=3, column=0, padx=10, pady=10)
+
 menub4 = EasyButtons(text="Menu", command = menu)
-menub4.pack()
-jumblelabel = EasyLabels(ez, text="")
-jumblelabel.pack()
+menub4.grid(row=4, column=0, padx=10, pady=10)
+
 Gamestartlabel = EasyLabels(ez, text="")
-Gamestartlabel.pack()
+Gamestartlabel.grid(row=0, column=0, padx=5, pady=5)
+
+jumblelabel = EasyLabels(ez, text="")
+jumblelabel.grid(row=1, column=0, padx=5, pady=5)
+
 label_answer_test = EasyLabels(ez, text="")
-label_answer_test.pack()
+label_answer_test.grid(row=2, column=0, padx=5, pady=5)

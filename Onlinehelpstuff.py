@@ -235,7 +235,7 @@ start_button.pack()
 root.mainloop()"""
 
 
-import tkinter as tk
+"""import tkinter as tk
 import random
 
 root = tk.Tk()
@@ -268,4 +268,87 @@ label_result.pack(pady=10)
 button_check = tk.Button(root, text="Check Random Key", command=check_key)
 button_check.pack(pady=10)
 
-root.mainloop()
+root.mainloop()"""
+
+"""import tkinter as tk
+import random
+
+# Initialize the main tkinter window
+ez = tk.Tk()
+ez.title("Easy Game")
+
+# Create the label
+jumblelabel = tk.Label(ez, text="")
+jumblelabel.pack()
+
+# Define the easy_spell_words dictionary
+easy_spell_words = {"btut": "butt", "trseh": "shirt", "wdoorr": "door", "hwon": "won"}
+
+def actualgame():
+    key = random.choice(list(easy_spell_words))
+    jumblelabel.config(text=f"Write the correct word!: {key}")
+    AnswerEntry = tk.Entry(ez, bd=5)
+    AnswerEntry.pack()
+    nextword.config(command=actualgame)  # Update the button's command
+
+# Create the initial button
+nextword = tk.Button(ez, text="Print word!", command=actualgame)
+nextword.pack()
+
+ez.mainloop()"""
+
+"""import tkinter as tk
+import random
+
+# Initialize the main tkinter window
+ez = tk.Tk()
+ez.title("Easy Game")
+
+# Create the label
+jumblelabel = tk.Label(ez, text="")
+jumblelabel.pack()
+
+# Define the easy_spell_words dictionary
+easy_spell_words = {"btut": "butt", "trseh": "shirt", "wdoorr": "door", "hwon": "won"}
+
+# Create the Entry widget
+AnswerEntry = tk.Entry(ez, bd=5)
+AnswerEntry.grid(row=0, column=0, padx=10, pady=10)  # Adjust padx and pady as needed
+
+def actualgame():
+    key = random.choice(list(easy_spell_words))
+    jumblelabel.config(text=f"Write the correct word!: {key}")
+
+# Create the button
+nextword = tk.Button(ez, text="Print word!", command=actualgame)
+nextword.grid(row=1, column=0, padx=10, pady=10)  # Adjust padx and pady as needed
+
+ez.mainloop()"""
+
+import tkinter as tk
+import random
+
+# Initialize the main tkinter window
+ez = tk.Tk()
+ez.title("Easy Game")
+
+# Create the label
+jumblelabel = tk.Label(ez, text="")
+jumblelabel.grid(row=0, column=0, padx=10, pady=10)  # Adjust padx and pady as needed
+
+# Define the easy_spell_words dictionary
+easy_spell_words = {"btut": "butt", "trseh": "shirt", "wdoorr": "door", "hwon": "won"}
+
+def actualgame():
+    key = random.choice(list(easy_spell_words))
+    jumblelabel.config(text=f"Write the correct word!: {key}")
+
+# Create the Entry widget
+AnswerEntry = tk.Entry(ez, bd=5)
+AnswerEntry.grid(row=1, column=0, padx=10, pady=10)  # Adjust padx and pady as needed
+
+# Create the button
+nextword = tk.Button(ez, text="Print word!", command=actualgame)
+nextword.grid(row=2, column=0, padx=10, pady=10)  # Adjust padx and pady as needed
+
+ez.mainloop()
