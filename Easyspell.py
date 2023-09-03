@@ -53,7 +53,13 @@ class EasyButtons(Button):
         self['fg'] = 'white'
         self['font'] = 'helvetica 9 bold'
 
-
+class EasyLabels(Label):
+    def __init__ (self, *args, **kwargs):
+        Label.__init__(self, **kwargs)
+        self['bg'] = '#6693F5'
+        self['fg'] = 'black'
+        self['font'] = 'helvetica 11 bold'
+        
 """def change_label():
     question_count = 0
     while question_count < 10:
@@ -71,9 +77,10 @@ class EasyButtons(Button):
             quit()"""
 
 def easygame():
-    maingamelabel = tk.Label(text="Choose the correct spelling of the word!")
+    maingamelabel = EasyLabels(text="Choose the correct spelling of the word!")
     maingamelabel.pack()
     key = random.choice(list(easy_spell_words))
+    jumblelabel.config(text=f"Write the correct word!: {key}")
     """jumblelabel.config(text=f"Your word is {key}")
     if key == "btut":
         label_answer_test.config(text="WOW BUTT")
@@ -93,13 +100,9 @@ def menu():
     MenuWindow
 
 def easygamestart():
-    Q1label = tk.Label(text="Unscramble the words and pick the correct spelling!")
+    Q1label = EasyLabels(text="Unscramble the words and pick the correct spelling!")
     Q1label.pack()
-   """ jumblelabel = tk.Label(ez, text="")
-    jumblelabel.pack()
-    label_answer_test = tk.Label(ez, text="")
-    label_answer_test.pack()"""
-    easyokbutton = tk.Button(text="Okay!", command = easygame)
+    easyokbutton = EasyButtons(text="Okay!", command = easygame)
     easyokbutton.pack()
     e.destroy()
     conbutton.destroy()
@@ -122,9 +125,11 @@ ez.configure(bg = '#6693F5')
 ez.title("Spelling Bee's Spelling Game!")
 e = tk.Label(text="You've picked easy mode")
 e.pack()
-conbutton = tk.Button(text="Continue", command = easygamestart)
+jumblelabel = EasyLabels(ez, text="")
+jumblelabel.pack()
+conbutton = EasyButtons(text="Continue", command = easygamestart)
 conbutton.pack()
-backb1 = tk.Button(text="Back", command = difficultywindow)
+backb1 = EasyButtons(text="Back", command = difficultywindow)
 backb1.pack()
-menub4 = tk.Button(text="Menu", command = menu)
+menub4 = EasyButtons(text="Menu", command = menu)
 menub4.pack()
