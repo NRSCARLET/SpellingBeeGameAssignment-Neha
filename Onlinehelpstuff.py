@@ -1,3 +1,5 @@
+#CHATGPT help
+
 """import tkinter as tk
 
 def button_click():
@@ -325,7 +327,7 @@ nextword.grid(row=1, column=0, padx=10, pady=10)  # Adjust padx and pady as need
 
 ez.mainloop()"""
 
-import tkinter as tk
+"""import tkinter as tk
 import random
 
 # Initialize the main tkinter window
@@ -351,4 +353,59 @@ AnswerEntry.grid(row=1, column=0, padx=10, pady=10)  # Adjust padx and pady as n
 nextword = tk.Button(ez, text="Print word!", command=actualgame)
 nextword.grid(row=2, column=0, padx=10, pady=10)  # Adjust padx and pady as needed
 
-ez.mainloop()
+ez.mainloop()"""
+
+import tkinter as tk
+import random
+
+# Dictionary of word pairs (scrambled word: unscrambled word)
+word_dict = {
+    "lpape": "apple",
+    "aaanbn": "banana",
+    "hcyerr": "cherry",
+    "rgeap": "grape",
+    "onrgae": "orange",
+    "eytrsrbarw": "strawberry",
+    "lmoenratwe": "watermelon"
+}
+
+def choose_random_word(word_dict):
+    return random.choice(list(word_dict.keys()))
+
+def next_word():
+    global current_word, scrambled_word, correct_word
+    scrambled_word = choose_random_word(word_dict)
+    current_word = word_dict[scrambled_word]
+    correct_word = current_word
+    label.config(text=scrambled_word)
+    entry.delete(0, tk.END)
+
+def check_answer():
+    user_answer = entry.get().lower()
+    if user_answer == correct_word:
+        label.config(text="Correct!")
+    else:
+        label.config(text="Incorrect. Try again: " + correct_word)
+
+root = tk.Tk()
+root.title("Word Unscramble Game")
+
+current_word = ""
+scrambled_word = ""
+correct_word = ""
+
+label = tk.Label(root, text="", font=("Helvetica", 24))
+label.pack(pady=20)
+
+entry = tk.Entry(root, font=("Helvetica", 18))
+entry.pack(pady=10)
+
+check_button = tk.Button(root, text="Check", command=check_answer)
+check_button.pack()
+
+next_button = tk.Button(root, text="Next Word", command=next_word)
+next_button.pack()
+
+next_word()
+
+root.mainloop()
