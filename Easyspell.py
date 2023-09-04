@@ -4,7 +4,7 @@ import tkinter as tk
 import random
 """easy_spell_word_hint = ["btut", "bzzu", "ogod", "tars", "labl", "alfl", "chea", "anme", "ctih", "rogw", "etre", "mila", "wrad", "leyl", "meit", "sahd", "chsa", "eadd", "nabg", "urde", "siks", "ribd", "avse", "orpe", "uleg", "uphs", "ulpl", "stre", "yter", "ewts", "stea", "ongs", "sevt", "kics", "eken", "ttse", "darh", "ysea", "rohn"]"""
 
-easy_spell_words={
+easy_spell_words_dict={
 "tebn":"bent","bzzu":"buzz","ogod":"good","tars":"star","labl":"ball","alfl":"fall","chea":"ache","anme":"name",
 "ctih":"itch","rogw":"grow","etre":"tree","sneo":"nose",      "mila":"mail","wrad":"draw","leyl":"yell","meit":"time",      "sahd":"dash","chsa":"cash","eadd":"dead","nabg":"bang",      "urde":"rude","siks":"kiss","ribd":"bird","avse":"vase",      "orpe":"rope","uleg":"glue","uphs":"push","ulpl":"pull",      "stre":"rest","yter":"tyre","ewts":"west","stea":"east",      "ongs":"song","sevt":"vest","kics":"sick","eken":"knee",
 "ttse":"test","darh":"hard","ysea":"easy","rohn":"horn"}
@@ -44,33 +44,29 @@ class EasyLabels(Label):
             quit()"""
 def checkanswer():
     user_answer = AnswerEntry.get().lower()
-    if AnswerEntry == correct_answer:
-        correctlabel.config(text="Correct! Good job!")
+    if user_answer == easy_spell_words_dict:
+        print("wow jeff")
     else:
-        incorrectlabel.config(text="Incorrect")
+        print("sad")
 
-    
+
 def easygame():
     def actualgame():
         global AnswerEntry
         global correct_answer
         global jumbled_word
-        key = random.choice(list(easy_spell_words))
-        """jumblelabel.config(text=f"Write the correct word!: {key}")"""
-        """jumbled_word = easy_spell_words[key]
-        correct_answer = jumbled_word
+        key = random.choice(list(easy_spell_words_dict))
+        jumblelabel.config(text=f"Write the correct word!: {key}")
         AnswerEntry = tk.Entry(ez, bd =5)
-        AnswerEntry.grid(row=2, column=0, padx=5, pady=5)"""
-        enterbutton = EasyButtons(text="Enter!", command=checkanswer)
-        enterbutton.grid(row=4, column=0, padx=3, pady=3)
+        AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
     actualgame()
     wordbutton.config(text="Print (new) word!", command=next_word)
+    enterbutton = EasyButtons(text="Enter!", command=checkanswer)
+    enterbutton.grid(row=4, column=0, padx=3, pady=3)
 
 def next_word():
     global current_word, scrambled_word, correct_word
-    scrambled_word = actualgame(easy_spell_words)
-    current_word = easy_spell_words[scrambled_word]
-    correct_word = current_word
+    correct_word = easy_spell_words
     label.config(text=scrambled_word)
     entry.delete(0, tk.END)
 
