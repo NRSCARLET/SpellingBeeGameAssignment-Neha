@@ -13,7 +13,7 @@ jumbled_word = ""
 correct_answer = ""
 printed_key = ""
 AnswerEntry = None
-user_points = 0
+userpoints = 0
 #words for hints (in order): butt, buzz, good, star, ball, fall, ache, name, itch, grow, tree, nose, mail, draw, yell, time, dash, cash, dead, bang, rude, kiss, bird, vase, rope, glue, push, pull, rest, tyre, west, east, song, vest, sick, knee, test, hard, easy, horn - 40 words (unjumbled words)
 class EasyButtons(Button):
     def __init__(self,*args, **kwargs):
@@ -46,11 +46,12 @@ class EasyLabels(Label):
             quit()"""
 
 def checkanswer():
+    global userpoints
     user_answer = AnswerEntry.get().lower()
     if user_answer == correct_answer:
         print("wow jeff")
-        user_points += 1
-        print(user_points)
+        userpoints += 1
+        print(userpoints)
     else:
         print("sad")
 
