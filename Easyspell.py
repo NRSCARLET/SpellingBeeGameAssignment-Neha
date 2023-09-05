@@ -14,6 +14,7 @@ correct_answer = ""
 printed_key = ""
 AnswerEntry = None
 userpoints = 0
+level = 1
 #words for hints (in order): butt, buzz, good, star, ball, fall, ache, name, itch, grow, tree, nose, mail, draw, yell, time, dash, cash, dead, bang, rude, kiss, bird, vase, rope, glue, push, pull, rest, tyre, west, east, song, vest, sick, knee, test, hard, easy, horn - 40 words (unjumbled words)
 class EasyButtons(Button):
     def __init__(self,*args, **kwargs):
@@ -48,6 +49,7 @@ class EasyLabels(Label):
 def checkanswer():
     global userpoints
     user_answer = AnswerEntry.get().lower()
+    AnswerEntry.disabled()
     if user_answer == correct_answer:
         print("wow jeff")
         userpoints += 1
@@ -56,13 +58,17 @@ def checkanswer():
         print("sad")
 
 def actualgame():
-    global AnswerEntry, printed_key, correct_answer
-    printed_key = random.choice(list(easy_spell_words_dict))
-    correct_answer = easy_spell_words_dict.pop(printed_key)
-    jumblelabel.config(text=f"Write the correct word!: {printed_key}")
-    AnswerEntry = tk.Entry(ez, bd =5)
-    AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
-    AnswerEntry.delete(0, tk.END)
+    global AnswerEntry, printed_key, correct_answer, level
+    level +=1
+    if level < 10:
+        printed_key = random.choice(list(easy_spell_words_dict))
+        correct_answer = easy_spell_words_dict.pop(printed_key)
+        jumblelabel.config(text=f"Write the correct word!: {printed_key}")
+        AnswerEntry = tk.Entry(ez, bd =5)
+        AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
+        AnswerEntry.delete(0, tk.END)
+    else:
+        
     
 def easygame():
     wordbutton.config(text="Print (new) word!", command=actualgame)
