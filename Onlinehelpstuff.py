@@ -355,7 +355,7 @@ nextword.grid(row=2, column=0, padx=10, pady=10)  # Adjust padx and pady as need
 
 ez.mainloop()"""
 
-import tkinter as tk
+"""import tkinter as tk
 import random
 
 # Dictionary of word pairs (scrambled word: unscrambled word)
@@ -408,4 +408,128 @@ next_button.pack()
 
 next_word()
 
-root.mainloop()
+root.mainloop()"""
+
+"""def checkanswer(user_input):
+    # Assuming you have a dictionary named easy_spell_words_dict
+    easy_spell_words_dict = {'key1': 'value1', 'key2': 'value2', 'key3': 'value3'}
+
+    user_answer = user_input.lower()
+
+    for key, value in easy_spell_words_dict.items():
+        if user_answer == key.lower() and user_answer == value.lower():
+            print("wow jeff")
+            return  # Exit the function if a match is found
+
+    # If no match is found in the loop, print "sad"
+    print("sad")
+
+# Example usage:
+user_input = input("Enter a value: ")
+checkanswer(user_input)"""
+
+import tkinter as tk
+import random
+
+easy_spell_words_dict = {
+    "tebn": "bent",
+    "bzzu": "buzz",
+    # ... (other words)
+    "ttse": "test",
+    "darh": "hard",
+    "ysea": "easy",
+    "rohn": "horn"
+}
+
+"""AnswerEntry = None  # Define AnswerEntry as a global variable
+current_key = None  # Keep track of the current key
+
+def checkanswer(user_answer):
+    global current_key
+    user_answer = user_answer.lower()
+    
+    if current_key is not None:
+        correct_value = easy_spell_words_dict.get(current_key, "").lower()
+        
+        if user_answer == correct_value:
+            print("wow jeff")
+        else:
+            print("sad")
+    else:
+        print("No word to check")
+
+def easygame():
+    def actualgame():
+        global AnswerEntry, current_key
+        current_key = random.choice(list(easy_spell_words_dict))
+        jumblelabel.config(text=f"Write the correct word!: {current_key}")
+        if AnswerEntry:
+            AnswerEntry.destroy()  # Destroy the previous Entry widget
+        AnswerEntry = tk.Entry(ez, bd=5)
+        AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
+        AnswerEntry.delete(0, tk.END)
+
+    actualgame()
+    wordbutton.config(text="Print (new) word!", command=actualgame)
+    enterbutton = tk.Button(ez, text="Enter!", command=lambda: checkanswer(AnswerEntry.get()))
+    enterbutton.grid(row=4, column=0, padx=3, pady=3)
+
+# Create a Tkinter window
+ez = tk.Tk()
+ez.title("Easy Word Game")
+
+# Create and configure labels and buttons
+jumblelabel = tk.Label(ez, text="")
+jumblelabel.grid(row=0, column=0, padx=5, pady=5)
+wordbutton = tk.Button(ez, text="Print (new) word!", command=easygame)
+wordbutton.grid(row=1, column=0, padx=5, pady=5)
+
+# Start the game
+easygame()
+
+# Start the Tkinter main loop
+ez.mainloop()"""
+
+import tkinter as tk
+import random
+
+easy_spell_words_dict = {
+    "paple": "apple",
+    "banarna": "banana",
+    "orngae": "orange",
+    "grpae": "grape",
+}
+
+def checkanswer(user_answer, correct_answer):
+    if user_answer == correct_answer:
+        print("wow jeff")
+    else:
+        print("sad")
+
+def actualgame():
+    global printed_key, correct_answer  # Declare these as global variables
+    printed_key = random.choice(list(easy_spell_words_dict))
+    correct_answer = easy_spell_words_dict[printed_key]
+    jumblelabel.config(text=f"Write the correct word!: {printed_key}")
+    AnswerEntry.delete(0, tk.END)
+
+def easygame():
+    actualgame()
+    wordbutton.config(text="Print (new) word!", command=actualgame)
+    enterbutton = tk.Button(ez, text="Enter!", command=lambda: checkanswer(AnswerEntry.get().lower(), correct_answer))
+    enterbutton.grid(row=4, column=0, padx=3, pady=3)
+
+# Create the main tkinter window
+ez = tk.Tk()
+ez.title("Jumbled Word Game")
+
+jumblelabel = tk.Label(ez, text="")
+jumblelabel.grid(row=0, column=0, padx=5, pady=5)
+
+wordbutton = tk.Button(ez, text="Start Game", command=easygame)
+wordbutton.grid(row=1, column=0, padx=5, pady=5)
+
+AnswerEntry = tk.Entry(ez, bd=5)
+AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
+
+ez.mainloop()

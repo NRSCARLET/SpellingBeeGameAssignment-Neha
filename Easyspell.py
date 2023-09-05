@@ -12,6 +12,8 @@ easy_spell_words_dict={
 used_hints = []
 jumbled_word = ""
 correct_answer = ""
+printed_key = ""
+AnswerEntry = None
 #words for hints (in order): butt, buzz, good, star, ball, fall, ache, name, itch, grow, tree, nose, mail, draw, yell, time, dash, cash, dead, bang, rude, kiss, bird, vase, rope, glue, push, pull, rest, tyre, west, east, song, vest, sick, knee, test, hard, easy, horn - 40 words (unjumbled words)
 class EasyButtons(Button):
     def __init__(self,*args, **kwargs):
@@ -44,31 +46,27 @@ class EasyLabels(Label):
             quit()"""
 def checkanswer():
     user_answer = AnswerEntry.get().lower()
-    if user_answer == easy_spell_words_dict:
+    if user_answer == correct_answer:
         print("wow jeff")
     else:
         print("sad")
 
-
-def easygame():
-    def actualgame():
-        global AnswerEntry
-        global correct_answer
-        global jumbled_word
-        key = random.choice(list(easy_spell_words_dict))
-        jumblelabel.config(text=f"Write the correct word!: {key}")
+def actualgame():
+        global AnswerEntry, printed_key, correct_answer
+        printed_key = random.choice(list(easy_spell_words_dict))
+        correct_answer = easy_spell_words_dict[printed_key]
+        jumblelabel.config(text=f"Write the correct word!: {printed_key}")
         AnswerEntry = tk.Entry(ez, bd =5)
         AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
-    actualgame()
-    wordbutton.config(text="Print (new) word!", command=next_word)
+        AnswerEntry.delete(0, tk.END)
+    
+def easygame():
+    wordbutton.config(text="Print (new) word!", command=actualgame)
     enterbutton = EasyButtons(text="Enter!", command=checkanswer)
     enterbutton.grid(row=4, column=0, padx=3, pady=3)
+    actualgame()
 
-def next_word():
-    global current_word, scrambled_word, correct_word
-    correct_word = easy_spell_words
-    label.config(text=scrambled_word)
-    entry.delete(0, tk.END)
+
 
 def difficultywindow():
     ez.destroy()
