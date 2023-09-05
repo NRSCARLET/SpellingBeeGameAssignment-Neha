@@ -9,11 +9,11 @@ easy_spell_words_dict={
 "ctih":"itch","rogw":"grow","etre":"tree","sneo":"nose",      "mila":"mail","wrad":"draw","leyl":"yell","meit":"time",      "sahd":"dash","chsa":"cash","eadd":"dead","nabg":"bang",      "urde":"rude","siks":"kiss","ribd":"bird","avse":"vase",      "orpe":"rope","uleg":"glue","uphs":"push","ulpl":"pull",      "stre":"rest","yter":"tyre","ewts":"west","stea":"east",      "ongs":"song","sevt":"vest","kics":"sick","eken":"knee",
 "ttse":"test","darh":"hard","ysea":"easy","rohn":"horn"}
 
-used_hints = []
 jumbled_word = ""
 correct_answer = ""
 printed_key = ""
 AnswerEntry = None
+user_points = 0
 #words for hints (in order): butt, buzz, good, star, ball, fall, ache, name, itch, grow, tree, nose, mail, draw, yell, time, dash, cash, dead, bang, rude, kiss, bird, vase, rope, glue, push, pull, rest, tyre, west, east, song, vest, sick, knee, test, hard, easy, horn - 40 words (unjumbled words)
 class EasyButtons(Button):
     def __init__(self,*args, **kwargs):
@@ -44,21 +44,24 @@ class EasyLabels(Label):
                 change_label()
         if question_count == 10:
             quit()"""
+
 def checkanswer():
     user_answer = AnswerEntry.get().lower()
     if user_answer == correct_answer:
         print("wow jeff")
+        user_points += 1
+        print(user_points)
     else:
         print("sad")
 
 def actualgame():
-        global AnswerEntry, printed_key, correct_answer
-        printed_key = random.choice(list(easy_spell_words_dict))
-        correct_answer = easy_spell_words_dict[printed_key]
-        jumblelabel.config(text=f"Write the correct word!: {printed_key}")
-        AnswerEntry = tk.Entry(ez, bd =5)
-        AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
-        AnswerEntry.delete(0, tk.END)
+    global AnswerEntry, printed_key, correct_answer
+    printed_key = random.choice(list(easy_spell_words_dict))
+    correct_answer = easy_spell_words_dict.pop(printed_key)
+    jumblelabel.config(text=f"Write the correct word!: {printed_key}")
+    AnswerEntry = tk.Entry(ez, bd =5)
+    AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
+    AnswerEntry.delete(0, tk.END)
     
 def easygame():
     wordbutton.config(text="Print (new) word!", command=actualgame)
