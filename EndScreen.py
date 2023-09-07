@@ -24,15 +24,28 @@ def playagain():
     end.destroy()
     import Difficulty
     Difficulty
+    
+with open('userpoints.txt', 'r') as file:
+    points = [int(p) for p in file.read().splitlines()]
+total_points = sum(points)
 
 end = Tk()
 end.geometry('200x200')
 end.configure(bg = '#6693F5')
 end.title("Spelling Bee's Spelling Game!")
 endlabel = Labels(text="You've finished easy mode!")
-"""pointslabel = Labels(text=f"You got {points} out of 10!")"""
 endlabel.grid(row=0, column=0, padx=5, pady=5)
 menub = Buttons(text="End game")
-menub.grid(row=1, column=0, padx=3, pady=3)
+menub.grid(row=3, column=0, padx=3, pady=3)
 difficultyb = Buttons(text="Play Again", command=playagain)
-difficultyb.grid(row=2, column=0, padx=3, pady=3)
+difficultyb.grid(row=4, column=0, padx=3, pady=3)
+moti = Labels(text="")
+moti.grid(row=2, column=0, padx=5, pady=5)
+pointslabel = Labels(text=f"You got {total_points} out of 10 points for easy mode!")
+if total_points < 5:
+    moti.config(text="Better luck next time!")
+elif total_points == 10:
+    moti.config(text="WOAH, perfect score! Great job!")
+else:
+    moti.config(text="Good Job!")
+pointslabel.grid(row=1, column=0, padx=5, pady=5)

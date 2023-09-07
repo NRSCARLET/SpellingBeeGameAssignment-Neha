@@ -1,5 +1,4 @@
 #CHATGPT help
-
 """import tkinter as tk
 
 def button_click():
@@ -45,7 +44,6 @@ button.pack(padx=20, pady=10)
 # Run the Tkinter event loop
 root.mainloop()
 """
-
 """import tkinter as tk
 
 def open_new_window():
@@ -69,7 +67,6 @@ button.pack(padx=20, pady=10)
 
 # Run the Tkinter event loop
 root.mainloop()"""
-
 """import tkinter as tk
 
 def open_new_window():
@@ -94,7 +91,6 @@ button.pack(padx=20, pady=10)
 
 # Run the Tkinter event loop
 root.mainloop()"""
-
 """import tkinter as tk
 
 def open_new_window():
@@ -123,7 +119,6 @@ button.pack(padx=20, pady=10)
 
 # Run the Tkinter event loop
 root.mainloop()"""
-
 """import tkinter as tk
 import random
 
@@ -154,7 +149,6 @@ button.pack(padx=20, pady=10)
 
 # Run the Tkinter event loop
 root.mainloop()"""
-
 """import tkinter as tk
 import random
 
@@ -195,7 +189,6 @@ check_button_state()
 
 # Run the Tkinter event loop
 root.mainloop()"""
-
 """import tkinter as tk
 import random
 
@@ -235,8 +228,6 @@ start_button = tk.Button(root, text="Start Easy Game", command=easygame)
 start_button.pack()
 
 root.mainloop()"""
-
-
 """import tkinter as tk
 import random
 
@@ -271,7 +262,6 @@ button_check = tk.Button(root, text="Check Random Key", command=check_key)
 button_check.pack(pady=10)
 
 root.mainloop()"""
-
 """import tkinter as tk
 import random
 
@@ -298,7 +288,6 @@ nextword = tk.Button(ez, text="Print word!", command=actualgame)
 nextword.pack()
 
 ez.mainloop()"""
-
 """import tkinter as tk
 import random
 
@@ -326,7 +315,6 @@ nextword = tk.Button(ez, text="Print word!", command=actualgame)
 nextword.grid(row=1, column=0, padx=10, pady=10)  # Adjust padx and pady as needed
 
 ez.mainloop()"""
-
 """import tkinter as tk
 import random
 
@@ -354,7 +342,6 @@ nextword = tk.Button(ez, text="Print word!", command=actualgame)
 nextword.grid(row=2, column=0, padx=10, pady=10)  # Adjust padx and pady as needed
 
 ez.mainloop()"""
-
 """import tkinter as tk
 import random
 
@@ -409,7 +396,6 @@ next_button.pack()
 next_word()
 
 root.mainloop()"""
-
 """def checkanswer(user_input):
     # Assuming you have a dictionary named easy_spell_words_dict
     easy_spell_words_dict = {'key1': 'value1', 'key2': 'value2', 'key3': 'value3'}
@@ -427,8 +413,7 @@ root.mainloop()"""
 # Example usage:
 user_input = input("Enter a value: ")
 checkanswer(user_input)"""
-
-import tkinter as tk
+"""import tkinter as tk
 import random
 
 easy_spell_words_dict = {
@@ -439,8 +424,7 @@ easy_spell_words_dict = {
     "darh": "hard",
     "ysea": "easy",
     "rohn": "horn"
-}
-
+}"""
 """AnswerEntry = None  # Define AnswerEntry as a global variable
 current_key = None  # Keep track of the current key
 
@@ -489,8 +473,7 @@ easygame()
 
 # Start the Tkinter main loop
 ez.mainloop()"""
-
-import tkinter as tk
+"""import tkinter as tk
 import random
 
 easy_spell_words_dict = {
@@ -532,4 +515,53 @@ wordbutton.grid(row=1, column=0, padx=5, pady=5)
 AnswerEntry = tk.Entry(ez, bd=5)
 AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
 
-ez.mainloop()
+ez.mainloop()"""
+"""from tkinter import Tk, Label
+
+# Read the points from the file and convert them to integers
+with open('userpoints.txt', 'r') as file:
+    points = [int(line) for line in file.read().splitlines()]
+
+end = Tk()
+end.geometry('200x200')
+end.configure(bg='#6693F5')
+end.title("Spelling Bee's Spelling Game!")
+
+endlabel = Label(text="You've finished easy mode!")
+endlabel.grid(row=0, column=0, padx=5, pady=5)
+
+# Calculate the total points earned
+total_points = sum(points)
+
+pointslabel = Label(text=f"You got {total_points} out of 10 points for easy mode!")
+pointslabel.grid(row=1, column=0, padx=5, pady=5)
+
+moti = Label(end, text="")
+moti.grid(row=2, column=0, padx=5, pady=5)
+
+if total_points < 5:
+    moti.config(text="Better luck next time!")
+elif total_points == 10:
+    moti.config(text="WOAH, perfect score! Great job!")
+else:
+    moti.config(text="Good Job!")
+
+end.mainloop()"""
+
+# Open the file in read mode
+with open('userpoints.txt', 'r') as file:
+    lines = file.read().splitlines()
+
+# Check if there are any lines in the file
+if lines:
+    # Extract the last line (the last number)
+    last_line = lines[-1]
+
+    # Convert the last line to an integer (assuming it contains a number)
+    last_number = int(last_line)
+
+    # Use last_number as needed
+    print("Last number:", last_number)
+else:
+    # Handle the case where the file is empty
+    print("File is empty.")

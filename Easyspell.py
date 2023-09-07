@@ -16,7 +16,7 @@ AnswerEntry = None
 enterbutton = None
 wordbutton = None
 userpoints = 0
-level = 1
+level = 0
 #words for hints (in order): butt, buzz, good, star, ball, fall, ache, name, itch, grow, tree, nose, mail, draw, yell, time, dash, cash, dead, bang, rude, kiss, bird, vase, rope, glue, push, pull, rest, tyre, west, east, song, vest, sick, knee, test, hard, easy, horn - 40 words (unjumbled words)
 class Buttons(Button):
     def __init__(self,*args, **kwargs):
@@ -76,6 +76,7 @@ def actualgame():
         AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
         AnswerEntry.delete(0, tk.END)
     else:
+        wordbutton.config(text="End Game!")
         points = userpoints
         with open('userpoints.txt', 'a') as pointopen:
             pointopen.write(str(points) + "\n")
