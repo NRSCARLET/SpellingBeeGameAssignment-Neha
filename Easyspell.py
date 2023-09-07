@@ -16,14 +16,14 @@ AnswerEntry = None
 userpoints = 0
 level = 1
 #words for hints (in order): butt, buzz, good, star, ball, fall, ache, name, itch, grow, tree, nose, mail, draw, yell, time, dash, cash, dead, bang, rude, kiss, bird, vase, rope, glue, push, pull, rest, tyre, west, east, song, vest, sick, knee, test, hard, easy, horn - 40 words (unjumbled words)
-class EasyButtons(Button):
+class Buttons(Button):
     def __init__(self,*args, **kwargs):
         Button.__init__(self,*args, **kwargs)
         self['bg'] = '#DA70D6'
         self['fg'] = 'white'
         self['font'] = 'helvetica 9 bold'
 
-class EasyLabels(Label):
+class Labels(Label):
     def __init__ (self, *args, **kwargs):
         Label.__init__(self, **kwargs)
         self['bg'] = '#6693F5'
@@ -68,11 +68,13 @@ def actualgame():
         AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
         AnswerEntry.delete(0, tk.END)
     else:
-        
+        ez.destroy()
+        import EndScreen
+        EndScreen
     
 def easygame():
     wordbutton.config(text="Print (new) word!", command=actualgame)
-    enterbutton = EasyButtons(text="Enter!", command=checkanswer)
+    enterbutton = Buttons(text="Enter!", command=checkanswer)
     enterbutton.grid(row=4, column=0, padx=3, pady=3)
     actualgame()
 
@@ -93,7 +95,7 @@ def easygamestart():
     Gamestartlabel.config(text="Unscramble the words and pick the correct spelling!")
     Gamestartlabel.grid(row=0, column=0, padx=5, pady=5)
     
-    wordbutton = EasyButtons(text="Okay!", command = easygame)
+    wordbutton = Buttons(text="Okay!", command = easygame)
     wordbutton.grid(row=3, column=0, padx=3, pady=3)
     
     e.destroy()
@@ -103,11 +105,11 @@ def easygamestart():
     
     """Q1label = tk.Label(text="Please pick the correct spelling of [insert thing here]")
     Q1label.pack()
-    Q1CB = EasyButtons(ez, text="paw")
+    Q1CB = Buttons(ez, text="paw")
     Q1CB.pack()
-    Q1INCB1 = EasyButtons(text="liw")
+    Q1INCB1 = Buttons(text="liw")
     Q1INCB1.pack()
-    Q1INCB2 = EasyButtons(text="pey")
+    Q1INCB2 = Buttons(text="pey")
     Q1INCB2.pack()"""
     
     
@@ -115,29 +117,29 @@ ez = Tk()
 ez.geometry('200x200')
 ez.configure(bg = '#6693F5')
 ez.title("Spelling Bee's Spelling Game!")
-e = EasyLabels(text="You've picked easy mode")
+e = Labels(text="You've picked easy mode")
 e.grid(row=0, column=0, padx=5, pady=5)
 
-conbutton = EasyButtons(text="Continue", command = easygamestart)
+conbutton = Buttons(text="Continue", command = easygamestart)
 conbutton.grid(row=2, column=0, padx=3, pady=3)
 
-backb1 = EasyButtons(text="Back", command = difficultywindow)
+backb1 = Buttons(text="Back", command = difficultywindow)
 backb1.grid(row=3, column=0, padx=3, pady=3)
 
-menub4 = EasyButtons(text="Menu", command = menu)
+menub4 = Buttons(text="Menu", command = menu)
 menub4.grid(row=4, column=0, padx=3, pady=3)
 
-Gamestartlabel = EasyLabels(ez, text="")
+Gamestartlabel = Labels(ez, text="")
 Gamestartlabel.grid(row=1, column=0, padx=5, pady=5)
 
-jumblelabel = EasyLabels(ez, text="")
+jumblelabel = Labels(ez, text="")
 jumblelabel.grid(row=1, column=0, padx=5, pady=5)
 
-correctlabel = EasyLabels(ez, text="")
+correctlabel = Labels(ez, text="")
 correctlabel.grid(row=5, column=0, padx=5, pady=5)
 
-incorrectlabel = EasyLabels(ez, text="")
+incorrectlabel = Labels(ez, text="")
 incorrectlabel.grid(row=5, column=0, padx=5, pady=5)
 
-"""label_answer_test = EasyLabels(ez, text="")
+"""label_answer_test = Labels(ez, text="")
 label_answer_test.grid(row=1, column=0, padx=5, pady=5)"""
