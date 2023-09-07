@@ -17,10 +17,22 @@ class Labels(Label):
         self['fg'] = 'purple'
         self['font'] = 'helvetica 10 bold'
 
-
+"""def menu():
+    import exitscreen
+    Exitscreen
+"""
+def playagain():
+    end.destroy()
+    import Difficulty
+    Difficulty
+    
 end = Tk()
 end.geometry('200x200')
 end.configure(bg = '#6693F5')
 end.title("Spelling Bee's Spelling Game!")
 endlabel = Labels(text="You've finished easy mode!")
 endlabel.grid(row=0, column=0, padx=5, pady=5)
+menub = Buttons(text="End game")
+menub.grid(row=1, column=0, padx=3, pady=3)
+difficultyb = Buttons(text="Play Again", command=playagain)
+difficultyb.grid(row=2, column=0, padx=3, pady=3)
