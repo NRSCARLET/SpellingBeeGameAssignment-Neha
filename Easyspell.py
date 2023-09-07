@@ -13,6 +13,7 @@ jumbled_word = ""
 correct_answer = ""
 printed_key = ""
 AnswerEntry = None
+enterbutton = None
 userpoints = 0
 level = 1
 #words for hints (in order): butt, buzz, good, star, ball, fall, ache, name, itch, grow, tree, nose, mail, draw, yell, time, dash, cash, dead, bang, rude, kiss, bird, vase, rope, glue, push, pull, rest, tyre, west, east, song, vest, sick, knee, test, hard, easy, horn - 40 words (unjumbled words)
@@ -50,6 +51,7 @@ def checkanswer():
     global userpoints
     user_answer = AnswerEntry.get().lower()
     AnswerEntry.config(state = "disabled")
+    enterbutton.config(state = "disabled")
     if user_answer == correct_answer:
         answerlabel.config(text=f"CORRECT! The answer is {correct_answer}!")
         userpoints += 1
@@ -58,13 +60,16 @@ def checkanswer():
         answerlabel.config(text=f"INCORRECT! The answer was {correct_answer}!")
 
 def actualgame():
-    global AnswerEntry, printed_key, correct_answer, level
+    global AnswerEntry, printed_key, correct_answer, level, enterbutton
     level +=1
     answerlabel.config(text="")
     if level < 10:
         printed_key = random.choice(list(easy_spell_words_dict))
         correct_answer = easy_spell_words_dict.pop(printed_key)
         jumblelabel.config(text=f"Write the correct word!: {printed_key}")
+        wordbutton.config(text="Print (new) word!", command=actualgame)
+        enterbutton = Buttons(text="Enter!", command=checkanswer)
+        enterbutton.grid(row=4, column=0, padx=3, pady=3)
         AnswerEntry = tk.Entry(ez, bd =5)
         AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
         AnswerEntry.delete(0, tk.END)
@@ -73,12 +78,6 @@ def actualgame():
         import EndScreen
         EndScreen
     
-def easygame():
-    wordbutton.config(text="Print (new) word!", command=actualgame)
-    enterbutton = Buttons(text="Enter!", command=checkanswer)
-    enterbutton.grid(row=4, column=0, padx=3, pady=3)
-    actualgame()
-
 
 
 def difficultywindow():
@@ -96,7 +95,7 @@ def easygamestart():
     Gamestartlabel.config(text="Unscramble the words and pick the correct spelling!")
     Gamestartlabel.grid(row=0, column=0, padx=5, pady=5)
     
-    wordbutton = Buttons(text="Okay!", command = easygame)
+    wordbutton = Buttons(text="Okay!", command = actualgame)
     wordbutton.grid(row=3, column=0, padx=3, pady=3)
     
     e.destroy()
