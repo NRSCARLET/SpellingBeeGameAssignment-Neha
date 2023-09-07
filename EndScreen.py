@@ -25,7 +25,8 @@ def playagain():
     end.destroy()
     import Difficulty
     Difficulty
-    
+
+
 end = Tk()
 end.geometry('200x200')
 end.configure(bg = '#6693F5')

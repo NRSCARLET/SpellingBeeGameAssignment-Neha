@@ -6,7 +6,7 @@ import random
 
 easy_spell_words_dict={
 "tebn":"bent","bzzu":"buzz","ogod":"good","tars":"star","labl":"ball","alfl":"fall","chea":"ache","anme":"name",
-"ctih":"itch","rogw":"grow","etre":"tree","sneo":"nose",      "mila":"mail","wrad":"draw","leyl":"yell","meit":"time",      "sahd":"dash","chsa":"cash","eadd":"dead","nabg":"bang",      "urde":"rude","siks":"kiss","ribd":"bird","avse":"vase",      "orpe":"rope","uleg":"glue","uphs":"push","ulpl":"pull",      "stre":"rest","yter":"tyre","ewts":"west","stea":"east",      "ongs":"song","sevt":"vest","kics":"sick","eken":"knee",
+"ctih":"itch","rogw":"grow","etre":"tree","sneo":"nose",      "mila":"mail","wrad":"draw","leyl":"yell","meit":"time",      "sahd":"dash","chsa":"cash","eadd":"dead","nabg":"bang",      "urde":"rude","eahv":"have","ribd":"bird","avse":"vase",      "orpe":"rope","uleg":"glue","uphs":"push","ulpl":"pull",      "stre":"rest","yter":"tyre","ewts":"west","stea":"east",      "ongs":"song","sevt":"vest","kics":"sick","eken":"knee",
 "ttse":"test","darh":"hard","ysea":"easy","rohn":"horn"}
 
 jumbled_word = ""
@@ -49,17 +49,18 @@ class Labels(Label):
 def checkanswer():
     global userpoints
     user_answer = AnswerEntry.get().lower()
-    AnswerEntry.disabled()
+    AnswerEntry.config(state = "disabled")
     if user_answer == correct_answer:
-        print("wow jeff")
+        answerlabel.config(text=f"CORRECT! The answer is {correct_answer}!")
         userpoints += 1
         print(userpoints)
     else:
-        print("sad")
+        answerlabel.config(text=f"INCORRECT! The answer was {correct_answer}!")
 
 def actualgame():
     global AnswerEntry, printed_key, correct_answer, level
     level +=1
+    answerlabel.config(text="")
     if level < 10:
         printed_key = random.choice(list(easy_spell_words_dict))
         correct_answer = easy_spell_words_dict.pop(printed_key)
@@ -135,11 +136,9 @@ Gamestartlabel.grid(row=1, column=0, padx=5, pady=5)
 jumblelabel = Labels(ez, text="")
 jumblelabel.grid(row=1, column=0, padx=5, pady=5)
 
-correctlabel = Labels(ez, text="")
-correctlabel.grid(row=5, column=0, padx=5, pady=5)
+answerlabel = Labels(ez, text="")
+answerlabel.grid(row=5, column=0, padx=5, pady=5)
 
-incorrectlabel = Labels(ez, text="")
-incorrectlabel.grid(row=5, column=0, padx=5, pady=5)
 
 """label_answer_test = Labels(ez, text="")
 label_answer_test.grid(row=1, column=0, padx=5, pady=5)"""
