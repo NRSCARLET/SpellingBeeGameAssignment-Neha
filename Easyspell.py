@@ -65,7 +65,7 @@ def actualgame():
     global AnswerEntry, printed_key, correct_answer, level, enterbutton, wordbutton
     level +=1
     answerlabel.config(text="")
-    if level < 10:
+    if level <= 10:
         printed_key = random.choice(list(easy_spell_words_dict))
         correct_answer = easy_spell_words_dict.pop(printed_key)
         jumblelabel.config(text=f"Write the correct word!: {printed_key}")
@@ -78,7 +78,7 @@ def actualgame():
     else:
         points = userpoints
         with open('userpoints.txt', 'a') as pointopen:
-            pointopen.write(points + "\n")
+            pointopen.write(str(points) + "\n")
         ez.destroy()
         import EndScreen
         EndScreen
