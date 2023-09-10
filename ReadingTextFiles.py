@@ -154,7 +154,7 @@ top.mainloop()"""
 
     
 
-import sys 
+"""import sys 
 from tkinter import *
 import tkinter as tk
 def saveuser():
@@ -171,4 +171,66 @@ word.pack()
 E2 = Entry(test, bd = 5)
 E2.pack()
 savebutton = tk.Button(text="Save", command=saveuser)
-savebutton.pack()
+savebutton.pack()"""
+
+"""with open("username.txt", "r") as file:
+    # Initialize a variable to store the last line
+    last_line = None
+
+    # Read the file line by line
+    for line in file:
+        last_line = line  # Overwrite the variable with the current line
+
+# Now, last_line contains the final line of the file
+print("Final line:", last_line)"""
+
+import tkinter as tk
+
+# Function to update the score in the text file
+def update_score():
+    # Get the username and new score from the Entry widgets
+    username = username_entry.get()
+    new_score = score_entry.get()
+
+    # Read the existing data from the file into a list
+    with open("scores.txt", "r") as file:
+        lines = file.readlines()
+
+    # Iterate through the lines to find and update the specific username
+    for i, line in enumerate(lines):
+        parts = line.strip().split(',')
+        if parts[0] == username:
+            lines[i] = f"{username},{new_score}\n"
+            break  # Stop searching once the username is found and updated
+
+    # Write the modified lines back to the file
+    with open("scores.txt", "w") as file:
+        file.writelines(lines)
+
+    # Optionally, update a label or provide feedback to the user
+    result_label.config(text=f"Score for {username} updated to {new_score}")
+
+# Create a tkinter window
+root = tk.Tk()
+root.title("Update Score")
+
+# Create Entry widgets for username and score
+username_label = tk.Label(root, text="Username:")
+username_label.pack()
+username_entry = tk.Entry(root)
+username_entry.pack()
+
+score_label = tk.Label(root, text="New Score:")
+score_label.pack()
+score_entry = tk.Entry(root)
+score_entry.pack()
+
+# Create a button to update the score
+update_button = tk.Button(root, text="Update Score", command=update_score)
+update_button.pack()
+
+# Label to display the result
+result_label = tk.Label(root, text="")
+result_label.pack()
+
+root.mainloop()

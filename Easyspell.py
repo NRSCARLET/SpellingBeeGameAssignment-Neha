@@ -83,7 +83,7 @@ def actualgame():
         ez.destroy()
         import EndScreen
         EndScreen
-    
+
 
 
 def difficultywindow():

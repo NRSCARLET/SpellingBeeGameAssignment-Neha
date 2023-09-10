@@ -25,7 +25,7 @@ def playagain():
     import Difficulty
     Difficulty
     
-with open('userpoints.txt', 'r') as file:
+with open('easypoints.txt', 'r') as file:
     points = [int(p) for p in file.read().splitlines()]
 total_points = sum(points)
 

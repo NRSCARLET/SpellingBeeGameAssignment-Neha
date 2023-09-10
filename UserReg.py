@@ -1,15 +1,19 @@
 import sys 
 from tkinter import *
 import tkinter as tk
+playing_user = ""
+
 
 def saveuser():
-    usernames = E2.get()
+    global playing_user
+    playing_user = E2.get()
     with open('username.txt', 'a') as useropen:
         useropen.write(usernames + "\n")
     reg.destroy()
     import Difficulty
     Difficulty
-    
+
+
 def menu():
     reg.destroy()
     E2.destroy()
@@ -18,6 +22,7 @@ def menu():
     Userregister.destroy()
     import MenuWindow
     MenuWindow
+
 
 reg = Tk()
 reg.geometry("330x130")
