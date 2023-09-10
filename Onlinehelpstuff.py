@@ -548,20 +548,28 @@ else:
 
 end.mainloop()"""
 
-# Open the file in read mode
-with open('userpoints.txt', 'r') as file:
-    lines = file.read().splitlines()
+import tkinter as tk
 
-# Check if there are any lines in the file
-if lines:
-    # Extract the last line (the last number)
-    last_line = lines[-1]
+def limit_characters(event):
+    # Get the current text in the Entry widget
+    current_text = entry.get()
+    
+    # Define the maximum character limit
+    max_characters = 10  # Change this to your desired character limit
+    
+    # Check if the current text exceeds the character limit
+    if len(current_text) > max_characters:
+        # Truncate the text to the maximum allowed characters
+        entry.delete(max_characters, tk.END)
 
-    # Convert the last line to an integer (assuming it contains a number)
-    last_number = int(last_line)
+root = tk.Tk()
+root.title("Character Limit Example")
 
-    # Use last_number as needed
-    print("Last number:", last_number)
-else:
-    # Handle the case where the file is empty
-    print("File is empty.")
+# Create an Entry widget
+entry = tk.Entry(root)
+entry.pack(padx=10, pady=10)
+
+# Bind the limit_characters function to the KeyRelease event
+entry.bind("<KeyRelease>", limit_characters)
+
+root.mainloop()
