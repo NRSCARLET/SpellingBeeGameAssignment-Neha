@@ -77,7 +77,8 @@ def actualgame():
         AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
         AnswerEntry.delete(0, tk.END)
     else:
-        AnswerEntry.destroy()
+        if AnswerEntry:
+            AnswerEntry.destroy()
         wordbutton.config(text="End Game!")
         points_str = str(userpoints)
         with open('easyscore.txt', 'a') as pointopen:

@@ -3,3 +3,4 @@ jeff, 6
 polly, 4
 ed, 4
 tasha, 10
+west, 6
