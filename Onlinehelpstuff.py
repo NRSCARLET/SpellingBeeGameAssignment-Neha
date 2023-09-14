@@ -548,7 +548,7 @@ else:
 
 end.mainloop()"""
 
-import tkinter as tk
+"""import tkinter as tk
 
 def limit_characters(event):
     # Get the current text in the Entry widget
@@ -572,4 +572,27 @@ entry.pack(padx=10, pady=10)
 # Bind the limit_characters function to the KeyRelease event
 entry.bind("<KeyRelease>", limit_characters)
 
-root.mainloop()
+root.mainloop()"""
+
+from tkinter import *
+
+def display_scores():
+    with open('easyscore.txt', 'r') as file:
+        scores = file.read().splitlines()
+
+    for i, score in enumerate(scores):
+        name, points = score.split(', ')
+        name_label = Label(end, text=f"Name: {name}")
+        name_label.grid(row=i+1, column=0, padx=5, pady=5)
+        points_label = Label(end, text=f"Points: {points}")
+        points_label.grid(row=i+1, column=1, padx=5, pady=5)
+
+end = Tk()
+end.geometry('300x300')
+end.configure(bg='#6693F5')
+end.title("Spelling Bee's Spelling Game!")
+
+display_scores_button = Button(end, text="Display Scores", command=display_scores)
+display_scores_button.grid(row=0, column=0, padx=5, pady=5)
+
+end.mainloop()

@@ -82,8 +82,6 @@ def actualgame():
         with open('easyscore.txt', 'a') as pointopen:
             pointopen.write(f"{playing_user}, {userpoints}" + "\n")
             pointopen.close()
-        with open('easyscore.txt', 'r') as pointopen:
-            pointcontent = pointopen.read()
         ez.destroy()
         import EndScreen
         EndScreen

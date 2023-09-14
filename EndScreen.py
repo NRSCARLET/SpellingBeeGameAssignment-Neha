@@ -2,6 +2,8 @@ import sys
 from tkinter import *
 import tkinter as tk
 import random
+from UserReg import playing_user
+from Easyspell import userpoints
 class Buttons(Button):
     def __init__(self,*args, **kwargs):
         Button.__init__(self,*args, **kwargs)
@@ -25,10 +27,10 @@ def playagain():
     import Difficulty
     Difficulty
     
-with open('easypoints.txt', 'r') as file:
-    points = [int(p) for p in file.read().splitlines()]
-total_points = sum(points)
-
+with open('easyscore.txt', 'r') as pointopen:
+    scores = file.read().splitlines()
+    for i, score in enumerate(scores):
+        name, points = score.split(', ')
 end = Tk()
 end.geometry('200x200')
 end.configure(bg = '#6693F5')
@@ -41,11 +43,11 @@ difficultyb = Buttons(text="Play Again", command=playagain)
 difficultyb.grid(row=4, column=0, padx=3, pady=3)
 moti = Labels(text="")
 moti.grid(row=2, column=0, padx=5, pady=5)
-pointslabel = Labels(text=f"You got {total_points} out of 10 points for easy mode!")
+pointslabel = Labels(text=f"You got {points} out of 10 points for _____ mode!")
 if total_points < 5:
-    moti.config(text="Better luck next time!")
+    moti.config(text=f"Better luck next time {name}!")
 elif total_points == 10:
-    moti.config(text="WOAH, perfect score! Great job!")
+    moti.config(text=f"WOAH, a perfect score! Great job {name}!")
 else:
-    moti.config(text="Good Job!")
+    moti.config(text=f"Good Job {playing_user}!")
 pointslabel.grid(row=1, column=0, padx=5, pady=5)
