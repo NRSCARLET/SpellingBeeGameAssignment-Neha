@@ -1,3 +1,4 @@
+#not using, will put an end screen at the end of each game in the same file.
 import sys 
 from tkinter import *
 import tkinter as tk
@@ -28,7 +29,7 @@ def playagain():
     Difficulty
     
 with open('easyscore.txt', 'r') as pointopen:
-    scores = file.read().splitlines()
+    scores = pointopen.read().splitlines()
     for i, score in enumerate(scores):
         name, points = score.split(', ')
 end = Tk()

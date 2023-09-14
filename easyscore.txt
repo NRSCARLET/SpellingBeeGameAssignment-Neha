@@ -1,3 +1,5 @@
-bob, 2
-jeff, 3
-hay, 3
+bob, 3
+jeff, 6
+polly, 4
+ed, 4
+tasha, 10

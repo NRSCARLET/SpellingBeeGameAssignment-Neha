@@ -586,6 +586,7 @@ def display_scores():
         name_label.grid(row=i+1, column=0, padx=5, pady=5)
         points_label = Label(end, text=f"Points: {points}")
         points_label.grid(row=i+1, column=1, padx=5, pady=5)
+        
 
 end = Tk()
 end.geometry('300x300')

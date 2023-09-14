@@ -77,14 +77,28 @@ def actualgame():
         AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
         AnswerEntry.delete(0, tk.END)
     else:
+        AnswerEntry.destroy()
         wordbutton.config(text="End Game!")
         points_str = str(userpoints)
         with open('easyscore.txt', 'a') as pointopen:
             pointopen.write(f"{playing_user}, {userpoints}" + "\n")
             pointopen.close()
-        ez.destroy()
-        import EndScreen
-        EndScreen
+        with open('easyscore.txt', 'r') as pointopen:
+            scores = pointopen.read().splitlines()
+            for i, score in enumerate(scores):
+                name, points = score.split(', ')
+                points = int(points)
+                if points < 5:
+                    jumblelabel.config(text=f"Better luck next time {name}!")
+                elif points == 10:
+                    jumblelabel.config(text=f"WOAH a perfect score!! Amazing job {name}!")
+
+                else:
+                    jumblelabel.config(text=f"Great job {name}!")
+                pointlabel = Labels(text=f"You scored {points} out of 10!")
+                pointlabel.grid(row=2, column=0, padx=5, pady=5)
+                
+        
 
 
 
@@ -102,7 +116,7 @@ def easygamestart():
     global wordbutton
     Gamestartlabel.config(text="Unscramble the words and pick the correct spelling!")
     Gamestartlabel.grid(row=0, column=0, padx=5, pady=5)
-    
+
     wordbutton = Buttons(text="Okay!", command = actualgame)
     wordbutton.grid(row=3, column=0, padx=3, pady=3)
     
