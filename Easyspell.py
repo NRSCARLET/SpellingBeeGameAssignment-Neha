@@ -2,6 +2,7 @@ import sys
 from tkinter import *
 import tkinter as tk
 import random
+from UserReg import playing_user
 """easy_spell_word_hint = ["btut", "bzzu", "ogod", "tars", "labl", "alfl", "chea", "anme", "ctih", "rogw", "etre", "mila", "wrad", "leyl", "meit", "sahd", "chsa", "eadd", "nabg", "urde", "siks", "ribd", "avse", "orpe", "uleg", "uphs", "ulpl", "stre", "yter", "ewts", "stea", "ongs", "sevt", "kics", "eken", "ttse", "darh", "ysea", "rohn"]"""
 
 easy_spell_words_dict={
@@ -77,9 +78,12 @@ def actualgame():
         AnswerEntry.delete(0, tk.END)
     else:
         wordbutton.config(text="End Game!")
-        points = userpoints
+        points_str = str(userpoints)
         with open('easyscore.txt', 'a') as pointopen:
-            pointopen.write(str(points) + "\n")
+            pointopen.write(f"{playing_user}, {userpoints}" + "\n")
+            pointopen.close()
+        with open('easyscore.txt', 'r') as pointopen:
+            pointcontent = pointopen.read()
         ez.destroy()
         import EndScreen
         EndScreen

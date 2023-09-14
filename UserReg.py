@@ -8,7 +8,7 @@ def saveuser():
     global playing_user
     playing_user = E2.get()
     with open('username.txt', 'a') as useropen:
-        useropen.write(usernames + "\n")
+        useropen.write(playing_user + "\n")
     reg.destroy()
     import Difficulty
     Difficulty
