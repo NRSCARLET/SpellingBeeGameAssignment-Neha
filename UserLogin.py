@@ -2,6 +2,7 @@ import sys
 from tkinter import *
 import tkinter as tk
 #PrintLogger code from Quora
+playing_user = ""
 def reg():
     login.destroy()
     import UserReg
@@ -27,10 +28,12 @@ def EM():
     menub3.pack()
 
 def check():
+    global playing_user
     name_check = E1.get()
     with open('username.txt', 'r') as file:
         names = file.read().splitlines()
         if name_check in names:
+            playing_user = name_check
             login.destroy()
             import Difficulty
             Difficulty
