@@ -66,6 +66,8 @@ def actualgame():
     global AnswerEntry, printed_key, correct_answer, level, enterbutton, wordbutton
     level +=1
     answerlabel.config(text="")
+    AnswerEntry = tk.Entry(ez, bd =5)
+    AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
     if level <= 10:
         printed_key = random.choice(list(easy_spell_words_dict))
         correct_answer = easy_spell_words_dict.pop(printed_key)
@@ -73,13 +75,7 @@ def actualgame():
         enterbutton = Buttons(text="Enter!", command=checkanswer)
         wordbutton.config(text="Print (new) word!", state = "disabled")
         enterbutton.grid(row=4, column=0, padx=3, pady=3)
-        AnswerEntry = tk.Entry(ez, bd =5)
-        AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
-        AnswerEntry.delete(0, tk.END)
     else:
-        if AnswerEntry:
-            AnswerEntry.destroy()
-        wordbutton.config(text="End Game!")
         points_str = str(userpoints)
         with open('easyscore.txt', 'a') as pointopen:
             pointopen.write(f"{playing_user}, {userpoints}" + "\n")
@@ -98,7 +94,7 @@ def actualgame():
                     jumblelabel.config(text=f"Great job {name}!")
                 pointlabel = Labels(text=f"You scored {points} out of 10!")
                 pointlabel.grid(row=2, column=0, padx=5, pady=5)
-                
+                AnswerEntry.destroy()
         
 
 

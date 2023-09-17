@@ -1,6 +1,7 @@
-bob, 3
-jeff, 6
-polly, 4
-ed, 4
-tasha, 10
-west, 6
+tes, 5
+tah, 0
+po, 0
+ha, 0
+go, 0
+bobo, 0
+te, 0
