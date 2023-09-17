@@ -13,9 +13,6 @@ def clear():
     else:
         _ = system('clear')
 def register():
-    b1.destroy()
-    b2.destroy()
-    hello.destroy()
     window.destroy()
     import UserReg
     UserReg
