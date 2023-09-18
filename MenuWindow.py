@@ -15,7 +15,7 @@ def clear():
 def register():
     window.destroy()
     import UserReg
-    UserReg
+    UserReg.regwindow()
     
 def login():
     window.destroy()
