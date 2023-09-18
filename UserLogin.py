@@ -1,8 +1,9 @@
+playing_user = ""
 import sys 
 from tkinter import *
 import tkinter as tk
 #PrintLogger code from Quora
-playing_user = ""
+E1 = None
 def reg():
     login.destroy()
     import UserReg
@@ -46,17 +47,18 @@ def menu():
     import MenuWindow
     MenuWindow
 
-
-login = Tk()
-login.geometry("330x130")
-login.configure (bg = '#6693F5')
-login.title("Spelling Bee's Spelling Game!")
-Userlogin = Label(login, text="Please enter your Username")
-Userlogin.pack()
-E1 = tk.Entry(login, bd =5)
-E1.pack()
-okb1 = tk.Button(text="Enter", command = check)
-okb1.pack()
-menub1 = tk.Button(text="Menu", command = menu)
-menub1.pack()
-login.mainloop()
+def logwindow():
+    global E1, login
+    login = Tk()
+    login.geometry("330x130")
+    login.configure (bg = '#6693F5')
+    login.title("Spelling Bee's Spelling Game!")
+    Userlogin = Label(login, text="Please enter your Username")
+    Userlogin.pack()
+    E1 = tk.Entry(login, bd =5)
+    E1.pack()
+    okb1 = tk.Button(text="Enter", command = check)
+    okb1.pack()
+    menub1 = tk.Button(text="Menu", command = menu)
+    menub1.pack()
+    login.mainloop()

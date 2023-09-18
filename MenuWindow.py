@@ -20,7 +20,7 @@ def register():
 def login():
     window.destroy()
     import UserLogin
-    UserLogin
+    UserLogin.logwindow()
     
 def exit():
     b1.destroy()
