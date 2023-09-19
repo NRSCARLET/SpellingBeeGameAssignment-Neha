@@ -7,12 +7,12 @@ E1 = None
 def reg():
     login.destroy()
     import UserReg
-    UserReg
+    UserReg.regwindow()
 
 def log():
     login.destroy()
     import UserLogin
-    UserLogin
+    UserLogin.logwindow()
     
 def EM():
     Userlogin.destroy()
@@ -48,7 +48,7 @@ def menu():
     MenuWindow
 
 def logwindow():
-    global E1, login
+    global E1, login, Userlogin, okb1, menub1
     login = Tk()
     login.geometry("330x130")
     login.configure (bg = '#6693F5')

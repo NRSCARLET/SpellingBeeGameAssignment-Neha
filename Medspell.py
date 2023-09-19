@@ -2,14 +2,15 @@ import sys
 from tkinter import *
 import tkinter as tk
 import random
-
+from UserReg import playing_user
+from UserLogin import playing_user
 med_spell_words_dict={
-"rubnt" : "burnt", "intop" : "point", "tiwre" : "write", "tenea" : "eaten", "euqne" : "queen", "uoqet" : "quote", "pleap" : "apple", "elsfe" : "feels", "ovetd" : "voted", "asthe" : "haste", "bazer" : "zebra", "rufry" : "furry", "zifyz" : "fizzy", "iqkcu" : "quick", "foerf" : "offer", "rwory" : "worry", "wetak" : "tweak", "rpnit" : "print", "psrot", "sport", "aostt", "toast", "dadre" : "dread", "rtate" : "treat", "ayrcz" : "crazy", "uqkac" : "quack", "onsud" : "sound", "veasw" : "waves", "mujps" : "jumps", "padre" : "drape", "eevah" : "heave", "eaocn" : "ocean", "echba" : "beach", "hiwle" : "while", "airot" : "ratio", "yhvea" : "heavy", "vargy" : "gravy", "zidzy" : "dizzy", "ooakz" : "kazoo", "ratos" : "roast", "kalef" : "flake", "sulfh" : "flush"}
+"rubnt" : "burnt", "intop" : "point", "tiwre" : "write", "tenea" : "eaten", "euqne" : "queen", "uoqet" : "quote", "pleap" : "apple", "elsfe" : "feels", "ovetd" : "voted", "asthe" : "haste", "bazer" : "zebra", "rufry" : "furry", "zifyz" : "fizzy", "iqkcu" : "quick", "foerf" : "offer", "rwory" : "worry", "wetak" : "tweak", "rpnit" : "print", "psrot" : "sport", "aostt" : "toast", "dadre" : "dread", "rtate" : "treat", "ayrcz" : "crazy", "uqkac" : "quack", "onsud" : "sound", "veasw" : "waves", "mujps" : "jumps", "padre" : "drape", "eevah" : "heave", "eaocn" : "ocean", "echba" : "beach", "hiwle" : "while", "airot" : "ratio", "yhvea" : "heavy", "vargy" : "gravy", "zidzy" : "dizzy", "ooakz" : "kazoo", "ratos" : "roast", "kalef" : "flake", "sulfh" : "flush"}
 
 jumbled_word = ""
 correct_answer = ""
 printed_key = ""
-AnswerEntry = None
+AnswerEntrymed = None
 enterbutton = None
 wordbutton = None
 userpoints = 0
@@ -47,8 +48,8 @@ class Labels(Label):
 
 def checkanswer():
     global userpoints
-    user_answer = AnswerEntry.get().lower()
-    AnswerEntry.config(state = "disabled")
+    user_answer = AnswerEntrymed.get().lower()
+    AnswerEntrymed.config(state = "disabled")
     enterbutton.config(state = "disabled")
     wordbutton.config(state = "active")
     if user_answer == correct_answer:
@@ -59,11 +60,11 @@ def checkanswer():
         answerlabel.config(text=f"INCORRECT! The answer was {correct_answer}!")
 
 def actualgame():
-    global AnswerEntry, printed_key, correct_answer, level, enterbutton, wordbutton
+    global AnswerEntrymed, printed_key, correct_answer, level, enterbutton, wordbutton
     level +=1
     answerlabel.config(text="")
-    AnswerEntry = tk.Entry(med, bd =5)
-    AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
+    AnswerEntrymed = tk.Entry(med, bd =5)
+    AnswerEntrymed.grid(row=2, column=0, padx=5, pady=5)
     if level <= 10:
         printed_key = random.choice(list(med_spell_words_dict))
         correct_answer = med_spell_words_dict.pop(printed_key)
@@ -90,7 +91,7 @@ def actualgame():
                     jumblelabel.config(text=f"Great job {name}!")
                 pointlabel = Labels(text=f"You scored {points} out of 10!")
                 pointlabel.grid(row=2, column=0, padx=5, pady=5)
-                AnswerEntry.destroy()
+                AnswerEntrymedmed.destroy()
         
 
 
@@ -107,16 +108,16 @@ def menu():
 
 def easygamestart():
     global wordbutton
-    Gamestartlabel.config(text="Unscramble the words and pick the correct spelling!")
+    Gamestartlabel.config(text="Unscramble the words and write the correct spelling!")
     Gamestartlabel.grid(row=0, column=0, padx=5, pady=5)
 
     wordbutton = Buttons(text="Okay!", command = actualgame)
     wordbutton.grid(row=3, column=0, padx=3, pady=3)
     
-    e.destroy()
+    m.destroy()
     conbutton.destroy()
-    backb1.destroy()
-    menub4.destroy()
+    backb2.destroy()
+    menub5.destroy()
 
     
 med = Tk()

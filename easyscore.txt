@@ -3,3 +3,15 @@ dorf, 0
 dorf, 0
 ben, 1
 arf, 0
+bnp, 8
+bnp, 8
+bnp, 8
+bnp, 8
+bnp, 8
+bnp, 8
+bnp, 8
+bnp, 8
+bnp, 8
+bnp, 8
+bnp, 8
+bnp, 8

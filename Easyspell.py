@@ -112,7 +112,7 @@ def menu():
 
 def easygamestart():
     global wordbutton
-    Gamestartlabel.config(text="Unscramble the words and pick the correct spelling!")
+    Gamestartlabel.config(text="Unscramble the words and write the correct spelling!")
     Gamestartlabel.grid(row=0, column=0, padx=5, pady=5)
 
     wordbutton = Buttons(text="Okay!", command = actualgame)
