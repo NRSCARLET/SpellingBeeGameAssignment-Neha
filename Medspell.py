@@ -91,7 +91,7 @@ def actualgame():
                     jumblelabel.config(text=f"Great job {name}!")
                 pointlabel = Labels(text=f"You scored {points} out of 10!")
                 pointlabel.grid(row=2, column=0, padx=5, pady=5)
-                AnswerEntrymedmed.destroy()
+                AnswerEntrymed.destroy()
         
 
 

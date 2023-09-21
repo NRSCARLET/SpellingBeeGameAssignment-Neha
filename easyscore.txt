@@ -15,3 +15,7 @@ bnp, 8
 bnp, 8
 bnp, 8
 bnp, 8
+, 9
+boo, 0
+, 0
+dorf, 0
