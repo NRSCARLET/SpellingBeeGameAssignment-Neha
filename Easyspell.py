@@ -2,8 +2,7 @@ import sys
 from tkinter import *
 import tkinter as tk
 import random
-from UserReg import playing_user
-from UserLogin import playing_user
+from UserRegandLog import playing_user
 """easy_spell_word_hint = ["btut", "bzzu", "ogod", "tars", "labl", "alfl", "chea", "anme", "ctih", "rogw", "etre", "mila", "wrad", "leyl", "meit", "sahd", "chsa", "eadd", "nabg", "urde", "siks", "ribd", "avse", "orpe", "uleg", "uphs", "ulpl", "stre", "yter", "ewts", "stea", "ongs", "sevt", "kics", "eken", "ttse", "darh", "ysea", "rohn"]"""
 
 easy_spell_words_dict={

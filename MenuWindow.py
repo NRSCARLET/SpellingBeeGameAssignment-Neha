@@ -14,13 +14,13 @@ def clear():
         _ = system('clear')
 def register():
     window.destroy()
-    import UserReg
-    UserReg.regwindow()
+    import UserRegandLog
+    UserRegandLog.regwindow()
     
 def login():
     window.destroy()
-    import UserLogin
-    UserLogin.logwindow()
+    import UserRegandLog
+    UserRegandLog.logwindow()
     
 def exit():
     b1.destroy()

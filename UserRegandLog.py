@@ -3,6 +3,7 @@ E2 = None
 import sys 
 from tkinter import *
 import tkinter as tk
+
 def saveuser():
     global playing_user
     playing_user = E2.get()
@@ -18,7 +19,7 @@ def menu():
     MenuWindow
     
 def regwindow():
-    global E2
+    global E2, reg
     reg = Tk()
     reg.geometry("330x130")
     reg.configure (bg = '#6693F5')
@@ -34,21 +35,20 @@ def regwindow():
     reg.mainloop()
 
 
-playing_user = ""
-import sys 
-from tkinter import *
-import tkinter as tk
+
+
+
 #PrintLogger code from Quora
 E1 = None
 def reg():
     login.destroy()
-    import UserReg
-    UserReg.regwindow()
+    import UserRegandLog
+    UserRegandLog.regwindow()
 
 def log():
     login.destroy()
-    import UserLogin
-    UserLogin.logwindow()
+    import UserRegandLog
+    UserRegandLog.logwindow()
     
 def EM():
     Userlogin.destroy()

@@ -19,3 +19,5 @@ bnp, 8
 boo, 0
 , 0
 dorf, 0
+car, 0
+dorf, 0
