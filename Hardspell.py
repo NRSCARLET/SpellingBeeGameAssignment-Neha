@@ -70,6 +70,7 @@ def actualgame():
     level +=1
     answerlabel.config(text="")
     points.config(text=f"Points: {userpoints}")
+    levels.config(text=f"Level: {level}")
     if level <= 10:
         AnswerEntryhard.grid(row=2, column=0, padx=5, pady=5)
         AnswerEntryhard.config(state = "normal")
@@ -85,6 +86,7 @@ def actualgame():
         AnswerEntryhard.destroy()
         enterbutton.destroy()
         points.destroy()
+        levels.destroy()
         with open('hardscore.txt', 'a') as pointopen:
             pointopen.write(f"{playing_user}, {userpoints}" + "\n")
             pointopen.close()
@@ -160,6 +162,9 @@ answerlabel.grid(row=5, column=0, padx=5, pady=5)
 
 points = Labels(hard, text="")
 points.grid(row=0, column=1, padx=5, pady=5)
+
+levels = Labels(hard, text="")
+levels.grid(row=1, column=1, padx=5, pady=5)
 
 AnswerEntryhard = tk.Entry(hard, bd =5)
 AnswerEntryhard.grid()
