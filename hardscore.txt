@@ -1,0 +1,4 @@
+goofer, 1
+goofer, 1
+boogie, 3
+jefferson, 3

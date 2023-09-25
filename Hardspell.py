@@ -11,6 +11,7 @@ printed_key = ""
 AnswerEntryhard = None
 enterbutton = None
 wordbutton = None
+points = None
 userpoints = 0
 level = 0
 #words for hints (in order): beauty, fabric, habits, facade, hacker, nachos, pacify, rabbit, vacuum, waddle, yachts, zigged, abroad, casual, medium, cables, defeat, behind, emerge, bridge, wrapped, ability, captain, beneath, century, anxious, divided, economy, disease, gateway, healthy, illegal, justify, maximum, quickly, passive, removed, violent, satisfy, qualify.
@@ -53,16 +54,17 @@ def checkanswer():
     if user_answer == correct_answer:
         answerlabel.config(text=f"CORRECT! The answer is {correct_answer}!")
         userpoints += 1
-        print(userpoints)
+        points.config(text=f"Points: {userpoints}")
     else:
         answerlabel.config(text=f"INCORRECT! The answer was {correct_answer}!")
 
 def actualgame():
-    global AnswerEntryhard, printed_key, correct_answer, level, enterbutton, wordbutton
+    global AnswerEntryhard, printed_key, correct_answer, level, enterbutton, wordbutton, points
     level +=1
     answerlabel.config(text="")
     AnswerEntryhard = tk.Entry(hard, bd =5)
     AnswerEntryhard.grid(row=2, column=0, padx=5, pady=5)
+    points.config(text=f"Points: {userpoints}")
     if level <= 10:
         printed_key = random.choice(list(hard_spell_words_dict))
         correct_answer = hard_spell_words_dict.pop(printed_key)
@@ -71,6 +73,8 @@ def actualgame():
         wordbutton.config(text="Print (new) word!", state = "disabled")
         enterbutton.grid(row=4, column=0, padx=3, pady=3)
     else:
+        points.destroy()
+        AnswerEntryhard.destroy()
         points_str = str(userpoints)
         with open('hardscore.txt', 'a') as pointopen:
             pointopen.write(f"{playing_user}, {userpoints}" + "\n")
@@ -89,7 +93,6 @@ def actualgame():
                     jumblelabel.config(text=f"Great job {name}!")
                 pointlabel = Labels(text=f"You scored {points} out of 10!")
                 pointlabel.grid(row=2, column=0, padx=5, pady=5)
-                AnswerEntryhard.destroy()
         
 
 
@@ -143,6 +146,7 @@ jumblelabel.grid(row=1, column=0, padx=5, pady=5)
 answerlabel = Labels(hard, text="")
 answerlabel.grid(row=5, column=0, padx=5, pady=5)
 
-
+points = Labels(hard, text="")
+points.grid(row=0, column=1, padx=5, pady=5)
 """label_answer_test = Labels(hard, text="")
 label_answer_test.grid(row=1, column=0, padx=5, pady=5)"""
