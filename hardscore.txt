@@ -2,3 +2,10 @@ goofer, 1
 goofer, 1
 boogie, 3
 jefferson, 3
+boogie, 3
+jefferson, 3
+boogie, 7
+boogie, 5
+boogie, 1
+jefferson, 1
+goofer, 3
