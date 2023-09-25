@@ -1,3 +1,4 @@
 goofer
 jefferson
-boogiegoobers
+boogie
+goobers

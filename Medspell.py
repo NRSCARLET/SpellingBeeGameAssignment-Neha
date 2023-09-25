@@ -14,6 +14,7 @@ enterbutton = None
 wordbutton = None
 userpoints = 0
 level = 0
+points = None
 #words for hints (in order): burnt, point, write, eaten, queen, quote, apple, feels, voted, haste, zebra, furry, fizzy, quick, offer, worry, tweak, print, sport, toast, dread, treat, crazy, quack, sound, waves, jumps, drape, heave, ocean, beach, while, ratio, heavy, gravy, dizzy, kazoo, roast, flake, flush
 class Buttons(Button):
     def __init__(self,*args, **kwargs):
@@ -45,34 +46,49 @@ class Labels(Label):
         if question_count == 10:
             quit()"""
 
+def end():
+    med.destroy()
+    import EndScreen
+    EndScreen
+
+
 def checkanswer():
     global userpoints
     user_answer = AnswerEntrymed.get().lower()
+    AnswerEntrymed.delete(0, END)
     AnswerEntrymed.config(state = "disabled")
     enterbutton.config(state = "disabled")
     wordbutton.config(state = "active")
     if user_answer == correct_answer:
         answerlabel.config(text=f"CORRECT! The answer is {correct_answer}!")
         userpoints += 1
-        print(userpoints)
+        points.config(text=f"Points: {userpoints}")
     else:
         answerlabel.config(text=f"INCORRECT! The answer was {correct_answer}!")
 
+    
 def actualgame():
-    global AnswerEntrymed, printed_key, correct_answer, level, enterbutton, wordbutton
+    global AnswerEntrymed, printed_key, correct_answer, level, enterbutton, wordbutton, points
     level +=1
     answerlabel.config(text="")
-    AnswerEntrymed = tk.Entry(med, bd =5)
-    AnswerEntrymed.grid(row=2, column=0, padx=5, pady=5)
+    points.config(text=f"Points: {userpoints}")
+    levels.config(text=f"Level: {level}")
     if level <= 10:
+        AnswerEntrymed.grid(row=2, column=0, padx=5, pady=5)
+        AnswerEntrymed.config(state = "normal")
         printed_key = random.choice(list(med_spell_words_dict))
         correct_answer = med_spell_words_dict.pop(printed_key)
         jumblelabel.config(text=f"Write the correct word!: {printed_key}")
-        enterbutton = Buttons(text="Enter!", command=checkanswer)
-        wordbutton.config(text="Print (new) word!", state = "disabled")
+        enterbutton.config(text="Enter!", command=checkanswer)
         enterbutton.grid(row=4, column=0, padx=3, pady=3)
+        enterbutton.config(state = "active")
+        wordbutton.config(text="Print (new) word!", state = "disabled")
     else:
-        points_str = str(userpoints)
+        Gamestartlabel.config(text="Please press the 'End game' button to continue to the end screen")
+        AnswerEntrymed.destroy()
+        enterbutton.destroy()
+        points.destroy()
+        levels.destroy()
         with open('mediumscore.txt', 'a') as pointopen:
             pointopen.write(f"{playing_user}, {userpoints}" + "\n")
             pointopen.close()
@@ -85,12 +101,12 @@ def actualgame():
                     jumblelabel.config(text=f"Better luck next time {name}!")
                 elif points == 10:
                     jumblelabel.config(text=f"WOAH a perfect score!! Amazing job {name}!")
-
+    
                 else:
                     jumblelabel.config(text=f"Great job {name}!")
                 pointlabel = Labels(text=f"You scored {points} out of 10!")
                 pointlabel.grid(row=2, column=0, padx=5, pady=5)
-                AnswerEntrymed.destroy()
+                wordbutton.config(text="End game!", command = end)
         
 
 
@@ -144,6 +160,19 @@ jumblelabel.grid(row=1, column=0, padx=5, pady=5)
 answerlabel = Labels(med, text="")
 answerlabel.grid(row=5, column=0, padx=5, pady=5)
 
+points = Labels(med, text="")
+points.grid(row=0, column=1, padx=5, pady=5)
+
+levels = Labels(med, text="")
+levels.grid(row=1, column=1, padx=5, pady=5)
+
+AnswerEntrymed = tk.Entry(med, bd =5)
+AnswerEntrymed.grid()
+AnswerEntrymed.grid_forget()
+
+enterbutton = Buttons(text="")
+enterbutton.grid()
+enterbutton.grid_forget()
 
 """label_answer_test = Labels(med, text="")
 label_answer_test.grid(row=1, column=0, padx=5, pady=5)"""

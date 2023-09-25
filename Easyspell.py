@@ -16,6 +16,7 @@ printed_key = ""
 AnswerEntry = None
 enterbutton = None
 wordbutton = None
+points = None
 userpoints = 0
 level = 0
 #words for hints (in order): butt, buzz, good, star, ball, fall, ache, name, itch, grow, tree, nose, mail, draw, yell, time, dash, cash, dead, bang, rude, kiss, bird, vase, rope, glue, push, pull, rest, tyre, west, east, song, vest, sick, knee, test, hard, easy, horn - 40 words (unjumbled words)
@@ -49,34 +50,49 @@ class Labels(Label):
         if question_count == 10:
             quit()"""
 
+def end():
+    easy.destroy()
+    import EndScreen
+    EndScreen
+
+
 def checkanswer():
     global userpoints
-    user_answer = AnswerEntry.get().lower()
-    AnswerEntry.config(state = "disabled")
+    user_answer = AnswerEntryeasy.get().lower()
+    AnswerEntryeasy.delete(0, END)
+    AnswerEntryeasy.config(state = "disabled")
     enterbutton.config(state = "disabled")
     wordbutton.config(state = "active")
     if user_answer == correct_answer:
         answerlabel.config(text=f"CORRECT! The answer is {correct_answer}!")
         userpoints += 1
-        print(userpoints)
+        points.config(text=f"Points: {userpoints}")
     else:
         answerlabel.config(text=f"INCORRECT! The answer was {correct_answer}!")
 
+    
 def actualgame():
-    global AnswerEntry, printed_key, correct_answer, level, enterbutton, wordbutton
+    global AnswerEntryeasy, printed_key, correct_answer, level, enterbutton, wordbutton, points
     level +=1
     answerlabel.config(text="")
-    AnswerEntry = tk.Entry(ez, bd =5)
-    AnswerEntry.grid(row=2, column=0, padx=5, pady=5)
+    points.config(text=f"Points: {userpoints}")
+    levels.config(text=f"Level: {level}")
     if level <= 10:
+        AnswerEntryeasy.grid(row=2, column=0, padx=5, pady=5)
+        AnswerEntryeasy.config(state = "normal")
         printed_key = random.choice(list(easy_spell_words_dict))
         correct_answer = easy_spell_words_dict.pop(printed_key)
         jumblelabel.config(text=f"Write the correct word!: {printed_key}")
-        enterbutton = Buttons(text="Enter!", command=checkanswer)
-        wordbutton.config(text="Print (new) word!", state = "disabled")
+        enterbutton.config(text="Enter!", command=checkanswer)
         enterbutton.grid(row=4, column=0, padx=3, pady=3)
+        enterbutton.config(state = "active")
+        wordbutton.config(text="Print (new) word!", state = "disabled")
     else:
-        points_str = str(userpoints)
+        Gamestartlabel.config(text="Please press the 'End game' button to continue to the end screen")
+        AnswerEntryeasy.destroy()
+        enterbutton.destroy()
+        points.destroy()
+        levels.destroy()
         with open('easyscore.txt', 'a') as pointopen:
             pointopen.write(f"{playing_user}, {userpoints}" + "\n")
             pointopen.close()
@@ -89,23 +105,23 @@ def actualgame():
                     jumblelabel.config(text=f"Better luck next time {name}!")
                 elif points == 10:
                     jumblelabel.config(text=f"WOAH a perfect score!! Amazing job {name}!")
-
+    
                 else:
                     jumblelabel.config(text=f"Great job {name}!")
                 pointlabel = Labels(text=f"You scored {points} out of 10!")
                 pointlabel.grid(row=2, column=0, padx=5, pady=5)
-                AnswerEntry.destroy()
+                wordbutton.config(text="End game!", command = end)
         
 
 
 
 def difficultywindow():
-    ez.destroy()
+    easy.destroy()
     import Difficulty
     Difficulty
 
 def menu():
-    ez.destroy()
+    easy.destroy()
     import MenuWindow
     MenuWindow
 
@@ -124,7 +140,7 @@ def easygamestart():
     
     """Q1label = tk.Label(text="Please pick the correct spelling of [insert thing here]")
     Q1label.pack()
-    Q1CB = Buttons(ez, text="paw")
+    Q1CB = Buttons(easy, text="paw")
     Q1CB.pack()
     Q1INCB1 = Buttons(text="liw")
     Q1INCB1.pack()
@@ -132,10 +148,10 @@ def easygamestart():
     Q1INCB2.pack()"""
     
     
-ez = Tk()
-ez.geometry('200x200')
-ez.configure(bg = '#6693F5')
-ez.title("Spelling Bee's Spelling Game!")
+easy = Tk()
+easy.geometry('200x200')
+easy.configure(bg = '#6693F5')
+easy.title("Spelling Bee's Spelling Game!")
 e = Labels(text="You've picked easy mode")
 e.grid(row=0, column=0, padx=5, pady=5)
 
@@ -148,15 +164,29 @@ backb1.grid(row=3, column=0, padx=3, pady=3)
 menub4 = Buttons(text="Menu", command = menu)
 menub4.grid(row=4, column=0, padx=3, pady=3)
 
-Gamestartlabel = Labels(ez, text="")
+Gamestartlabel = Labels(easy, text="")
 Gamestartlabel.grid(row=1, column=0, padx=5, pady=5)
 
-jumblelabel = Labels(ez, text="")
+jumblelabel = Labels(easy, text="")
 jumblelabel.grid(row=1, column=0, padx=5, pady=5)
 
-answerlabel = Labels(ez, text="")
+answerlabel = Labels(easy, text="")
 answerlabel.grid(row=5, column=0, padx=5, pady=5)
 
+points = Labels(easy, text="")
+points.grid(row=0, column=1, padx=5, pady=5)
 
-"""label_answer_test = Labels(ez, text="")
+levels = Labels(easy, text="")
+levels.grid(row=1, column=1, padx=5, pady=5)
+
+AnswerEntryeasy = tk.Entry(easy, bd =5)
+AnswerEntryeasy.grid()
+AnswerEntryeasy.grid_forget()
+
+enterbutton = Buttons(text="")
+enterbutton.grid()
+enterbutton.grid_forget()
+
+
+"""label_answer_test = Labels(easy, text="")
 label_answer_test.grid(row=1, column=0, padx=5, pady=5)"""
