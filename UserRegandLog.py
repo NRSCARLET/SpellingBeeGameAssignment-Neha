@@ -4,14 +4,40 @@ import sys
 from tkinter import *
 import tkinter as tk
 
+class Buttons(Button):
+    def __init__(self,*args, **kwargs):
+        Button.__init__(self,*args, **kwargs)
+        self['bg'] = '#DA70D6'
+        self['fg'] = 'white'
+        self['font'] = 'helvetica 9 bold'
+
+class Labels(Label):
+    def __init__ (self, *args, **kwargs):
+        Label.__init__(self, **kwargs)
+        self['bg'] = '#6693F5'
+        self['fg'] = 'purple'
+        self['font'] = 'helvetica 10 bold'
+        
+def REGEM():
+    regerror = Labels(reg, text="The username you have entered already exists. Please login with the same username or register again with a different username")
+    regerror.grid(row=0, column=0, padx=5, pady=5)
+
+
 def saveuser():
     global playing_user
-    playing_user = E2.get()
-    with open('username.txt', 'a') as useropen:
-        useropen.write(playing_user + "\n")
-    reg.destroy()
-    import Difficulty
-    Difficulty
+    checking_preused_name = E2.get()
+    with open('username.txt', 'r') as file:
+        names = file.read().splitlines()
+        if checking_preused_name in names:
+            REGEM()
+        else:
+            with open('username.txt', 'a') as useropen:
+                checking_preused_name = playing_user
+            useropen.write(playing_user + "\n")
+            reg.destroy()
+            import Difficulty
+            Difficulty
+    
 
 def menu():
     reg.destroy()
@@ -24,14 +50,14 @@ def regwindow():
     reg.geometry("330x130")
     reg.configure (bg = '#6693F5')
     reg.title("Spelling Bee's Spelling Game!")
-    Userregister = Label(reg, text="Please create a username for your account")
-    Userregister.pack()
+    Userregister = Labels(reg, text="Please create a username for your account")
+    Userregister.grid(row=0, column=0, padx=5, pady=5)
     E2 = Entry(reg, bd =5)
-    E2.pack()
-    okb2 = tk.Button(text="Enter", command = saveuser)
-    okb2.pack()
-    menub2 = tk.Button(text="Menu", command = menu)
-    menub2.pack()
+    E2.grid(row=1, column=0, padx=5, pady=5)
+    okb2 = Buttons(text="Enter", command = saveuser)
+    okb2.grid(row=2, column=0, padx=3, pady=3)
+    menub2 = Buttons(text="Menu", command = menu)
+    menub2.grid(row=3, column=0, padx=3, pady=3)
     reg.mainloop()
 
 
@@ -50,19 +76,19 @@ def log():
     import UserRegandLog
     UserRegandLog.logwindow()
     
-def EM():
+def LOGEM():
     Userlogin.destroy()
     E1.destroy()
     okb1.destroy()
     menub1.destroy()
     error = Label(login, text="The Username you entered was not in our database.\nPlease enter a different username OR register as a user.")
-    error.pack()
-    Regbutton = tk.Button(text="Register", command=reg)
-    Regbutton.pack()
+    error.grid(row=0, column=0, padx=5, pady=5)
+    Regbutton = Buttons(text="Register", command=reg)
+    Regbutton.grid(row=1, column=0, padx=3, pady=3)
     Loginbutton = tk.Button(text="Login", command =log)
-    Loginbutton.pack()
-    menub3 = tk.Button(text="Menu", command=menu)
-    menub3.pack()
+    Loginbutton.grid(row=2, column=0, padx=3, pady=3)
+    menub3 = Buttons(text="Menu", command=menu)
+    menub3.grid(row=3, column=0, padx=3, pady=3)
 
 def check():
     global playing_user
@@ -75,7 +101,7 @@ def check():
             import Difficulty
             Difficulty
         else:
-            EM()
+            LOGEM()
     
 
 def menu():
@@ -89,12 +115,12 @@ def logwindow():
     login.geometry("330x130")
     login.configure (bg = '#6693F5')
     login.title("Spelling Bee's Spelling Game!")
-    Userlogin = Label(login, text="Please enter your Username")
-    Userlogin.pack()
+    Userlogin = Labels(login, text="Please enter your Username")
+    Userlogin.grid(row=0, column= 0, padx= 5, pady=5)
     E1 = tk.Entry(login, bd =5)
-    E1.pack()
+    E1.grid(row=1, column=0, padx= 5, pady=5)
     okb1 = tk.Button(text="Enter", command = check)
-    okb1.pack()
+    okb1.grid(row=2, column=0, padx= 3, pady=3)
     menub1 = tk.Button(text="Menu", command = menu)
-    menub1.pack()
+    menub1.grid(row=3, column=0, padx=3, pady=3)
     login.mainloop()

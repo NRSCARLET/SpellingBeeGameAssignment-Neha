@@ -10,3 +10,4 @@ boogie, 1
 jefferson, 1
 goofer, 3
 goobers, 2
+goobers, 9
