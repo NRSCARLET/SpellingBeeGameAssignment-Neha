@@ -2,7 +2,7 @@ import sys
 from tkinter import *
 import tkinter as tk
 import random
-from UserRegandLog import playing_user
+from UserRegandLog import playing_user, Labels, Buttons
 med_spell_words_dict={
 "rubnt" : "burnt", "intop" : "point", "tiwre" : "write", "tenea" : "eaten", "euqne" : "queen", "uoqet" : "quote", "pleap" : "apple", "elsfe" : "feels", "ovetd" : "voted", "asthe" : "haste", "bazer" : "zebra", "rufry" : "furry", "zifyz" : "fizzy", "iqkcu" : "quick", "foerf" : "offer", "rwory" : "worry", "wetak" : "tweak", "rpnti" : "print", "psrot" : "sport", "aostt" : "toast", "dadre" : "dread", "rtate" : "treat", "ayrcz" : "crazy", "uqkac" : "quack", "onsud" : "sound", "veasw" : "waves", "mujps" : "jumps", "padre" : "drape", "eevah" : "heave", "eaocn" : "ocean", "echba" : "beach", "hiwle" : "while", "airot" : "ratio", "yhvea" : "heavy", "vargy" : "gravy", "zidzy" : "dizzy", "ooakz" : "kazoo", "ratos" : "roast", "kalef" : "flake", "sulfh" : "flush"}
 
@@ -16,36 +16,7 @@ userpoints = 0
 level = 0
 points = None
 #words for hints (in order): burnt, point, write, eaten, queen, quote, apple, feels, voted, haste, zebra, furry, fizzy, quick, offer, worry, tweak, print, sport, toast, dread, treat, crazy, quack, sound, waves, jumps, drape, heave, ocean, beach, while, ratio, heavy, gravy, dizzy, kazoo, roast, flake, flush
-class Buttons(Button):
-    def __init__(self,*args, **kwargs):
-        Button.__init__(self,*args, **kwargs)
-        self['bg'] = '#DA70D6'
-        self['fg'] = 'white'
-        self['font'] = 'helvetica 9 bold'
-
-class Labels(Label):
-    def __init__ (self, *args, **kwargs):
-        Label.__init__(self, **kwargs)
-        self['bg'] = '#6693F5'
-        self['fg'] = 'purple'
-        self['font'] = 'helvetica 10 bold'
         
-"""def change_label():
-    question_count = 0
-    while question_count < 10:
-        if easy_spell_words:
-            choose_word = random.choice(list(easy_spell_words.keys()))
-            used_hints.append(choose_word)
-            print(choose_word)
-            question_count +1
-            if choose_word in used_hints:
-                print("REPEAT")
-                
-            else:
-                change_label()
-        if question_count == 10:
-            quit()"""
-
 def end():
     med.destroy()
     import EndScreen

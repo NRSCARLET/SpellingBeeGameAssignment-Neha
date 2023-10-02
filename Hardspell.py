@@ -2,7 +2,7 @@ import sys
 from tkinter import *
 import tkinter as tk
 import random
-from UserRegandLog import playing_user
+from UserRegandLog import playing_user, Labels, Buttons
 hard_spell_words_dict={"ytabeu" : "beauty", "bafcir" : "fabric", "shabti" : "habits", "afcdea" : "facade", "kachre" : "hacker", "oachns" : "nachos", "yfacip" : "pacify", "biabtr" : "rabbit", "umacuv" : "vacuum", "ddwlae" : "waddle", "chstay" : "yachts", "gzigde" : "zigged", "baroda" : "abroad", "auslac" : "casual", "eimdum" : "medium", "balces" : "cables", "efaetd" : "defeat", "ibehdn" : "behind", "mereeg" : "emerge", "dibger" : "bridge", "pwrapde" : "wrapped", "balyiti" : "ability", "cpaniat" : "captain", "heantbe" : "beneath", "turceny" : "century", "xniauso" : "anxious", "viddied" : "divided", "conemyo" : "economy", "eadises" : "disease", "awytage" : "gateway", "laehtyh" : "healthy", "leilagl" : "illagal", "tiyjusf" : "justify", "xamiumm" : "maximum", "lqicuky" : "quickly", "siaspve" : "passive", "rmovdee" : "removed", "loevint" : "violent", "tisfasy" : "satisfy", "liyqauf" : "qualify"}
 
 jumbled_word = ""
@@ -15,35 +15,7 @@ points = None
 userpoints = 0
 level = 0
 #words for hints (in order): beauty, fabric, habits, facade, hacker, nachos, pacify, rabbit, vacuum, waddle, yachts, zigged, abroad, casual, medium, cables, defeat, behind, emerge, bridge, wrapped, ability, captain, beneath, century, anxious, divided, economy, disease, gateway, healthy, illegal, justify, maximum, quickly, passive, removed, violent, satisfy, qualify.
-class Buttons(Button):
-    def __init__(self,*args, **kwargs):
-        Button.__init__(self,*args, **kwargs)
-        self['bg'] = '#DA70D6'
-        self['fg'] = 'white'
-        self['font'] = 'helvetica 9 bold'
-
-class Labels(Label):
-    def __init__ (self, *args, **kwargs):
-        Label.__init__(self, **kwargs)
-        self['bg'] = '#6693F5'
-        self['fg'] = 'purple'
-        self['font'] = 'helvetica 10 bold'
         
-"""def change_label():
-    question_count = 0
-    while question_count < 10:
-        if easy_spell_words:
-            choose_word = random.choice(list(easy_spell_words.keys()))
-            used_hints.append(choose_word)
-            print(choose_word)
-            question_count +1
-            if choose_word in used_hints:
-                print("REPEAT")
-                
-            else:
-                change_label()
-        if question_count == 10:
-            quit()"""
 def end():
     hard.destroy()
     import EndScreen

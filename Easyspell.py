@@ -2,7 +2,7 @@ import sys
 from tkinter import *
 import tkinter as tk
 import random
-from UserRegandLog import playing_user
+from UserRegandLog import playing_user, Labels, Buttons
 """easy_spell_word_hint = ["btut", "bzzu", "ogod", "tars", "labl", "alfl", "chea", "anme", "ctih", "rogw", "etre", "mila", "wrad", "leyl", "meit", "sahd", "chsa", "eadd", "nabg", "urde", "siks", "ribd", "avse", "orpe", "uleg", "uphs", "ulpl", "stre", "yter", "ewts", "stea", "ongs", "sevt", "kics", "eken", "ttse", "darh", "ysea", "rohn"]"""
 
 easy_spell_words_dict={
@@ -20,19 +20,6 @@ points = None
 userpoints = 0
 level = 0
 #words for hints (in order): butt, buzz, good, star, ball, fall, ache, name, itch, grow, tree, nose, mail, draw, yell, time, dash, cash, dead, bang, rude, kiss, bird, vase, rope, glue, push, pull, rest, tyre, west, east, song, vest, sick, knee, test, hard, easy, horn - 40 words (unjumbled words)
-class Buttons(Button):
-    def __init__(self,*args, **kwargs):
-        Button.__init__(self,*args, **kwargs)
-        self['bg'] = '#DA70D6'
-        self['fg'] = 'white'
-        self['font'] = 'helvetica 9 bold'
-
-class Labels(Label):
-    def __init__ (self, *args, **kwargs):
-        Label.__init__(self, **kwargs)
-        self['bg'] = '#6693F5'
-        self['fg'] = 'purple'
-        self['font'] = 'helvetica 10 bold'
         
 """def change_label():
     question_count = 0
@@ -127,6 +114,7 @@ def menu():
 
 def easygamestart():
     global wordbutton
+    easy.geometry("400x100")
     Gamestartlabel.config(text="Unscramble the words and write the correct spelling!")
     Gamestartlabel.grid(row=0, column=0, padx=5, pady=5)
 
@@ -149,7 +137,7 @@ def easygamestart():
     
     
 easy = Tk()
-easy.geometry('200x200')
+easy.geometry('210x200')
 easy.configure(bg = '#6693F5')
 easy.title("Spelling Bee's Spelling Game!")
 e = Labels(text="You've picked easy mode")
