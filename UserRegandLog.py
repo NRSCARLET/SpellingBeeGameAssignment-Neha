@@ -3,7 +3,7 @@ E2 = None
 import sys 
 from tkinter import *
 import tkinter as tk
-
+regi = 0
 class Buttons(Button):
     def __init__(self,*args, **kwargs):
         Button.__init__(self,*args, **kwargs)
@@ -17,17 +17,44 @@ class Labels(Label):
         self['bg'] = '#6693F5'
         self['fg'] = 'purple'
         self['font'] = 'helvetica 10 bold'
+E1 = None
+def regster():
+    if regi >= 1:
+        reg.destroy()
+        import UserRegandLog
+        UserRegandLog.regwindow()
+    else:
+        login.destroy()
+        import UserRegandLog
+        UserRegandLog.regwindow()
 
+def log():
+    if regi >=1:
+        reg.destroy()
+        import UserRegandLog
+        UserRegandLog.logwindow()
+    else:
+        login.destroy()
+        import UserRegandLog
+        UserRegandLog.logwindow()
 
-
+#---REGISTER CODE--#
 
 def REGEM():
+    global regi
+    reg.geometry("430x150")
     E2.destroy()
     okb2.destroy()
     menub2.destroy()
-    """reg.geometry("430x100")"""
-    Userregister.config(text="The username you have entered already exists.\nPlease login with the same username you've entered\nor register again with a different username.")
-    reg.after(5000, regwindow)
+    Userregister.destroy()
+    regi += 1
+    EMM = Labels(reg, text="The username you have entered already exists.\nPlease login with the same username you've entered\nor register again with a different username.")
+    EMM.grid(row=0, column=0, padx=5, pady=5)
+    logbutton = Buttons(text="Login", command=log)
+    logbutton.grid(row=1, column=0, padx=3, pady=5)
+    regbutton = Buttons(text="Register", command=regster)
+    regbutton.grid(row=2, column=0, padx=3, pady=3)
+    
 
 
 def saveuser():
@@ -52,7 +79,7 @@ def menu():
     MenuWindow
     
 def regwindow():
-    global E2, reg, okb2, menub2
+    global E2, reg, okb2, menub2, Userregister
     reg = Tk()
     reg.geometry("350x150")
     reg.configure (bg = '#6693F5')
@@ -68,20 +95,9 @@ def regwindow():
     reg.mainloop()
 
 
+#---LOGIN CODE---#
 
 
-
-#PrintLogger code from Quora
-E1 = None
-def reg():
-    login.destroy()
-    import UserRegandLog
-    UserRegandLog.regwindow()
-
-def log():
-    login.destroy()
-    import UserRegandLog
-    UserRegandLog.logwindow()
     
 def LOGEM():
     login.geometry("480x170")
@@ -93,7 +109,7 @@ def LOGEM():
     error.grid(row=0, column=0, padx=5, pady=5)
     Regbutton = Buttons(text="Register", command=reg)
     Regbutton.grid(row=1, column=0, padx=3, pady=3)
-    Loginbutton = tk.Button(text="Login", command =log)
+    Loginbutton = Buttons(text="Login", command =log)
     Loginbutton.grid(row=2, column=0, padx=3, pady=3)
     menub3 = Buttons(text="Menu", command=menu)
     menub3.grid(row=3, column=0, padx=3, pady=3)
