@@ -55,22 +55,38 @@ def REGEM():
     regbutton = Buttons(text="Register", command=regster)
     regbutton.grid(row=2, column=0, padx=3, pady=3)
     
+def empty():
+    global regi
+    reg.geometry("360x100")
+    E2.destroy()
+    okb2.destroy()
+    menub2.destroy()
+    Userregister.destroy()
+    regi += 1
+    emptyentry = Labels(reg, text="Please input a username into the entry field.")
+    emptyentry.grid(row=0, column= 0, padx=5, pady=5)
+    okayb = Buttons(text="Okay", command=regster)
+    okayb.grid(row=1, column=0, padx=3, pady=3)
 
 
 def saveuser():
     global playing_user
     checking_preused_name = E2.get()
-    with open('username.txt', 'r') as file:
-        names = file.read().splitlines()
-        if checking_preused_name in names:
-            REGEM()
-        else:
-            playing_user = checking_preused_name
-            with open('username.txt', 'a') as useropen:
-                useropen.write(playing_user + "\n")
-            reg.destroy()
-            import Difficulty
-            Difficulty
+    if checking_preused_name == "":
+        empty()
+    else:
+        proper_name = checking_preused_name
+        with open('username.txt', 'r') as file:
+            names = file.read().splitlines()
+            if checking_preused_name in names:
+                REGEM()
+            else:
+                playing_user = proper_name
+                with open('username.txt', 'a') as useropen:
+                    useropen.write(playing_user + "\n")
+                reg.destroy()
+                import Difficulty
+                Difficulty
     
 
 def menu():
