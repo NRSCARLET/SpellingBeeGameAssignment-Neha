@@ -574,7 +574,7 @@ entry.bind("<KeyRelease>", limit_characters)
 
 root.mainloop()"""
 
-from tkinter import *
+"""from tkinter import *
 
 def display_scores():
     with open('easyscore.txt', 'r') as file:
@@ -596,4 +596,25 @@ end.title("Spelling Bee's Spelling Game!")
 display_scores_button = Button(end, text="Display Scores", command=display_scores)
 display_scores_button.grid(row=0, column=0, padx=5, pady=5)
 
-end.mainloop()
+end.mainloop()"""
+
+import tkinter as tk
+
+def hide_top_label():
+    top_label.pack_forget()
+
+root = tk.Tk()
+root.title("Label Overlay Example")
+
+# Create the bottom label
+bottom_label = tk.Label(root, text="This is the bottom label")
+bottom_label.pack(pady=20)
+
+# Create the top label
+top_label = tk.Label(root, text="This label will appear over the bottom label")
+top_label.pack(pady=20)
+
+# Schedule the hide_top_label function to be called after 2000 milliseconds (2 seconds)
+root.after(2000, hide_top_label)
+
+root.mainloop()

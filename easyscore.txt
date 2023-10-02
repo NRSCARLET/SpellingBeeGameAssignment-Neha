@@ -1,1 +1,2 @@
 goobers, 10
+mayu, 1
