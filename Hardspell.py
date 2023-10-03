@@ -43,6 +43,7 @@ def actualgame():
     answerlabel.config(text="")
     points.config(text=f"Points: {userpoints}")
     levels.config(text=f"Level: {level}")
+    hard.geometry("52     0x200")
     if level <= 10:
         AnswerEntryhard.grid(row=2, column=0, padx=5, pady=5)
         AnswerEntryhard.config(state = "normal")
@@ -95,6 +96,7 @@ def menu():
 
 def easygamestart():
     global wordbutton
+    hard.geometry("450x150")
     Gamestartlabel.config(text="Unscramble the words and write the correct spelling!")
     Gamestartlabel.grid(row=0, column=0, padx=5, pady=5)
 
@@ -108,7 +110,7 @@ def easygamestart():
 
     
 hard = Tk()
-hard.geometry('200x200')
+hard.geometry('210x200')
 hard.configure(bg = '#6693F5')
 hard.title("Spelling Bee's Spelling Game!")
 h = Labels(text="You've picked hard mode")

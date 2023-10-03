@@ -44,6 +44,7 @@ def actualgame():
     answerlabel.config(text="")
     points.config(text=f"Points: {userpoints}")
     levels.config(text=f"Level: {level}")
+    med.geometry("520x200")
     if level <= 10:
         AnswerEntrymed.grid(row=2, column=0, padx=5, pady=5)
         AnswerEntrymed.config(state = "normal")
@@ -94,6 +95,7 @@ def menu():
 
 def easygamestart():
     global wordbutton
+    med.geometry("430x120")
     Gamestartlabel.config(text="Unscramble the words and write the correct spelling!")
     Gamestartlabel.grid(row=0, column=0, padx=5, pady=5)
 
@@ -107,7 +109,7 @@ def easygamestart():
 
     
 med = Tk()
-med.geometry('200x200')
+med.geometry('240x200')
 med.configure(bg = '#6693F5')
 med.title("Spelling Bee's Spelling Game!")
 m = Labels(text="You've picked medium mode")

@@ -59,6 +59,7 @@ def checkanswer():
 
     
 def actualgame():
+    easy.geometry("520x200")
     global AnswerEntryeasy, printed_key, correct_answer, level, enterbutton, wordbutton, points
     level +=1
     answerlabel.config(text="")
@@ -114,7 +115,7 @@ def menu():
 
 def easygamestart():
     global wordbutton
-    easy.geometry("400x100")
+    easy.geometry("430x100")
     Gamestartlabel.config(text="Unscramble the words and write the correct spelling!")
     Gamestartlabel.grid(row=0, column=0, padx=5, pady=5)
 
