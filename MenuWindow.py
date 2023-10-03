@@ -7,7 +7,7 @@ from PIL import Image, ImageTk
 window = tk.Tk()
 window.configure (bg = '#6693F5')
 window.title("Spelling Bee's Spelling Game!")
-window.geometry("360x150")
+window.geometry("360x300")
 def clear():
     """This definition is to add a mechanism to clear the screan."""
     if name == 'nt':
@@ -25,11 +25,9 @@ def login():
     UserRegandLog.logwindow()
     
 def exit():
-    b1.destroy()
-    b2.destroy()
-    b3.destroy()
-    hello.destroy()
-    goodbye = Labels(text="Thank you for playing!").grid()
+    window.destroy()
+    import EndScreen
+    EndScreen.endgame()
     
 hello = Labels(text="Welcome to Spelling Bee's Spelling Game!")
 hello.grid(row=0, column=0, padx=5, pady=5)
@@ -40,3 +38,8 @@ b2.grid(row=3, column=0, padx=3, pady=3)
 b3 = Buttons(text="Exit Game", command=exit)
 b3.grid(row=4, column=0, padx=3, pady=3)
 tk.mainloop()
+#got this image code from a tkinter test replit
+"""image = Image.open("beeidlegif.gif")
+photo = ImageTk.PhotoImage(image)
+label = Label(window, image=photo)
+label.grid(row=5, column=0, padx=3, pady=3)""" #FIX!!!

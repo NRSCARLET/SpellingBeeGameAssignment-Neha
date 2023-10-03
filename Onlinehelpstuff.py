@@ -598,7 +598,7 @@ display_scores_button.grid(row=0, column=0, padx=5, pady=5)
 
 end.mainloop()"""
 
-import tkinter as tk
+"""import tkinter as tk
 
 def hide_top_label():
     top_label.pack_forget()
@@ -616,5 +616,28 @@ top_label.pack(pady=20)
 
 # Schedule the hide_top_label function to be called after 2000 milliseconds (2 seconds)
 root.after(2000, hide_top_label)
+
+root.mainloop()"""
+
+import tkinter as tk
+import random
+
+def on_button_click():
+    # Draw sparkles on the canvas
+    for _ in range(10):
+        x = random.randint(0, 200)
+        y = random.randint(0, 200)
+        canvas.create_oval(x, y, x + 5, y + 5, fill="yellow", outline="yellow")
+
+root = tk.Tk()
+root.title("Button with Sparkles")
+
+# Create a canvas
+canvas = tk.Canvas(root, width=200, height=200, bg="white")
+canvas.pack(pady=10)
+
+# Create a button
+button = tk.Button(root, text="Press Me", command=on_button_click)
+button.pack()
 
 root.mainloop()
