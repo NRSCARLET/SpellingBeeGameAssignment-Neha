@@ -3,6 +3,7 @@ import tkinter as tk
 from os import system, name
 from time import sleep
 from UserRegandLog import Labels, Buttons
+from PIL import Image, ImageTk
 window = tk.Tk()
 window.configure (bg = '#6693F5')
 window.title("Spelling Bee's Spelling Game!")
