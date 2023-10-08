@@ -54,7 +54,8 @@ def actualgame():
         enterbutton.config(state="active", text="Enter!", command=checkanswer)
         enterbutton.grid(row=4, column=0, padx=3, pady=3)
         wordbutton.config(text="Print (new) word!", state = "disabled")
-        menub5.grid(row=4, column=0, padx=3, pady=3)
+        menub5.config(state="active")
+        menub5.grid(row=5, column=0, padx=3, pady=3)
     else:
         Gamestartlabel.config(text="Please press the 'End game' button to continue to the end screen")
         AnswerEntrymed.destroy()
@@ -105,7 +106,7 @@ def easygamestart():
     m.destroy()
     conbutton.destroy()
     backb2.destroy()
-    menub5.destroy()
+    menub5.grid_forget()
 
 
     
