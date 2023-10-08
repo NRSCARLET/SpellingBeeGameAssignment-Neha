@@ -44,17 +44,17 @@ def actualgame():
     answerlabel.config(text="")
     points.config(text=f"Points: {userpoints}")
     levels.config(text=f"Level: {level}")
-    med.geometry("520x200")
+    med.geometry("520x250")
     if level <= 10:
         AnswerEntrymed.grid(row=2, column=0, padx=5, pady=5)
         AnswerEntrymed.config(state = "normal")
         printed_key = random.choice(list(med_spell_words_dict))
         correct_answer = med_spell_words_dict.pop(printed_key)
         jumblelabel.config(text=f"Write the correct word!: {printed_key}")
-        enterbutton.config(text="Enter!", command=checkanswer)
+        enterbutton.config(state="active", text="Enter!", command=checkanswer)
         enterbutton.grid(row=4, column=0, padx=3, pady=3)
-        enterbutton.config(state = "active")
         wordbutton.config(text="Print (new) word!", state = "disabled")
+        menub5.grid(row=4, column=0, padx=3, pady=3)
     else:
         Gamestartlabel.config(text="Please press the 'End game' button to continue to the end screen")
         AnswerEntrymed.destroy()
@@ -95,7 +95,7 @@ def menu():
 
 def easygamestart():
     global wordbutton
-    med.geometry("430x120")
+    med.geometry("430x100")
     Gamestartlabel.config(text="Unscramble the words and write the correct spelling!")
     Gamestartlabel.grid(row=0, column=0, padx=5, pady=5)
 
@@ -106,6 +106,7 @@ def easygamestart():
     conbutton.destroy()
     backb2.destroy()
     menub5.destroy()
+
 
     
 med = Tk()
@@ -131,7 +132,7 @@ jumblelabel = Labels(med, text="")
 jumblelabel.grid(row=1, column=0, padx=5, pady=5)
 
 answerlabel = Labels(med, text="")
-answerlabel.grid(row=5, column=0, padx=5, pady=5)
+answerlabel.grid(row=6, column=0, padx=5, pady=5)
 
 points = Labels(med, text="")
 points.grid(row=0, column=1, padx=5, pady=5)

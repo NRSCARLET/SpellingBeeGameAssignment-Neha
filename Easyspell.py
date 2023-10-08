@@ -59,7 +59,7 @@ def checkanswer():
 
     
 def actualgame():
-    easy.geometry("520x200")
+    easy.geometry("520x250")
     global AnswerEntryeasy, printed_key, correct_answer, level, enterbutton, wordbutton, points
     level +=1
     answerlabel.config(text="")
@@ -71,10 +71,11 @@ def actualgame():
         printed_key = random.choice(list(easy_spell_words_dict))
         correct_answer = easy_spell_words_dict.pop(printed_key)
         jumblelabel.config(text=f"Write the correct word!: {printed_key}")
-        enterbutton.config(text="Enter!", command=checkanswer)
+        enterbutton.config(state="active", text="Enter!", command=checkanswer)
         enterbutton.grid(row=4, column=0, padx=3, pady=3)
-        enterbutton.config(state = "active")
         wordbutton.config(text="Print (new) word!", state = "disabled")
+        menub4.grid(row=5, column=0, padx=3, pady=3)
+        menub4.config(state="active")
     else:
         Gamestartlabel.config(text="Please press the 'End game' button to continue to the end screen")
         AnswerEntryeasy.destroy()
@@ -125,8 +126,7 @@ def easygamestart():
     e.destroy()
     conbutton.destroy()
     backb1.destroy()
-    menub4.destroy()
-    
+    menub4.grid_forget()
     """Q1label = tk.Label(text="Please pick the correct spelling of [insert thing here]")
     Q1label.pack()
     Q1CB = Buttons(easy, text="paw")
@@ -160,7 +160,7 @@ jumblelabel = Labels(easy, text="")
 jumblelabel.grid(row=1, column=0, padx=5, pady=5)
 
 answerlabel = Labels(easy, text="")
-answerlabel.grid(row=5, column=0, padx=5, pady=5)
+answerlabel.grid(row=6, column=0, padx=5, pady=5)
 
 points = Labels(easy, text="")
 points.grid(row=0, column=1, padx=5, pady=5)

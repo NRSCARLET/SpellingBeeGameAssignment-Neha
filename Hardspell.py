@@ -43,7 +43,7 @@ def actualgame():
     answerlabel.config(text="")
     points.config(text=f"Points: {userpoints}")
     levels.config(text=f"Level: {level}")
-    hard.geometry("52     0x200")
+    hard.geometry("520x200")
     if level <= 10:
         AnswerEntryhard.grid(row=2, column=0, padx=5, pady=5)
         AnswerEntryhard.config(state = "normal")

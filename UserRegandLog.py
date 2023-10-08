@@ -123,7 +123,7 @@ def LOGEM():
     menub1.destroy()
     error = Labels(login, text="The Username you entered was not in our database.\nPlease enter a different username OR register as a user.")
     error.grid(row=0, column=0, padx=5, pady=5)
-    Regbutton = Buttons(text="Register", command=reg)
+    Regbutton = Buttons(text="Register", command=regster)
     Regbutton.grid(row=1, column=0, padx=3, pady=3)
     Loginbutton = Buttons(text="Login", command =log)
     Loginbutton.grid(row=2, column=0, padx=3, pady=3)
