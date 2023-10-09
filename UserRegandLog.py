@@ -114,7 +114,7 @@ def saveuser():
                     useropen.write(playing_user + "\n")
                 reg.destroy()
                 import Difficulty
-                Difficulty
+                Difficulty.difficultywindow()
 
 
 def validate_input(typed_char):
@@ -167,7 +167,7 @@ def check():
             playing_user = name_check
             login.destroy()
             import Difficulty
-            Difficulty
+            Difficulty.difficultywindow()
         else:
             LOGEM()
     

@@ -112,12 +112,12 @@ def actualgame():
 def difficultywindow():
     easy.destroy()
     import Difficulty
-    Difficulty
+    Difficulty.difficultywindow()
 
 def menu():
     easy.destroy()
     import MenuWindow
-    MenuWindow
+    MenuWindow.menu_wind()
 
 def easygamestart():
     global wordbutton
@@ -141,46 +141,37 @@ def easygamestart():
     Q1INCB2 = Buttons(text="pey")
     Q1INCB2.pack()"""
     
-    
-easy = Tk()
-easy.geometry('210x200')
-easy.configure(bg = '#6693F5')
-easy.title("Spelling Bee's Spelling Game!")
-e = Labels(text="You've picked easy mode")
-e.grid(row=0, column=0, padx=5, pady=5)
-validate_cmd = easy.register(validate_input)
-
-conbutton = Buttons(text="Continue", command = easygamestart)
-conbutton.grid(row=2, column=0, padx=3, pady=3)
-
-backb1 = Buttons(text="Back", command = difficultywindow)
-backb1.grid(row=3, column=0, padx=3, pady=3)
-
-menub4 = Buttons(text="Menu", command = menu)
-menub4.grid(row=4, column=0, padx=3, pady=3)
-
-Gamestartlabel = Labels(easy, text="")
-Gamestartlabel.grid(row=1, column=0, padx=5, pady=5)
-
-jumblelabel = Labels(easy, text="")
-jumblelabel.grid(row=1, column=0, padx=5, pady=5)
-
-answerlabel = Labels(easy, text="")
-answerlabel.grid(row=6, column=0, padx=5, pady=5)
-
-points = Labels(easy, text="")
-points.grid(row=0, column=1, padx=5, pady=5)
-
-levels = Labels(easy, text="")
-levels.grid(row=1, column=1, padx=5, pady=5)
-
-AnswerEntryeasy = tk.Entry(easy, bd =5, validate="key", validatecommand=(validate_cmd, "%S"))
-AnswerEntryeasy.grid()
-AnswerEntryeasy.grid_forget()
-
-enterbutton = Buttons(text="")
-enterbutton.grid()
-enterbutton.grid_forget()
+def easywindow():
+    global easy
+    easy = Tk()
+    easy.geometry('210x200')
+    easy.configure(bg = '#6693F5')
+    easy.title("Spelling Bee's Spelling Game!")
+    e = Labels(text="You've picked easy mode")
+    e.grid(row=0, column=0, padx=5, pady=5)
+    validate_cmd = easy.register(validate_input)
+    conbutton = Buttons(text="Continue", command = easygamestart)
+    conbutton.grid(row=2, column=0, padx=3, pady=3)
+    backb1 = Buttons(text="Back", command = difficultywindow)
+    backb1.grid(row=3, column=0, padx=3, pady=3)
+    menub4 = Buttons(text="Menu", command = menu)
+    menub4.grid(row=4, column=0, padx=3, pady=3)
+    Gamestartlabel = Labels(easy, text="")
+    Gamestartlabel.grid(row=1, column=0, padx=5, pady=5)
+    jumblelabel = Labels(easy, text="")
+    jumblelabel.grid(row=1, column=0, padx=5, pady=5)
+    answerlabel = Labels(easy, text="")
+    answerlabel.grid(row=6, column=0, padx=5, pady=5)
+    points = Labels(easy, text="")
+    points.grid(row=0, column=1, padx=5, pady=5)
+    levels = Labels(easy, text="")
+    levels.grid(row=1, column=1, padx=5, pady=5)
+    AnswerEntryeasy = tk.Entry(easy, bd =5, validate="key", validatecommand=(validate_cmd, "%S"))
+    AnswerEntryeasy.grid()
+    AnswerEntryeasy.grid_forget()
+    enterbutton = Buttons(text="")
+    enterbutton.grid()
+    enterbutton.grid_forget()
 
 
 """label_answer_test = Labels(easy, text="")
