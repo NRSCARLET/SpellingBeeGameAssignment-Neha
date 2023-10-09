@@ -3,7 +3,17 @@ E2 = None
 import sys 
 from tkinter import *
 import tkinter as tk
+#global entry widgets
+E1 = None
+E2 = None
+
+
+#points system to help with sharing code between different systems
 regi = 0
+menulogpoint = 0
+
+
+#Classes for changing colours and fonts of buttons and labels.
 class Buttons(Button):
     def __init__(self,*args, **kwargs):
         Button.__init__(self,*args, **kwargs)
@@ -17,7 +27,9 @@ class Labels(Label):
         self['bg'] = '#6693F5'
         self['fg'] = 'purple'
         self['font'] = 'helvetica 10 bold'
-E1 = None
+
+
+#Code sharing between the login and register sets of code
 def regster():
     if regi >= 1:
         reg.destroy()
@@ -28,6 +40,7 @@ def regster():
         import UserRegandLog
         UserRegandLog.regwindow()
 
+        
 def log():
     if regi >=1:
         reg.destroy()
@@ -38,8 +51,22 @@ def log():
         import UserRegandLog
         UserRegandLog.logwindow()
 
-#---REGISTER CODE--#
+        
+def menu():
+    if menulogpoint == 0:
+        reg.destroy()
+        import MenuWindow
+        MenuWindow.menu_wind()
+    else:
+        login.destroy()
+        import MenuWindow
+        MenuWindow.menu_wind()
 
+
+
+
+
+#---REGISTER CODE--#
 def REGEM():
     global regi
     reg.geometry("430x150")
@@ -54,7 +81,8 @@ def REGEM():
     logbutton.grid(row=1, column=0, padx=3, pady=5)
     regbutton = Buttons(text="Register", command=regster)
     regbutton.grid(row=2, column=0, padx=3, pady=3)
-    
+
+
 def empty():
     global regi
     reg.geometry("360x100")
@@ -87,12 +115,6 @@ def saveuser():
                 reg.destroy()
                 import Difficulty
                 Difficulty
-    
-
-def menu():
-    reg.destroy()
-    import MenuWindow
-    MenuWindow
 
 
 def validate_input(typed_char):
@@ -117,10 +139,10 @@ def regwindow():
     reg.mainloop()
 
 
+
+
+
 #---LOGIN CODE---#
-
-
-    
 def LOGEM():
     login.geometry("480x170")
     Userlogin.destroy()
@@ -150,18 +172,13 @@ def check():
             LOGEM()
     
 
-def menu():
-    login.destroy()
-    import MenuWindow
-    MenuWindow
-
-
 def validate_input(typed_char):
     return typed_char.isalpha() or typed_char == ""
     
 
 def logwindow():
-    global E1, login, Userlogin, okb1, menub1
+    global E1, login, Userlogin, okb1, menub1, menulogpoint
+    menulogpoint +=1
     login = Tk()
     login.geometry("250x150")
     login.configure (bg = '#6693F5')
