@@ -116,7 +116,7 @@ def easygamestart():
 
 
 def hardwindow():
-    global hard
+    global hard, h, conbutton, backb3, menub6, Gamestartlabel, jumblelabel, answerlabel, points, levels, AnswerEntryhard, enterbutton
     hard = Tk()
     hard.geometry('210x200')
     hard.configure(bg = '#6693F5')

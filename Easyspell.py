@@ -142,7 +142,7 @@ def easygamestart():
     Q1INCB2.pack()"""
     
 def easywindow():
-    global easy
+    global easy, e, conbutton, backb1, menub4, Gamestartlabel, jumblelabel, answerlabel, points, levels, AnswerEntryeasy, enterbutton
     easy = Tk()
     easy.geometry('210x200')
     easy.configure(bg = '#6693F5')

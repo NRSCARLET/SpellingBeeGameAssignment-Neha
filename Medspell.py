@@ -115,7 +115,7 @@ def easygamestart():
 
 
 def medwindow():
-    global med
+    global med, m, conbutton, backb2, menub5, Gamestartlabel, jumblelabel, answerlabel, points, levels, AnswerEntrymed, enterbutton
     med = Tk()
     med.geometry('240x200')
     med.configure(bg = '#6693F5')
