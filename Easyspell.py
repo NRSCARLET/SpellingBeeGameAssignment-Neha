@@ -19,6 +19,7 @@ wordbutton = None
 points = None
 userpoints = 0
 level = 0
+gamestartpoint = 0
 #words for hints (in order): butt, buzz, good, star, ball, fall, ache, name, itch, grow, tree, nose, mail, draw, yell, time, dash, cash, dead, bang, rude, kiss, bird, vase, rope, glue, push, pull, rest, tyre, west, east, song, vest, sick, knee, test, hard, easy, horn - 40 words (unjumbled words)
         
 """def change_label():
@@ -65,8 +66,9 @@ def checkanswer():
     
 def actualgame():
     easy.geometry("520x250")
-    global AnswerEntryeasy, printed_key, correct_answer, level, enterbutton, wordbutton, points
+    global AnswerEntryeasy, printed_key, correct_answer, level, enterbutton, wordbutton, points, gamestartpoint
     level +=1
+    gamestartpoint +=1
     answerlabel.config(text="")
     points.config(text=f"Points: {userpoints}")
     levels.config(text=f"Level: {level}")
@@ -107,7 +109,10 @@ def actualgame():
                 wordbutton.config(text="End game!", command = end)
         
 
-
+def leavewarning():
+    warningwindow = tk.Toplevel(easy)
+    warningwindow.title("Spelling Bee's Spelling Game!")
+    warningwindow.geometry("250x100")
 
 def difficultywindow():
     easy.destroy()
@@ -115,9 +120,12 @@ def difficultywindow():
     Difficulty.difficultywindow()
 
 def menu():
-    easy.destroy()
-    import MenuWindow
-    MenuWindow.menu_wind()
+    if gamestartpoint == 0:
+        easy.destroy()
+        import MenuWindow
+        MenuWindow.menu_wind()
+    else:
+        leavewarning()
 
 def easygamestart():
     global wordbutton

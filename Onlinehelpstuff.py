@@ -642,7 +642,7 @@ button.pack()
 
 root.mainloop()"""
 
-import tkinter as tk
+"""import tkinter as tk
 
 def validate_input(char):
     # Check if the character is a valid string character
@@ -655,5 +655,41 @@ validate_cmd = root.register(validate_input)
 
 entry = tk.Entry(root, validate="key", validatecommand=(validate_cmd, "%S"))
 entry.pack(padx=10, pady=10)
+
+root.mainloop()"""
+
+import tkinter as tk
+
+def show_top_window():
+    top_window = tk.Toplevel(root)
+    top_window.title("Top Window")
+    top_window.geometry("300x150")
+
+    # Make the top window modal (user can't interact with the root window until this is closed)
+    top_window.transient(root)
+    top_window.grab_set()
+
+    # Add content to the top window
+    label = tk.Label(top_window, text="This is the top window")
+    label.pack(padx=20, pady=20)
+
+    # Add a button to close the top window and enable interaction with the root window
+    close_button = tk.Button(top_window, text="Close", command=lambda: close_top_window(top_window))
+    close_button.pack(pady=10)
+
+def close_top_window(top_window):
+    # Release the grab, allowing interaction with the root window
+    top_window.grab_release()
+
+    # Close the top window
+    top_window.destroy()
+
+root = tk.Tk()
+root.title("Main Window")
+root.geometry("400x200")
+
+# Add a button to show the top window
+show_button = tk.Button(root, text="Show Top Window", command=show_top_window)
+show_button.pack(pady=20)
 
 root.mainloop()
