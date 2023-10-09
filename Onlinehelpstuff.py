@@ -619,7 +619,7 @@ root.after(2000, hide_top_label)
 
 root.mainloop()"""
 
-import tkinter as tk
+"""import tkinter as tk
 import random
 
 def on_button_click():
@@ -639,5 +639,21 @@ canvas.pack(pady=10)
 # Create a button
 button = tk.Button(root, text="Press Me", command=on_button_click)
 button.pack()
+
+root.mainloop()"""
+
+import tkinter as tk
+
+def validate_input(char):
+    # Check if the character is a valid string character
+    return char.isalpha() or char == ""
+
+root = tk.Tk()
+root.title("String Entry Example")
+
+validate_cmd = root.register(validate_input)
+
+entry = tk.Entry(root, validate="key", validatecommand=(validate_cmd, "%S"))
+entry.pack(padx=10, pady=10)
 
 root.mainloop()

@@ -93,16 +93,22 @@ def menu():
     reg.destroy()
     import MenuWindow
     MenuWindow
-    
+
+
+def validate_input(typed_char):
+    return typed_char.isalpha() or typed_char == ""
+
+
 def regwindow():
     global E2, reg, okb2, menub2, Userregister
     reg = Tk()
     reg.geometry("350x150")
     reg.configure (bg = '#6693F5')
     reg.title("Spelling Bee's Spelling Game!")
+    validate_cmd = reg.register(validate_input)
     Userregister = Labels(reg, text="Please create a username for your account")
     Userregister.grid(row=0, column=0, padx=5, pady=5)
-    E2 = Entry(reg, bd =5)
+    E2 = Entry(reg, bd =5, validate="key", validatecommand=(validate_cmd, "%S"))
     E2.grid(row=1, column=0, padx=5, pady=5)
     okb2 = Buttons(text="Enter", command = saveuser)
     okb2.grid(row=2, column=0, padx=3, pady=3)
