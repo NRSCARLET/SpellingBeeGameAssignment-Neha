@@ -15,6 +15,11 @@ points = None
 userpoints = 0
 level = 0
 #words for hints (in order): beauty, fabric, habits, facade, hacker, nachos, pacify, rabbit, vacuum, waddle, yachts, zigged, abroad, casual, medium, cables, defeat, behind, emerge, bridge, wrapped, ability, captain, beneath, century, anxious, divided, economy, disease, gateway, healthy, illegal, justify, maximum, quickly, passive, removed, violent, satisfy, qualify.
+
+
+def validate_input(typed_char):
+    return typed_char.isalpha() or typed_char == ""
+    
         
 def end():
     hard.destroy()
@@ -116,6 +121,7 @@ hard.configure(bg = '#6693F5')
 hard.title("Spelling Bee's Spelling Game!")
 h = Labels(text="You've picked hard mode")
 h.grid(row=0, column=0, padx=5, pady=5)
+validate_cmd = hard.register(validate_input)
 
 conbutton = Buttons(text="Continue", command = easygamestart)
 conbutton.grid(row=2, column=0, padx=3, pady=3)
@@ -141,7 +147,7 @@ points.grid(row=0, column=1, padx=5, pady=5)
 levels = Labels(hard, text="")
 levels.grid(row=1, column=1, padx=5, pady=5)
 
-AnswerEntryhard = tk.Entry(hard, bd =5)
+AnswerEntryhard = tk.Entry(hard, bd =5, validate="key", validatecommand=(validate_cmd, "%S"))
 AnswerEntryhard.grid()
 AnswerEntryhard.grid_forget()
 

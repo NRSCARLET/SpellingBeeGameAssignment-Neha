@@ -37,6 +37,11 @@ level = 0
         if question_count == 10:
             quit()"""
 
+
+def validate_input(typed_char):
+    return typed_char.isalpha() or typed_char == ""
+    
+
 def end():
     easy.destroy()
     import EndScreen
@@ -143,6 +148,7 @@ easy.configure(bg = '#6693F5')
 easy.title("Spelling Bee's Spelling Game!")
 e = Labels(text="You've picked easy mode")
 e.grid(row=0, column=0, padx=5, pady=5)
+validate_cmd = easy.register(validate_input)
 
 conbutton = Buttons(text="Continue", command = easygamestart)
 conbutton.grid(row=2, column=0, padx=3, pady=3)
@@ -168,7 +174,7 @@ points.grid(row=0, column=1, padx=5, pady=5)
 levels = Labels(easy, text="")
 levels.grid(row=1, column=1, padx=5, pady=5)
 
-AnswerEntryeasy = tk.Entry(easy, bd =5)
+AnswerEntryeasy = tk.Entry(easy, bd =5, validate="key", validatecommand=(validate_cmd, "%S"))
 AnswerEntryeasy.grid()
 AnswerEntryeasy.grid_forget()
 

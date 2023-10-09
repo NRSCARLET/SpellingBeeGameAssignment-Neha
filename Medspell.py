@@ -16,7 +16,12 @@ userpoints = 0
 level = 0
 points = None
 #words for hints (in order): burnt, point, write, eaten, queen, quote, apple, feels, voted, haste, zebra, furry, fizzy, quick, offer, worry, tweak, print, sport, toast, dread, treat, crazy, quack, sound, waves, jumps, drape, heave, ocean, beach, while, ratio, heavy, gravy, dizzy, kazoo, roast, flake, flush
-        
+
+
+def validate_input(typed_char):
+    return typed_char.isalpha() or typed_char == ""
+
+
 def end():
     med.destroy()
     import EndScreen
@@ -116,6 +121,7 @@ med.configure(bg = '#6693F5')
 med.title("Spelling Bee's Spelling Game!")
 m = Labels(text="You've picked medium mode")
 m.grid(row=0, column=0, padx=5, pady=5)
+validate_cmd = med.register(validate_input)
 
 conbutton = Buttons(text="Continue", command = easygamestart)
 conbutton.grid(row=2, column=0, padx=3, pady=3)
@@ -141,7 +147,7 @@ points.grid(row=0, column=1, padx=5, pady=5)
 levels = Labels(med, text="")
 levels.grid(row=1, column=1, padx=5, pady=5)
 
-AnswerEntrymed = tk.Entry(med, bd =5)
+AnswerEntrymed = tk.Entry(med, bd =5, validate="key", validatecommand=(validate_cmd, "%S"))
 AnswerEntrymed.grid()
 AnswerEntrymed.grid_forget()
 

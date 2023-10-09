@@ -155,15 +155,21 @@ def menu():
     import MenuWindow
     MenuWindow
 
+
+def validate_input(typed_char):
+    return typed_char.isalpha() or typed_char == ""
+    
+
 def logwindow():
     global E1, login, Userlogin, okb1, menub1
     login = Tk()
     login.geometry("250x150")
     login.configure (bg = '#6693F5')
     login.title("Spelling Bee's Spelling Game!")
+    validate_cmd = login.register(validate_input)
     Userlogin = Labels(login, text="Please enter your Username")
     Userlogin.grid(row=0, column= 0, padx= 5, pady=5)
-    E1 = tk.Entry(login, bd =5)
+    E1 = tk.Entry(login, bd =5, validate="key", validatecommand=(validate_cmd, "%S"))
     E1.grid(row=1, column=0, padx= 5, pady=5)
     okb1 = Buttons(text="Enter", command = check)
     okb1.grid(row=2, column=0, padx= 3, pady=3)
