@@ -86,6 +86,30 @@ def actualgame():
                 wordbutton.config(text="End game!", command = end)
         
 
+def backtogame(warningwindow):
+    warningwindow.destroy()
+    pass
+
+
+def leavemiddlegame(warningwindow):
+    hard.destroy()
+    import MenuWindow
+    MenuWindow.menu_wind()
+
+
+def leavewarning():
+    warningwindow = tk.Toplevel(hard)
+    warningwindow.title("Spelling Bee's Spelling Game!")
+    warningwindow.geometry("615x170")
+    warningwindow.configure(bg ='#F56693')
+    warningwindow.transient(hard)
+    warningwindow.grab_set()
+    warninglabel = Label(warningwindow, text="Are you sure you want to leave?\nNote: Your progress will NOT be saved if you leave in the middle of the game.\n Progress (points) will only be saved once you complete the game.\nClicking 'Yes' will result in being taken back to the menu.\nClicking 'No' will result in the game continuing.", bg='#F56693', fg='#2A0134', font='helvetica 10 bold')
+    warninglabel.grid(row=0, column=0, padx=5, pady=5)
+    yesmenu = Buttons(warningwindow, text="Yes", command=lambda: leavemiddlegame(warningwindow))
+    yesmenu.grid(row=1, column=0, padx=3, pady=3)
+    nomenu = Buttons(warningwindow, text="No", command=lambda: backtogame(warningwindow))
+    nomenu.grid(row=2, column=0, padx=3, pady=3)
 
 
 def difficultywindow():
