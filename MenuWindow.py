@@ -4,6 +4,7 @@ from os import system, name
 from time import sleep
 from UserRegandLog import Labels, Buttons
 from PIL import Image, ImageTk
+from tkinter import Label, Tk
 
 
 def clear():
@@ -31,6 +32,14 @@ def exit():
     import EndScreen
     EndScreen.endgame()
 
+
+def animate():
+    photo = frames[frame_num]
+    label.configure(image=photo)
+    label.image = photo  # This line is crucial to prevent garbage collection
+    window.after(100, update_frame, (frame_num + 1) % len(frames))
+
+
 def menu_wind():
     global window
     window = tk.Tk()
@@ -45,10 +54,12 @@ def menu_wind():
     b2.grid(row=3, column=0, padx=3, pady=3)
     b3 = Buttons(text="Exit Game", command=exit)
     b3.grid(row=4, column=0, padx=3, pady=3)
+    #got this image code from my tkinter test replit
+    gif_file = "beeidlegif.gif"
+    gif = Image.open(gif_file)
+    frames = [ImageTk.Photoimage(img) for img  in gif]
+    resize_gif = image.resize((200, 200))
+    label = Label(window)
+    label.grid(row=5, column=0, padx=3, pady=3) 
     tk.mainloop()
-#got this image code from a tkinter test replit
-"""image = Image.open("beeidlegif.gif")
-photo = ImageTk.PhotoImage(image)
-label = Label(window, image=photo)
-label.grid(row=5, column=0, padx=3, pady=3)""" #FIX!!!
 menu_wind()

@@ -658,7 +658,7 @@ entry.pack(padx=10, pady=10)
 
 root.mainloop()"""
 
-import tkinter as tk
+"""import tkinter as tk
 
 def show_top_window():
     top_window = tk.Toplevel(root)
@@ -692,4 +692,18 @@ root.geometry("400x200")
 show_button = tk.Button(root, text="Show Top Window", command=show_top_window)
 show_button.pack(pady=20)
 
-root.mainloop()
+root.mainloop()"""
+
+import tkinter as tk
+
+window = tk.Tk()
+
+# Load the animated GIF directly
+gif_path = "beeidlegif.gif"
+animated_gif = tk.PhotoImage(file=gif_path)
+
+# Create a label to display the GIF
+label = tk.Label(window, image=animated_gif)
+label.grid(row=5, column=0, padx=3, pady=3)
+
+window.mainloop()

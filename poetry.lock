@@ -218,6 +218,34 @@ optional = false
 python-versions = ">=3.5"
 
 [[package]]
+name = "imageio"
+version = "2.31.5"
+description = "Library for reading and writing a wide range of image, video, scientific, and volumetric data formats."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.dependencies]
+numpy = "*"
+pillow = ">=8.3.2"
+
+[package.extras]
+all-plugins = ["astropy", "av", "imageio-ffmpeg", "psutil", "tifffile"]
+all-plugins-pypy = ["av", "imageio-ffmpeg", "psutil", "tifffile"]
+build = ["wheel"]
+dev = ["pytest", "pytest-cov", "fsspec", "black", "flake8"]
+docs = ["sphinx (<6)", "numpydoc", "pydata-sphinx-theme"]
+ffmpeg = ["imageio-ffmpeg", "psutil"]
+fits = ["astropy"]
+full = ["astropy", "av", "black", "flake8", "fsspec", "gdal", "imageio-ffmpeg", "itk", "numpydoc", "psutil", "pydata-sphinx-theme", "pytest", "pytest-cov", "sphinx (<6)", "tifffile", "wheel"]
+gdal = ["gdal"]
+itk = ["itk"]
+linting = ["black", "flake8"]
+pyav = ["av"]
+test = ["pytest", "pytest-cov", "fsspec"]
+tifffile = ["tifffile"]
+
+[[package]]
 name = "importlib-metadata"
 version = "6.8.0"
 description = "Read metadata from Python packages"
@@ -546,7 +574,7 @@ test = ["pylint", "pycodestyle", "pyflakes", "pytest", "pytest-cov", "coverage"]
 
 [[package]]
 name = "python-lsp-server"
-version = "1.8.0"
+version = "1.8.2"
 description = "Python Language Server for the Language Server Protocol"
 category = "dev"
 optional = false
@@ -565,7 +593,7 @@ whatthepatch = {version = ">=1.0.2,<2.0.0", optional = true, markers = "extra ==
 yapf = {version = ">=0.33.0", optional = true, markers = "extra == \"yapf\""}
 
 [package.extras]
-all = ["autopep8 (>=1.6.0,<2.1.0)", "flake8 (>=6.1.0,<7)", "mccabe (>=0.7.0,<0.8.0)", "pycodestyle (>=2.11.0,<2.12.0)", "pydocstyle (>=6.3.0,<6.4.0)", "pyflakes (>=3.1.0,<3.2.0)", "pylint (>=2.5.0,<3)", "rope (>1.2.0)", "yapf (>=0.33.0)", "whatthepatch (>=1.0.2,<2.0.0)"]
+all = ["autopep8 (>=2.0.4,<2.1.0)", "flake8 (>=6.1.0,<7)", "mccabe (>=0.7.0,<0.8.0)", "pycodestyle (>=2.11.0,<2.12.0)", "pydocstyle (>=6.3.0,<6.4.0)", "pyflakes (>=3.1.0,<3.2.0)", "pylint (>=2.5.0,<3)", "rope (>1.2.0)", "yapf (>=0.33.0)", "whatthepatch (>=1.0.2,<2.0.0)"]
 autopep8 = ["autopep8 (>=1.6.0,<2.1.0)"]
 flake8 = ["flake8 (>=6.1.0,<7)"]
 mccabe = ["mccabe (>=0.7.0,<0.8.0)"]
@@ -798,7 +826,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-ena
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8.0,<3.9"
-content-hash = "799a31e89848fd84d5deddc0926ca3569191ed39023dd6917c079778d3d30e65"
+content-hash = "c525c6a15ef0a95e475f6cf4956ab5335710a4f7c115c99412c5e1acfdaa9602"
 
 [metadata.files]
 blinker = []
@@ -820,6 +848,7 @@ filelock = []
 flask = []
 html5lib = []
 idna = []
+imageio = []
 importlib-metadata = []
 importlib-resources = []
 itsdangerous = []
