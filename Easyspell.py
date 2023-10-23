@@ -168,46 +168,6 @@ def easygamestart():
     Q1INCB2 = Buttons(text="pey")
     Q1INCB2.pack()"""
 
-"""Got this code from ChatGPT. I got stuck trying to find out how to animate my gif (I only managed to insert it as a static image)"""
-def update_image():
-    global gif_frames_iter  # Declare gif_frames_iter as a global variable
-    try:
-        # Get the next frame from the GIF
-        current_frame = next(gif_frames_iter)
-
-        # Convert the PIL image to a Tkinter PhotoImage
-        tk_image = ImageTk.PhotoImage(current_frame)
-
-        # Update the label with the new image
-        label.config(image=tk_image)
-        label.image = tk_image  # This line is crucial for proper garbage collection
-        root.after(50, update_image)  # Schedule the update after 100 milliseconds (adjust as needed)
-    except StopIteration:
-        # If we reach the end of the frames, restart the animation
-        gif_frames_iter = iter(gif_frames)
-        root.after(100, update_image)  # Schedule the update after 100 milliseconds (adjust as needed)
-
-# Create the main Tkinter window
-root = tk.Tk()
-root.title("Animated GIF")
-
-# Open the GIF file
-gif_path = "beeidlegif.gif"
-gif = Image.open(gif_path)
-# Extract individual frames from the GIF
-gif_frames = [frame.copy() for frame in ImageSequence.Iterator(gif)]
-# Create an iterator to loop through the frames
-gif_frames_iter = iter(gif_frames)
-
-# Display the initial frame
-initial_frame = next(gif_frames_iter)
-initial_frame_tk = ImageTk.PhotoImage(initial_frame)
-label = tk.Label(root, image=initial_frame_tk)
-label.pack()
-
-# Schedule the update function to animate the GIF
-root.after(50, update_image)
-
 
 def easywindow():
     global easy, e, conbutton, backb1, menub4, Gamestartlabel, jumblelabel, answerlabel, points, levels, AnswerEntryeasy, enterbutton
