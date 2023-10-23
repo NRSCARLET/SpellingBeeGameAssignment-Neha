@@ -33,13 +33,6 @@ def exit():
     EndScreen.endgame()
 
 
-def animate():
-    photo = frames[frame_num]
-    label.configure(image=photo)
-    label.image = photo  # This line is crucial to prevent garbage collection
-    window.after(100, update_frame, (frame_num + 1) % len(frames))
-
-
 def menu_wind():
     global window
     window = tk.Tk()
@@ -54,12 +47,11 @@ def menu_wind():
     b2.grid(row=3, column=0, padx=3, pady=3)
     b3 = Buttons(text="Exit Game", command=exit)
     b3.grid(row=4, column=0, padx=3, pady=3)
-    #got this image code from my tkinter test replit
-    gif_file = "beeidlegif.gif"
-    gif = Image.open(gif_file)
-    frames = [ImageTk.Photoimage(img) for img  in gif]
-    resize_gif = image.resize((200, 200))
-    label = Label(window)
-    label.grid(row=5, column=0, padx=3, pady=3) 
+    #image code taken from my 'tkintertestbroken' replit file.
+    image = Image.open("beeidlegif.gif")
+    resizeimage = image.resize((150, 150))
+    photo = ImageTk.PhotoImage(resizeimage)
+    label = tk.Label(image=photo)
+    label.grid(row=5, column=0, padx=5, pady=5)
     tk.mainloop()
 menu_wind()
