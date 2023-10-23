@@ -19,28 +19,19 @@ def playagain():
 def update_image():
     global end, gif_frames_iter, gif_frames
     try:
-        # Get the next frame from the GIF
         current_frame = next(gif_frames_iter)
-
-        # Convert the PIL image to a Tkinter PhotoImage
         tk_image = ImageTk.PhotoImage(current_frame)
-
-        # Update the label with the new image
         label.config(image=tk_image)
-        label.image = tk_image  # This line is crucial for proper garbage collection
-        end.after(50, update_image)  # Schedule the update after 100 milliseconds (adjust as needed)
+        label.image = tk_image
+        end.after(50, update_image)
     except StopIteration:
-        # If we reach the end of the frames, restart the animation
         gif_frames_iter = iter(gif_frames_resized)
-        end.after(100, update_image) # Schedule the update after 100 milliseconds (adjust as needed)
-        # Open the GIF file
+        end.after(100, update_image)
 
 
 def resize_gif(gif_frames, new_width, new_height):
-    # Resize each frame in the GIF
     resized_frames = [frame.resize((new_width, new_height)) for frame in gif_frames]
     return resized_frames
-
 
 
 def endgame():
