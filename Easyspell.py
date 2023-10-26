@@ -3,6 +3,8 @@ from tkinter import *
 import tkinter as tk
 import random
 from UserRegandLog import playing_user, Labels, Buttons
+from PIL import Image, ImageTk, ImageSequence
+from tkinter import Label, Tk
 """easy_spell_word_hint = ["btut", "bzzu", "ogod", "tars", "labl", "alfl", "chea", "anme", "ctih", "rogw", "etre", "mila", "wrad", "leyl", "meit", "sahd", "chsa", "eadd", "nabg", "urde", "siks", "ribd", "avse", "orpe", "uleg", "uphs", "ulpl", "stre", "yter", "ewts", "stea", "ongs", "sevt", "kics", "eken", "ttse", "darh", "ysea", "rohn"]"""
 
 easy_spell_words_dict={
@@ -20,6 +22,7 @@ points = None
 userpoints = 0
 level = 0
 gamestartpoint = 0
+gif_playing = False
 #words for hints (in order): butt, buzz, good, star, ball, fall, ache, name, itch, grow, tree, nose, mail, draw, yell, time, dash, cash, dead, bang, rude, kiss, bird, vase, rope, glue, push, pull, rest, tyre, west, east, song, vest, sick, knee, test, hard, easy, horn - 40 words (unjumbled words)
         
 """def change_label():
@@ -39,6 +42,26 @@ gamestartpoint = 0
             quit()"""
 
 
+def update_image():
+    global easy, gif_frames_iter, gif_frames, gif_playing
+    try:
+        current_frame = next(gif_frames_iter)
+        tk_image = ImageTk.PhotoImage(current_frame)
+        label.config(image=tk_image)
+        label.image = tk_image
+        easy.after(50, update_image)
+        if gif_playing:
+            easy.after_update(gif_after_id)
+    except StopIteration:
+        gif_frames_iter = iter(gif_frames_resized)
+        easy.after(100, update_image)
+
+
+def resize_gif(gif_frames, new_width, new_height):
+    resized_frames = [frame.resize((new_width, new_height)) for frame in gif_frames]
+    return resized_frames
+
+
 def validate_input(typed_char):
     return typed_char.isalpha() or typed_char == ""
     
@@ -50,28 +73,60 @@ def end():
 
 
 def checkanswer():
-    global userpoints
+    global userpoints, gif_frames, gif_frames_iter, gif_frames_resized, label
     user_answer = AnswerEntryeasy.get().lower()
     AnswerEntryeasy.delete(0, END)
     AnswerEntryeasy.config(state = "disabled")
     enterbutton.config(state = "disabled")
     wordbutton.config(state = "active")
+    gif_playing = True
     if user_answer == correct_answer:
+        easy.geometry("520x400")
         answerlabel.config(text=f"CORRECT! The answer is {correct_answer}!")
         userpoints += 1
         points.config(text=f"Points: {userpoints}")
+        gif_path = "beeyes.gif"
+        gif = Image.open(gif_path)
+        gif_frames = [frame.copy() for frame in ImageSequence.Iterator(gif)]
+        new_width = 200
+        new_height = 150
+        gif_frames_resized = resize_gif(gif_frames, new_width, new_height)
+        gif_frames_iter = iter(gif_frames_resized)
+        initial_frame = next(gif_frames_iter)
+        initial_frame_tk = ImageTk.PhotoImage(initial_frame)
+        label = tk.Label(easy, image=initial_frame_tk)
+        label.grid(row=7, column=0, padx=5, pady=5)
+        gif_after_id=easy.after(80, update_image)
     else:
+        easy.geometry("520x400")
         answerlabel.config(text=f"INCORRECT! The answer was {correct_answer}!")
+        gif_path = "beeno.gif"
+        gif = Image.open(gif_path)
+        gif_frames = [frame.copy() for frame in ImageSequence.Iterator(gif)]
+        new_width = 200
+        new_height = 150
+        gif_frames_resized = resize_gif(gif_frames, new_width, new_height)
+        gif_frames_iter = iter(gif_frames_resized)
+        initial_frame = next(gif_frames_iter)
+        initial_frame_tk = ImageTk.PhotoImage(initial_frame)
+        label = tk.Label(easy, image=initial_frame_tk)
+        label.grid(row=7, column=0, padx=5, pady=5)
+        gif_after_id=easy.after(50, update_image)
+        
 
     
 def actualgame():
-    easy.geometry("520x250")
+    easy.geometry("520x230")
     global AnswerEntryeasy, printed_key, correct_answer, level, enterbutton, wordbutton, points, gamestartpoint
     level +=1
     gamestartpoint +=1
     answerlabel.config(text="")
     points.config(text=f"Points: {userpoints}")
     levels.config(text=f"Level: {level}")
+    gif_playing = False
+    if gif_playing:
+        label.grid_forget()
+        label.destroy()
     if level <= 10:
         AnswerEntryeasy.grid(row=2, column=0, padx=5, pady=5)
         AnswerEntryeasy.config(state = "normal")
