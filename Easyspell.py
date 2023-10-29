@@ -65,28 +65,13 @@ def checkanswer():
         answerlabel.config(text=f"CORRECT! The answer is {correct_answer}!")
         userpoints += 1
         points.config(text=f"Points: {userpoints}")
-        try:
-            # Load the image using Pillow
-            image = Image.open("beegoodjobyes.png")
-            image = image.convert("RGB")
-            resize_bee = image.resize((180, 150))
-            photo = ImageTk.PhotoImage(resize_bee)
-            label = tk.Label(easy, image=photo)
-            label.grid(row=7, column=0, padx=5, pady=5)
-        except Exception as e:
-            print(f"An error occurred: {e}")
+        image = Image.open("beegoodjobyes.png")
+        photo = ImageTk.PhotoImage(image)
+        label = tk.Label(image=photo)
+        label.grid(row=7, column=0, padx=5, pady=5)
     else:
         easy.geometry("520x400")
         answerlabel.config(text=f"INCORRECT! The answer was {correct_answer}!")
-        try:
-            # Load the image using Pillow
-            image = Image.open("beenoanswer.png")  
-            resize_bee = image.resize((180, 150))
-            photo = ImageTk.PhotoImage(resize_bee)
-            label = tk.Label(easy, image=photo)
-            label.grid(row=7, column=0, padx=5, pady=5)
-        except Exception as e:
-            print(f"An error occurred: {e}")
 
         
 
@@ -231,6 +216,7 @@ def easywindow():
     enterbutton = Buttons(text="")
     enterbutton.grid()
     enterbutton.grid_forget()
+    easy.mainloop()
 
 
 """label_answer_test = Labels(easy, text="")
