@@ -5,7 +5,7 @@ from time import sleep
 from UserRegandLog import Labels, Buttons
 from PIL import Image, ImageTk, ImageSequence
 from tkinter import Label, Tk
-
+is_menu_closing = False
 
 def clear():
     """This definition is to add a mechanism to clear the screan."""
@@ -16,6 +16,7 @@ def clear():
 
 
 def register():
+    window.after_cancel(update_image)
     window.destroy()
     import UserRegandLog
     UserRegandLog.regwindow()
