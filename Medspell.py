@@ -18,6 +18,26 @@ points = None
 #words for hints (in order): burnt, point, write, eaten, queen, quote, apple, feels, voted, haste, zebra, furry, fizzy, quick, offer, worry, tweak, print, sport, toast, dread, treat, crazy, quack, sound, waves, jumps, drape, heave, ocean, beach, while, ratio, heavy, gravy, dizzy, kazoo, roast, flake, flush
 
 
+def update_image():
+    global easy, gif_frames_iter, gif_frames, gif_playing
+    try:
+        current_frame = next(gif_frames_iter)
+        tk_image = ImageTk.PhotoImage(current_frame)
+        label.config(image=tk_image)
+        label.image = tk_image
+        easy.after(50, update_image)
+        if gif_playing:
+            easy.after_update(gif_after_id)
+    except StopIteration:
+        gif_frames_iter = iter(gif_frames_resized)
+        easy.after(100, update_image)
+
+
+def resize_gif(gif_frames, new_width, new_height):
+    resized_frames = [frame.resize((new_width, new_height)) for frame in gif_frames]
+    return resized_frames
+
+
 def validate_input(typed_char):
     return typed_char.isalpha() or typed_char == ""
 
@@ -39,8 +59,32 @@ def checkanswer():
         answerlabel.config(text=f"CORRECT! The answer is {correct_answer}!")
         userpoints += 1
         points.config(text=f"Points: {userpoints}")
+        gif_path = "beegoodjobyes.png"
+        gif = Image.open(gif_path)
+        gif_frames = [frame.copy() for frame in ImageSequence.Iterator(gif)]
+        new_width = 200
+        new_height = 150
+        gif_frames_resized = resize_gif(gif_frames, new_width, new_height)
+        gif_frames_iter = iter(gif_frames_resized)
+        initial_frame = next(gif_frames_iter)
+        initial_frame_tk = ImageTk.PhotoImage(initial_frame)
+        label = tk.Label(easy, image=initial_frame_tk)
+        label.grid(row=7, column=0, padx=5, pady=5)
+        gif_after_id=easy.after(80, update_image)
     else:
         answerlabel.config(text=f"INCORRECT! The answer was {correct_answer}!")
+        gif_path = "beenophoto.png"
+        gif = Image.open(gif_path)
+        gif_frames = [frame.copy() for frame in ImageSequence.Iterator(gif)]
+        new_width = 200
+        new_height = 150
+        gif_frames_resized = resize_gif(gif_frames, new_width, new_height)
+        gif_frames_iter = iter(gif_frames_resized)
+        initial_frame = next(gif_frames_iter)
+        initial_frame_tk = ImageTk.PhotoImage(initial_frame)
+        label = tk.Label(easy, image=initial_frame_tk)
+        label.grid(row=7, column=0, padx=5, pady=5)
+        gif_after_id=easy.after(80, update_image)
 
     
 def actualgame():

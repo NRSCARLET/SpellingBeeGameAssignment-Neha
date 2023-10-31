@@ -38,8 +38,32 @@ def checkanswer():
         answerlabel.config(text=f"CORRECT! The answer is {correct_answer}!")
         userpoints += 1
         points.config(text=f"Points: {userpoints}")
+        gif_path = "beegoodjobyes.png"
+        gif = Image.open(gif_path)
+        gif_frames = [frame.copy() for frame in ImageSequence.Iterator(gif)]
+        new_width = 200
+        new_height = 150
+        gif_frames_resized = resize_gif(gif_frames, new_width, new_height)
+        gif_frames_iter = iter(gif_frames_resized)
+        initial_frame = next(gif_frames_iter)
+        initial_frame_tk = ImageTk.PhotoImage(initial_frame)
+        label = tk.Label(easy, image=initial_frame_tk)
+        label.grid(row=7, column=0, padx=5, pady=5)
+        gif_after_id=easy.after(80, update_image)
     else:
         answerlabel.config(text=f"INCORRECT! The answer was {correct_answer}!")
+        gif_path = "beenophoto.png"
+        gif = Image.open(gif_path)
+        gif_frames = [frame.copy() for frame in ImageSequence.Iterator(gif)]
+        new_width = 200
+        new_height = 150
+        gif_frames_resized = resize_gif(gif_frames, new_width, new_height)
+        gif_frames_iter = iter(gif_frames_resized)
+        initial_frame = next(gif_frames_iter)
+        initial_frame_tk = ImageTk.PhotoImage(initial_frame)
+        label = tk.Label(easy, image=initial_frame_tk)
+        label.grid(row=7, column=0, padx=5, pady=5)
+        gif_after_id=easy.after(80, update_image)
 
     
 def actualgame():
