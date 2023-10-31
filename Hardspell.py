@@ -2,8 +2,9 @@ import sys
 from tkinter import *
 import tkinter as tk
 import random
+from PIL import Image, ImageTk, ImageSequence
 from UserRegandLog import playing_user, Labels, Buttons
-hard_spell_words_dict={"ytabeu" : "beauty", "bafcir" : "fabric", "shabti" : "habits", "afcdea" : "facade", "kachre" : "hacker", "oachns" : "nachos", "yfacip" : "pacify", "biabtr" : "rabbit", "umacuv" : "vacuum", "ddwlae" : "waddle", "chstay" : "yachts", "gzigde" : "zigged", "baroda" : "abroad", "auslac" : "casual", "eimdum" : "medium", "balces" : "cables", "efaetd" : "defeat", "ibehdn" : "behind", "mereeg" : "emerge", "dibger" : "bridge", "pwrapde" : "wrapped", "balyiti" : "ability", "cpaniat" : "captain", "heantbe" : "beneath", "turceny" : "century", "xniauso" : "anxious", "viddied" : "divided", "conemyo" : "economy", "eadises" : "disease", "awytage" : "gateway", "laehtyh" : "healthy", "leilagl" : "illagal", "tiyjusf" : "justify", "xamiumm" : "maximum", "lqicuky" : "quickly", "siaspve" : "passive", "rmovdee" : "removed", "loevint" : "violent", "tisfasy" : "satisfy", "liyqauf" : "qualify"}
+hard_spell_words_dict={"ytabeu" : "beauty", "bafcir" : "fabric", "shabti" : "habits", "afcdea" : "facade", "kachre" : "hacker", "oachns" : "nachos", "yfacip" : "pacify", "biabtr" : "rabbit", "umacuv" : "vacuum", "ddwlae" : "waddle", "chstay" : "yachts", "gzigde" : "zigged", "baroda" : "abroad", "auslac" : "casual", "eimdum" : "hardium", "balces" : "cables", "efaetd" : "defeat", "ibehdn" : "behind", "mereeg" : "emerge", "dibger" : "bridge", "pwrapde" : "wrapped", "balyiti" : "ability", "cpaniat" : "captain", "heantbe" : "beneath", "turceny" : "century", "xniauso" : "anxious", "viddied" : "divided", "conemyo" : "economy", "eadises" : "disease", "awytage" : "gateway", "laehtyh" : "healthy", "leilagl" : "illegal", "tiyjusf" : "justify", "xamiumm" : "maximum", "lqicuky" : "quickly", "siaspve" : "passive", "rmovdee" : "removed", "loevint" : "violent", "tisfasy" : "satisfy", "liyqauf" : "qualify"}
 
 jumbled_word = ""
 correct_answer = ""
@@ -14,13 +15,32 @@ wordbutton = None
 points = None
 userpoints = 0
 level = 0
-#words for hints (in order): beauty, fabric, habits, facade, hacker, nachos, pacify, rabbit, vacuum, waddle, yachts, zigged, abroad, casual, medium, cables, defeat, behind, emerge, bridge, wrapped, ability, captain, beneath, century, anxious, divided, economy, disease, gateway, healthy, illegal, justify, maximum, quickly, passive, removed, violent, satisfy, qualify.
+gamestartpoint = 0
+#words for hints (in order): beauty, fabric, habits, facade, hacker, nachos, pacify, rabbit, vacuum, waddle, yachts, zigged, abroad, casual, hardium, cables, defeat, behind, emerge, bridge, wrapped, ability, captain, beneath, century, anxious, divided, economy, disease, gateway, healthy, illegal, justify, maximum, quickly, passive, removed, violent, satisfy, qualify.
+
+
+def update_image():
+    global hard, gif_frames_iter, gif_frames
+    try:
+        current_frame = next(gif_frames_iter)
+        tk_image = ImageTk.PhotoImage(current_frame)
+        label.config(image=tk_image)
+        label.image = tk_image
+        hard.after(50, update_image)
+    except StopIteration:
+        gif_frames_iter = iter(gif_frames_resized)
+        hard.after(100, update_image)
+
+
+def resize_gif(gif_frames, new_width, new_height):
+    resized_frames = [frame.resize((new_width, new_height)) for frame in gif_frames]
+    return resized_frames
 
 
 def validate_input(typed_char):
     return typed_char.isalpha() or typed_char == ""
-    
-        
+
+
 def end():
     hard.destroy()
     import EndScreen
@@ -28,13 +48,14 @@ def end():
 
 
 def checkanswer():
-    global userpoints
+    global userpoints, gif_frames, gif_frames_iter, gif_frames_resized, label
     user_answer = AnswerEntryhard.get().lower()
     AnswerEntryhard.delete(0, END)
     AnswerEntryhard.config(state = "disabled")
     enterbutton.config(state = "disabled")
     wordbutton.config(state = "active")
     if user_answer == correct_answer:
+        hard.geometry("520x400")
         answerlabel.config(text=f"CORRECT! The answer is {correct_answer}!")
         userpoints += 1
         points.config(text=f"Points: {userpoints}")
@@ -47,10 +68,11 @@ def checkanswer():
         gif_frames_iter = iter(gif_frames_resized)
         initial_frame = next(gif_frames_iter)
         initial_frame_tk = ImageTk.PhotoImage(initial_frame)
-        label = tk.Label(easy, image=initial_frame_tk)
+        label = tk.Label(hard, image=initial_frame_tk)
         label.grid(row=7, column=0, padx=5, pady=5)
-        gif_after_id=easy.after(80, update_image)
+        gif_after_id=hard.after(80, update_image)
     else:
+        hard.geometry("520x400")
         answerlabel.config(text=f"INCORRECT! The answer was {correct_answer}!")
         gif_path = "beenophoto.png"
         gif = Image.open(gif_path)
@@ -61,18 +83,20 @@ def checkanswer():
         gif_frames_iter = iter(gif_frames_resized)
         initial_frame = next(gif_frames_iter)
         initial_frame_tk = ImageTk.PhotoImage(initial_frame)
-        label = tk.Label(easy, image=initial_frame_tk)
+        label = tk.Label(hard, image=initial_frame_tk)
         label.grid(row=7, column=0, padx=5, pady=5)
-        gif_after_id=easy.after(80, update_image)
+        gif_after_id=hard.after(50, update_image)
 
-    
+
+
 def actualgame():
-    global AnswerEntryhard, printed_key, correct_answer, level, enterbutton, wordbutton, points
+    hard.geometry("520x230")
+    global AnswerEntryhard, printed_key, correct_answer, level, enterbutton, wordbutton, points, gamestartpoint
     level +=1
+    gamestartpoint +=1
     answerlabel.config(text="")
     points.config(text=f"Points: {userpoints}")
     levels.config(text=f"Level: {level}")
-    hard.geometry("520x250")
     if level <= 10:
         AnswerEntryhard.grid(row=2, column=0, padx=5, pady=5)
         AnswerEntryhard.config(state = "normal")
@@ -82,8 +106,8 @@ def actualgame():
         enterbutton.config(state="active", text="Enter!", command=checkanswer)
         enterbutton.grid(row=4, column=0, padx=3, pady=3)
         wordbutton.config(text="Print (new) word!", state = "disabled")
-        menub6.config(state="active")
-        menub6.grid(row=5, column=0, padx=3, pady=3)
+        menub4.grid(row=5, column=0, padx=3, pady=3)
+        menub4.config(state="active")
     else:
         Gamestartlabel.config(text="Please press the 'End game' button to continue to the end screen")
         AnswerEntryhard.destroy()
@@ -102,13 +126,12 @@ def actualgame():
                     jumblelabel.config(text=f"Better luck next time {name}!")
                 elif points == 10:
                     jumblelabel.config(text=f"WOAH a perfect score!! Amazing job {name}!")
-    
+
                 else:
                     jumblelabel.config(text=f"Great job {name}!")
                 pointlabel = Labels(text=f"You scored {points} out of 10!")
                 pointlabel.grid(row=2, column=0, padx=5, pady=5)
                 wordbutton.config(text="End game!", command = end)
-        
 
 def backtogame(warningwindow):
     warningwindow.destroy()
@@ -135,36 +158,43 @@ def leavewarning():
     nomenu = Buttons(warningwindow, text="No", command=lambda: backtogame(warningwindow))
     nomenu.grid(row=2, column=0, padx=3, pady=3)
 
-
 def difficultywindow():
     hard.destroy()
     import Difficulty
     Difficulty.difficultywindow()
 
-        
 def menu():
-    hard.destroy()
-    import MenuWindow
-    MenuWindow.menu_wind()
+    if gamestartpoint == 0:
+        hard.destroy()
+        import MenuWindow
+        MenuWindow.menu_wind()
+    else:
+        leavewarning()
 
-
-def easygamestart():
+def hardgamestart():
     global wordbutton
     hard.geometry("430x100")
     Gamestartlabel.config(text="Unscramble the words and write the correct spelling!")
     Gamestartlabel.grid(row=0, column=0, padx=5, pady=5)
-
-    wordbutton = Buttons(text="Okay!", command = actualgame)
+    wordbutton = Buttons(text="Okay!", command=actualgame)
     wordbutton.grid(row=3, column=0, padx=3, pady=3)
-    
+
     h.destroy()
     conbutton.destroy()
-    backb3.destroy()
-    menub6.grid_forget()
+    backb1.destroy()
+    menub4.grid_forget()
+    """Q1label = tk.Label(text="Please pick the correct spelling of [insert thing here]")
+    Q1label.pack()
+    Q1CB = Buttons(hard, text="paw")
+    Q1CB.pack()
+    Q1INCB1 = Buttons(text="liw")
+    Q1INCB1.pack()
+    Q1INCB2 = Buttons(text="pey")
+    Q1INCB2.pack()"""
 
 
 def hardwindow():
-    global hard, h, conbutton, backb3, menub6, Gamestartlabel, jumblelabel, answerlabel, points, levels, AnswerEntryhard, enterbutton
+    global hard, h, conbutton, backb1, menub4, Gamestartlabel, jumblelabel, answerlabel, points, levels, AnswerEntryhard, enterbutton
     hard = Tk()
     hard.geometry('210x200')
     hard.configure(bg = '#6693F5')
@@ -172,12 +202,12 @@ def hardwindow():
     h = Labels(text="You've picked hard mode")
     h.grid(row=0, column=0, padx=5, pady=5)
     validate_cmd = hard.register(validate_input)
-    conbutton = Buttons(text="Continue", command = easygamestart)
+    conbutton = Buttons(text="Continue", command = hardgamestart)
     conbutton.grid(row=2, column=0, padx=3, pady=3)
-    backb3 = Buttons(text="Back", command = difficultywindow)
-    backb3.grid(row=3, column=0, padx=3, pady=3)
-    menub6 = Buttons(text="Menu", command = menu)
-    menub6.grid(row=4, column=0, padx=3, pady=3)
+    backb1 = Buttons(text="Back", command = difficultywindow)
+    backb1.grid(row=3, column=0, padx=3, pady=3)
+    menub4 = Buttons(text="Menu", command = menu)
+    menub4.grid(row=4, column=0, padx=3, pady=3)
     Gamestartlabel = Labels(hard, text="")
     Gamestartlabel.grid(row=1, column=0, padx=5, pady=5)
     jumblelabel = Labels(hard, text="")
@@ -194,5 +224,3 @@ def hardwindow():
     enterbutton = Buttons(text="")
     enterbutton.grid()
     enterbutton.grid_forget()
-"""label_answer_test = Labels(hard, text="")
-label_answer_test.grid(row=1, column=0, padx=5, pady=5)"""

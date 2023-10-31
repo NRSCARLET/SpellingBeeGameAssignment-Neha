@@ -22,7 +22,6 @@ points = None
 userpoints = 0
 level = 0
 gamestartpoint = 0
-gif_playing = False
 #words for hints (in order): butt, buzz, good, star, ball, fall, ache, name, itch, grow, tree, nose, mail, draw, yell, time, dash, cash, dead, bang, rude, kiss, bird, vase, rope, glue, push, pull, rest, tyre, west, east, song, vest, sick, knee, test, hard, easy, horn - 40 words (unjumbled words)
         
 """def change_label():
@@ -50,8 +49,6 @@ def update_image():
         label.config(image=tk_image)
         label.image = tk_image
         easy.after(50, update_image)
-        if gif_playing:
-            easy.after_update(gif_after_id)
     except StopIteration:
         gif_frames_iter = iter(gif_frames_resized)
         easy.after(100, update_image)
@@ -79,7 +76,6 @@ def checkanswer():
     AnswerEntryeasy.config(state = "disabled")
     enterbutton.config(state = "disabled")
     wordbutton.config(state = "active")
-    gif_playing = True
     if user_answer == correct_answer:
         easy.geometry("520x400")
         answerlabel.config(text=f"CORRECT! The answer is {correct_answer}!")
@@ -123,10 +119,6 @@ def actualgame():
     answerlabel.config(text="")
     points.config(text=f"Points: {userpoints}")
     levels.config(text=f"Level: {level}")
-    gif_playing = False
-    if gif_playing:
-        label.grid_forget()
-        label.destroy()
     if level <= 10:
         AnswerEntryeasy.grid(row=2, column=0, padx=5, pady=5)
         AnswerEntryeasy.config(state = "normal")
@@ -206,8 +198,7 @@ def easygamestart():
     easy.geometry("430x100")
     Gamestartlabel.config(text="Unscramble the words and write the correct spelling!")
     Gamestartlabel.grid(row=0, column=0, padx=5, pady=5)
-
-    wordbutton = Buttons(text="Okay!", command = actualgame)
+    wordbutton = Buttons(text="Okay!", command=actualgame)
     wordbutton.grid(row=3, column=0, padx=3, pady=3)
     
     e.destroy()
