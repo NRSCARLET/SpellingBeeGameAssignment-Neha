@@ -6,3 +6,7 @@ yjnr, 10
 gre, 0
 sth, 1
 sth, 0
+sth, 0
+ubihy, 0
+wtar, 0
+w, 0

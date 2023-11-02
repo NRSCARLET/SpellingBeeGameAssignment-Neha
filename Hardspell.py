@@ -101,7 +101,7 @@ def checkanswer():
 
 def actualgame():
     hard.geometry("520x230")
-    global AnswerEntryhard, printed_key, correct_answer, level, enterbutton, wordbutton, points, gamestartpoint, playing_user
+    global AnswerEntryhard, printed_key, correct_answer, level, enterbutton, wordbutton, points, gamestartpoint, playing_user, menub4
     level +=1
     gamestartpoint +=1
     answerlabel.config(text="")
@@ -119,13 +119,13 @@ def actualgame():
         menub4.grid(row=5, column=0, padx=3, pady=3)
         menub4.config(state="active")
     else:
-        gamestartpoints = 0
-        hard.geometry("520x180")
+        hard.geometry("520x150")
         Gamestartlabel.config(text="Please press the 'End game' button to continue to the end screen")
         AnswerEntryhard.destroy()
         enterbutton.destroy()
         points.destroy()
         levels.destroy()
+        menub4.destroy()
         with open('hardscore.txt', 'a') as pointopen:
             pointopen.write(f"{playing_user}, {userpoints}" + "\n")
             pointopen.close()

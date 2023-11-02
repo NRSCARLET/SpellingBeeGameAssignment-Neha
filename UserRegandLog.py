@@ -6,6 +6,7 @@ import tkinter as tk
 #global entry widgets
 E1 = None
 E2 = None
+playing_user = None
 
 
 #points system to help with sharing code between different systems
