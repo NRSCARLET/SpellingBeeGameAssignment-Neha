@@ -13,12 +13,16 @@ AnswerEntryhard = None
 enterbutton = None
 wordbutton = None
 points = None
+username = None
 userpoints = 0
 level = 0
 gamestartpoint = 0
-current_user = None
 warningwindow_open = False
 #words for hints (in order): beauty, fabric, habits, facade, hacker, nachos, pacify, rabbit, vacuum, waddle, yachts, zigged, abroad, casual, hardium, cables, defeat, behind, emerge, bridge, wrapped, ability, captain, beneath, century, anxious, divided, economy, disease, gateway, healthy, illegal, justify, maximum, quickly, passive, removed, violent, satisfy, qualify.
+
+
+def nox():
+    pass
 
 
 def resetgame():
@@ -26,6 +30,7 @@ def resetgame():
     level = 0
     userpoints = 0
     gamestartpoint = 0
+    playing_user = ""
     pass
 
 
@@ -53,6 +58,7 @@ def validate_input(typed_char):
 
 def end():
     hard.destroy()
+    resetgame()
     import EndScreen
     EndScreen
 
@@ -100,9 +106,9 @@ def checkanswer():
 
 
 
-def actualgame():
+def actualgame(playing_user):
     hard.geometry("520x230")
-    global AnswerEntryhard, printed_key, correct_answer, level, enterbutton, wordbutton, points, gamestartpoint, playing_user, menub4
+    global AnswerEntryhard, printed_key, correct_answer, level, enterbutton, wordbutton, points, gamestartpoint, menub4
     level +=1
     gamestartpoint +=1
     answerlabel.config(text="")
@@ -132,28 +138,30 @@ def actualgame():
             pointopen.close()
         with open('hardscore.txt', 'r') as pointopen:
             scores = pointopen.read().splitlines()
-            for i, score in enumerate(scores):
-                playing_user, points = score.split(', ')
+            for score in scores:
+                username, points = score.split(', ')
                 points = int(points)
-                if points < 5:
-                    jumblelabel.config(text=f"Better luck next time {playing_user}!")
-                elif points == 10:
-                    jumblelabel.config(text=f"WOAH a perfect score!! Amazing job {playing_user}!")
+                if username == playing_user:
+                    if points < 5:
+                        jumblelabel.config(text=f"Better luck next time {playing_user}!")
+                    elif points == 10:
+                        jumblelabel.config(text=f"WOAH a perfect score!! Amazing job {playing_user}!")
+    
+                    else:
+                        jumblelabel.config(text=f"Great job {playing_user}!")
+                    pointlabel = Labels(text=f"You scored {points} out of 10!")
+                    pointlabel.grid(row=2, column=0, padx=5, pady=5)
+                    wordbutton.config(text="End game!", command = end)
+                    break
 
-                else:
-                    jumblelabel.config(text=f"Great job {playing_user}!")
-                pointlabel = Labels(text=f"You scored {points} out of 10!")
-                pointlabel.grid(row=2, column=0, padx=5, pady=5)
-                wordbutton.config(text="End game!", command = end)
-
-def backtogame(warningwindow):
+def backtogame():
     global warningwindow_open
     warningwindow.destroy()
     warningwindow_open = False
     pass
 
 
-def leavemiddlegame(warningwindow):
+def leavemiddlegame():
     global warningwindow_open
     hard.destroy()
     resetgame()
@@ -163,7 +171,7 @@ def leavemiddlegame(warningwindow):
 
 
 def leavewarning():
-    global warningwindow_open
+    global warningwindow_open, warningwindow
     if not warningwindow_open:
         warningwindow_open = True
         warningwindow = tk.Toplevel(hard)
@@ -172,11 +180,12 @@ def leavewarning():
         warningwindow.configure(bg ='#F56693')
         warningwindow.transient(hard)
         warningwindow.grab_set()
+        warningwindow.protocol("WM_DELETE_WINDOW", nox)
         warninglabel = Label(warningwindow, text="Are you sure you want to leave?\nNote: Your progress will NOT be saved if you leave in the middle of the game.\n Progress (points) will only be saved once you complete the game.\nClicking 'Yes' will result in being taken back to the menu.\nClicking 'No' will result in the game continuing.", bg='#F56693', fg='#2A0134', font='helvetica 10 bold')
         warninglabel.grid(row=0, column=0, padx=5, pady=5)
-        yesmenu = Buttons(warningwindow, text="Yes", command=lambda: leavemiddlegame(warningwindow))
+        yesmenu = Buttons(warningwindow, text="Yes", command=lambda: leavemiddlegame())
         yesmenu.grid(row=1, column=0, padx=3, pady=3)
-        nomenu = Buttons(warningwindow, text="No", command=lambda: backtogame(warningwindow))
+        nomenu = Buttons(warningwindow, text="No", command=lambda: backtogame())
         nomenu.grid(row=2, column=0, padx=3, pady=3)
 
 def difficultywindow():
@@ -186,7 +195,7 @@ def difficultywindow():
 
 def menu():
     if gamestartpoint == 0:
-        leavemiddlegame(menuwindow)
+        leavemiddlegame()
     else:
         leavewarning()
 
@@ -195,7 +204,7 @@ def hardgamestart():
     hard.geometry("430x100")
     Gamestartlabel.config(text="Unscramble the words and write the correct spelling!")
     Gamestartlabel.grid(row=0, column=0, padx=5, pady=5)
-    wordbutton = Buttons(text="Okay!", command=actualgame)
+    wordbutton = Buttons(text="Okay!", command=lambda: actualgame(playing_user))
     wordbutton.grid(row=3, column=0, padx=3, pady=3)
 
     h.destroy()
@@ -221,7 +230,7 @@ def hardwindow():
     h = Labels(text="You've picked hard mode")
     h.grid(row=0, column=0, padx=5, pady=5)
     validate_cmd = hard.register(validate_input)
-    hard.protocol("WM_DELETE_WINDOW", leavewarning)
+    hard.protocol("WM_DELETE_WINDOW", nox)
     conbutton = Buttons(text="Continue", command = hardgamestart)
     conbutton.grid(row=2, column=0, padx=3, pady=3)
     backb1 = Buttons(text="Back", command = difficultywindow)
@@ -244,6 +253,3 @@ def hardwindow():
     enterbutton = Buttons(text="")
     enterbutton.grid()
     enterbutton.grid_forget()
-    resetgame()
-
-hardwindow()

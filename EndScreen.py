@@ -12,8 +12,8 @@ from tkinter import Label, Tk
 """
 def playagain():
     end.destroy()
-    import Difficulty
-    Difficulty.difficultywindow()
+    import MenuWindow
+    MenuWindow.menuwind()
 
 
 def update_image():
@@ -72,7 +72,7 @@ def endwindow():
     end.title("Spelling Bee's Spelling Game!")
     endlabel = Labels(text="You've completed the Spelling Bee Spelling Game!")
     endlabel.grid(row=0, column=0, padx=5, pady=5)
-    notelabel = Labels(end, text="Note: Pressing the 'Play Again' button will take you back to the difficulty screen.\nPressing the 'End Game' button will end the game.")
+    notelabel = Labels(end, text="Note: Pressing the 'Play Again' button will take you back to the menu screen.\nPressing the 'End Game' button will end the game.")
     notelabel.grid(row=1, column=0, padx=5, pady=5)
     menub = Buttons(text="End Game", command=endgame)
     menub.grid(row=3, column=0, padx=3, pady=3)

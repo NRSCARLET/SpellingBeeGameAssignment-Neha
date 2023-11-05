@@ -1,4 +1,3 @@
-playing_user = ""
 E2 = None
 import sys 
 from tkinter import *
