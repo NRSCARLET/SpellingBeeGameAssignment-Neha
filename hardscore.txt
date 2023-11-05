@@ -10,3 +10,6 @@ sth, 0
 ubihy, 0
 wtar, 0
 w, 0
+hedtz, 2
+hgv, 0
+hgv, 1

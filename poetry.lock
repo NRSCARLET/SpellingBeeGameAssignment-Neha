@@ -551,10 +551,29 @@ optional = false
 python-versions = ">=3.8"
 
 [[package]]
+name = "pygetwindow"
+version = "0.0.9"
+description = "A simple, cross-platform module for obtaining GUI information on application's windows."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+pyrect = "*"
+
+[[package]]
 name = "pylev"
 version = "1.4.0"
 description = "A pure Python Levenshtein implementation that's not freaking GPL'd."
 category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "pyrect"
+version = "0.2.0"
+description = "PyRect is a simple module with a Rect class for Pygame-like rectangular areas."
+category = "main"
 optional = false
 python-versions = "*"
 
@@ -608,7 +627,7 @@ yapf = ["yapf (>=0.33.0)", "whatthepatch (>=1.0.2,<2.0.0)"]
 
 [[package]]
 name = "pytoolconfig"
-version = "1.2.5"
+version = "1.2.6"
 description = "Python tool configuration"
 category = "dev"
 optional = false
@@ -620,10 +639,10 @@ platformdirs = {version = ">=1.4.4", optional = true, markers = "extra == \"glob
 tomli = {version = ">=2.0.1", markers = "python_version < \"3.11\""}
 
 [package.extras]
+validation = ["pydantic (>=1.7.4)"]
+global = ["platformdirs (>=1.4.4)"]
 doc = ["tabulate (>=0.8.9)", "sphinx (>=4.5.0)"]
 gendocs = ["sphinx (>=4.5.0)", "sphinx-autodoc-typehints (>=1.18.1)", "sphinx-rtd-theme (>=1.0.0)", "pytoolconfig"]
-global = ["platformdirs (>=1.4.4)"]
-validation = ["pydantic (>=1.7.4)"]
 
 [[package]]
 name = "pywin32-ctypes"
@@ -826,7 +845,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-ena
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8.0,<3.9"
-content-hash = "c525c6a15ef0a95e475f6cf4956ab5335710a4f7c115c99412c5e1acfdaa9602"
+content-hash = "707845b75e03ef628a3eab1a356d6c6bc1e70a49b95a3f7b6830cac64a0e7f81"
 
 [metadata.files]
 blinker = []
@@ -875,7 +894,9 @@ poetry-core = []
 ptyprocess = []
 pycparser = []
 pyflakes = []
+pygetwindow = []
 pylev = []
+pyrect = []
 python-lsp-jsonrpc = []
 python-lsp-server = []
 pytoolconfig = []

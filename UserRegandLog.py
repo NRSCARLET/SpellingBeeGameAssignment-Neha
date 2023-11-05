@@ -10,9 +10,12 @@ playing_user = None
 
 
 #points system to help with sharing code between different systems
-regi = 0
-menulogpoint = 0
-
+def reset():
+    global regi, menulogpoint, playing_user
+    regi = 0
+    menulogpoint = 0
+    playing_user = ""
+    pass
 
 #Classes for changing colours and fonts of buttons and labels.
 class Buttons(Button):
@@ -124,6 +127,7 @@ def validate_input(typed_char):
 
 def regwindow():
     global E2, reg, okb2, menub2, Userregister
+    reset()
     reg = Tk()
     reg.geometry("350x150")
     reg.configure (bg = '#6693F5')
@@ -145,7 +149,7 @@ def regwindow():
 
 #---LOGIN CODE---#
 def LOGEM():
-    login.geometry("480x170")
+    login.geometry("480x140")
     Userlogin.destroy()
     E1.destroy()
     okb1.destroy()
@@ -156,8 +160,6 @@ def LOGEM():
     Regbutton.grid(row=1, column=0, padx=3, pady=3)
     Loginbutton = Buttons(text="Login", command =log)
     Loginbutton.grid(row=2, column=0, padx=3, pady=3)
-    menub3 = Buttons(text="Menu", command=menu)
-    menub3.grid(row=3, column=0, padx=3, pady=3)
 
 def check():
     global playing_user
@@ -179,6 +181,7 @@ def validate_input(typed_char):
 
 def logwindow():
     global E1, login, Userlogin, okb1, menub1, menulogpoint
+    reset()
     menulogpoint +=1
     login = Tk()
     login.geometry("250x150")

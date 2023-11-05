@@ -17,6 +17,7 @@ userpoints = 0
 level = 0
 gamestartpoint = 0
 current_user = None
+warningwindow_open = False
 #words for hints (in order): beauty, fabric, habits, facade, hacker, nachos, pacify, rabbit, vacuum, waddle, yachts, zigged, abroad, casual, hardium, cables, defeat, behind, emerge, bridge, wrapped, ability, captain, beneath, century, anxious, divided, economy, disease, gateway, healthy, illegal, justify, maximum, quickly, passive, removed, violent, satisfy, qualify.
 
 
@@ -146,30 +147,37 @@ def actualgame():
                 wordbutton.config(text="End game!", command = end)
 
 def backtogame(warningwindow):
+    global warningwindow_open
     warningwindow.destroy()
+    warningwindow_open = False
     pass
 
 
 def leavemiddlegame(warningwindow):
+    global warningwindow_open
     hard.destroy()
     resetgame()
+    warningwindow_open = False
     import MenuWindow
     MenuWindow.menu_wind()
 
 
 def leavewarning():
-    warningwindow = tk.Toplevel(hard)
-    warningwindow.title("Spelling Bee's Spelling Game!")
-    warningwindow.geometry("615x170")
-    warningwindow.configure(bg ='#F56693')
-    warningwindow.transient(hard)
-    warningwindow.grab_set()
-    warninglabel = Label(warningwindow, text="Are you sure you want to leave?\nNote: Your progress will NOT be saved if you leave in the middle of the game.\n Progress (points) will only be saved once you complete the game.\nClicking 'Yes' will result in being taken back to the menu.\nClicking 'No' will result in the game continuing.", bg='#F56693', fg='#2A0134', font='helvetica 10 bold')
-    warninglabel.grid(row=0, column=0, padx=5, pady=5)
-    yesmenu = Buttons(warningwindow, text="Yes", command=lambda: leavemiddlegame(warningwindow))
-    yesmenu.grid(row=1, column=0, padx=3, pady=3)
-    nomenu = Buttons(warningwindow, text="No", command=lambda: backtogame(warningwindow))
-    nomenu.grid(row=2, column=0, padx=3, pady=3)
+    global warningwindow_open
+    if not warningwindow_open:
+        warningwindow_open = True
+        warningwindow = tk.Toplevel(hard)
+        warningwindow.title("Spelling Bee's Spelling Game!")
+        warningwindow.geometry("615x170")
+        warningwindow.configure(bg ='#F56693')
+        warningwindow.transient(hard)
+        warningwindow.grab_set()
+        warninglabel = Label(warningwindow, text="Are you sure you want to leave?\nNote: Your progress will NOT be saved if you leave in the middle of the game.\n Progress (points) will only be saved once you complete the game.\nClicking 'Yes' will result in being taken back to the menu.\nClicking 'No' will result in the game continuing.", bg='#F56693', fg='#2A0134', font='helvetica 10 bold')
+        warninglabel.grid(row=0, column=0, padx=5, pady=5)
+        yesmenu = Buttons(warningwindow, text="Yes", command=lambda: leavemiddlegame(warningwindow))
+        yesmenu.grid(row=1, column=0, padx=3, pady=3)
+        nomenu = Buttons(warningwindow, text="No", command=lambda: backtogame(warningwindow))
+        nomenu.grid(row=2, column=0, padx=3, pady=3)
 
 def difficultywindow():
     hard.destroy()
@@ -202,7 +210,7 @@ def hardgamestart():
     Q1INCB1.pack()
     Q1INCB2 = Buttons(text="pey")
     Q1INCB2.pack()"""
-
+    
 
 def hardwindow():
     global hard, h, conbutton, backb1, menub4, Gamestartlabel, jumblelabel, answerlabel, points, levels, AnswerEntryhard, enterbutton
@@ -213,6 +221,7 @@ def hardwindow():
     h = Labels(text="You've picked hard mode")
     h.grid(row=0, column=0, padx=5, pady=5)
     validate_cmd = hard.register(validate_input)
+    hard.protocol("WM_DELETE_WINDOW", leavewarning)
     conbutton = Buttons(text="Continue", command = hardgamestart)
     conbutton.grid(row=2, column=0, padx=3, pady=3)
     backb1 = Buttons(text="Back", command = difficultywindow)
@@ -236,3 +245,5 @@ def hardwindow():
     enterbutton.grid()
     enterbutton.grid_forget()
     resetgame()
+
+hardwindow()

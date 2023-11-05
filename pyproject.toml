@@ -10,6 +10,7 @@ numpy = "^1.22.2"
 Flask = "^2.2.0"
 Pillow = "^10.0.1"
 imageio = "^2.31.5"
+PyGetWindow = "^0.0.9"
 
 [tool.poetry.dev-dependencies]
 debugpy = "^1.6.2"

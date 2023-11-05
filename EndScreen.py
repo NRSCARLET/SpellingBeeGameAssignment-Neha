@@ -13,7 +13,7 @@ from tkinter import Label, Tk
 def playagain():
     end.destroy()
     import Difficulty
-    Difficulty
+    Difficulty.difficultywindow()
 
 
 def update_image():

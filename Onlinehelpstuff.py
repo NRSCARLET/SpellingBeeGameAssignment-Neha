@@ -708,7 +708,7 @@ label.grid(row=5, column=0, padx=3, pady=3)
 
 window.mainloop()"""
 
-import tkinter as tk
+"""import tkinter as tk
 from PIL import Image, ImageTk, ImageSequence
 
 def update_image():
@@ -764,7 +764,7 @@ import random
 from UserRegandLog import playing_user, Labels, Buttons
 from PIL import Image, ImageTk
 from tkinter import Label, Tk
-"""easy_spell_word_hint = ["btut", "bzzu", "ogod", "tars", "labl", "alfl", "chea", "anme", "ctih", "rogw", "etre", "mila", "wrad", "leyl", "meit", "sahd", "chsa", "eadd", "nabg", "urde", "siks", "ribd", "avse", "orpe", "uleg", "uphs", "ulpl", "stre", "yter", "ewts", "stea", "ongs", "sevt", "kics", "eken", "ttse", "darh", "ysea", "rohn"]"""
+easy_spell_word_hint = ["btut", "bzzu", "ogod", "tars", "labl", "alfl", "chea", "anme", "ctih", "rogw", "etre", "mila", "wrad", "leyl", "meit", "sahd", "chsa", "eadd", "nabg", "urde", "siks", "ribd", "avse", "orpe", "uleg", "uphs", "ulpl", "stre", "yter", "ewts", "stea", "ongs", "sevt", "kics", "eken", "ttse", "darh", "ysea", "rohn"]
 
 easy_spell_words_dict={
 "tebn":"bent","bzzu":"buzz","ogod":"good","tars":"star","labl":"ball","alfl":"fall","chea":"ache","anme":"name",
@@ -784,7 +784,7 @@ level = 0
 gamestartpoint = 0
 #words for hints (in order): butt, buzz, good, star, ball, fall, ache, name, itch, grow, tree, nose, mail, draw, yell, time, dash, cash, dead, bang, rude, kiss, bird, vase, rope, glue, push, pull, rest, tyre, west, east, song, vest, sick, knee, test, hard, easy, horn - 40 words (unjumbled words)
 
-"""def change_label():
+def change_label():
     question_count = 0
     while question_count < 10:
         if easy_spell_words:
@@ -798,7 +798,7 @@ gamestartpoint = 0
             else:
                 change_label()
         if question_count == 10:
-            quit()"""
+            quit()
 
 
 def validate_input(typed_char):
@@ -931,14 +931,14 @@ def easygamestart():
     conbutton.destroy()
     backb1.destroy()
     menub4.grid_forget()
-    """Q1label = tk.Label(text="Please pick the correct spelling of [insert thing here]")
+    Q1label = tk.Label(text="Please pick the correct spelling of [insert thing here]")
     Q1label.pack()
     Q1CB = Buttons(easy, text="paw")
     Q1CB.pack()
     Q1INCB1 = Buttons(text="liw")
     Q1INCB1.pack()
     Q1INCB2 = Buttons(text="pey")
-    Q1INCB2.pack()"""
+    Q1INCB2.pack()
 
 
 def easywindow():
@@ -972,8 +972,73 @@ def easywindow():
     enterbutton = Buttons(text="")
     enterbutton.grid()
     enterbutton.grid_forget()
-    easy.mainloop()
+    easy.mainloop()"""
 
 
 """label_answer_test = Labels(easy, text="")
 label_answer_test.grid(row=1, column=0, padx=5, pady=5)"""
+
+"""import tkinter as tk
+
+def flash_window(window, flash_count):
+    for _ in range(flash_count):
+        window.iconify()  # Hide the window
+        window.update_idletasks()
+        window.after(200)  # Adjust the duration of the flash (in milliseconds)
+        window.deiconify()  # Show the window
+        window.update_idletasks()
+        window.after(200)
+
+def button_pressed():
+    flash_window(top, 1)
+
+# Create the main window
+top = tk.Tk()
+
+# Create a button to trigger the flashing effect
+button = tk.Button(top, text="Flash Window", command=button_pressed)
+button.pack(pady=20)
+
+# Run the Tkinter event loop
+top.mainloop()"""
+
+"""import tkinter as tk
+
+def create_window():
+    if not hasattr(create_window, 'top') or not create_window.top.winfo_exists():
+        create_window.top = tk.Toplevel()
+        label = tk.Label(create_window.top, text="New Window")
+        label.pack()
+
+# Create the main window
+top = tk.Tk()
+
+# Create a button to create a new window
+button = tk.Button(top, text="Create Window", command=create_window)
+button.pack(pady=20)
+
+# Run the Tkinter event loop
+top.mainloop()"""
+
+import tkinter as tk
+import ctypes
+
+# Constants from the Windows API
+GWL_STYLE = -16
+WS_CAPTION = 0x00C00000
+
+def disable_dragging(window):
+    hwnd = ctypes.windll.user32.GetParent(window.winfo_id())
+    style = ctypes.windll.user32.GetWindowLongPtrW(hwnd, GWL_STYLE)
+    style = style & ~WS_CAPTION
+    ctypes.windll.user32.SetWindowLongPtrW(hwnd, GWL_STYLE, style)
+
+root = tk.Tk()
+root.title("Non-draggable Window")
+
+# Your window content here...
+
+# Call disable_dragging after the window is created
+root.after(1, lambda: disable_dragging(root))
+
+root.mainloop()
