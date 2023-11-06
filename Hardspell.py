@@ -125,6 +125,8 @@ def actualgame(playing_user):
         wordbutton.config(text="Print (new) word!", state = "disabled")
         menub4.grid(row=5, column=0, padx=3, pady=3)
         menub4.config(state="active")
+        if level == 10:
+            wordbutton.config(text="Finish!" , state = "disabled")
     else:
         hard.geometry("520x150")
         Gamestartlabel.config(text="Please press the 'End game' button to continue to the end screen")

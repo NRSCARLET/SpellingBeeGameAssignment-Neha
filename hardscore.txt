@@ -3,3 +3,10 @@ huj, 0
 rjy, 0
 rjy, 0
 , 0
+jgt, 0
+, 0
+alf, 0
+, 0
+b, 0
+, 0
+ger, 0

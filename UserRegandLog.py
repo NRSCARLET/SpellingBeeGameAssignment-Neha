@@ -5,7 +5,9 @@ import tkinter as tk
 #global entry widgets
 E1 = None
 E2 = None
-playing_user = None
+regi = 0
+menulogpoint = 0
+playing_user = ""
 
 
 #points system to help with sharing code between different systems
@@ -13,7 +15,7 @@ def reset():
     global regi, menulogpoint, playing_user
     regi = 0
     menulogpoint = 0
-    playing_user = ""
+    playing_user = None
     pass
 
 #Classes for changing colours and fonts of buttons and labels.
@@ -126,7 +128,6 @@ def validate_input(typed_char):
 
 def regwindow():
     global E2, reg, okb2, menub2, Userregister
-    reset()
     reg = Tk()
     reg.geometry("350x150")
     reg.configure (bg = '#6693F5')
@@ -140,6 +141,7 @@ def regwindow():
     okb2.grid(row=2, column=0, padx=3, pady=3)
     menub2 = Buttons(text="Menu", command = menu)
     menub2.grid(row=3, column=0, padx=3, pady=3)
+    reset()
     reg.mainloop()
 
 
@@ -180,7 +182,6 @@ def validate_input(typed_char):
 
 def logwindow():
     global E1, login, Userlogin, okb1, menub1, menulogpoint
-    reset()
     menulogpoint +=1
     login = Tk()
     login.geometry("250x150")
@@ -195,4 +196,5 @@ def logwindow():
     okb1.grid(row=2, column=0, padx= 3, pady=3)
     menub1 = Buttons(text="Menu", command = menu)
     menub1.grid(row=3, column=0, padx=3, pady=3)
+    reset()
     login.mainloop()
