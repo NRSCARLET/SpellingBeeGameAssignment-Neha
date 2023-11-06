@@ -117,8 +117,10 @@ def saveuser():
                 with open('username.txt', 'a') as useropen:
                     useropen.write(playing_user + "\n")
                 reg.destroy()
+                useropen.close()
                 import Difficulty
                 Difficulty.difficultywindow()
+                file.close()
     print(f"{playing_user}")
 
 
@@ -164,13 +166,14 @@ def LOGEM():
 def check():
     global playing_user
     name_check = E1.get()
-    with open('username.txt', 'r') as file:
-        names = file.read().splitlines()
+    with open('username.txt', 'r') as logintxt:
+        names = logintxt.read().splitlines()
         if name_check in names:
             playing_user = name_check
             login.destroy()
             import Difficulty
             Difficulty.difficultywindow()
+            logintxt.close()
         else:
             LOGEM()
     

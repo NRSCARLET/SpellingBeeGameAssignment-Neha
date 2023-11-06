@@ -13,12 +13,12 @@ AnswerEntryhard = None
 enterbutton = None
 wordbutton = None
 points = None
+username = None
 userpoints = 0
 level = 0
 gamestartpoint = 0
 warningwindow_open = False
 #words for hints (in order): beauty, fabric, habits, facade, hacker, nachos, pacify, rabbit, vacuum, waddle, yachts, zigged, abroad, casual, hardium, cables, defeat, behind, emerge, bridge, wrapped, ability, captain, beneath, century, anxious, divided, economy, disease, gateway, healthy, illegal, justify, maximum, quickly, passive, removed, violent, satisfy, qualify.
-
 
 
 def nox():
@@ -136,24 +136,27 @@ def actualgame(playing_user):
         levels.destroy()
         menub4.destroy()
         with open('hardscore.txt', 'a') as pointopen:
-            pointopen.write(f"{username}, {userpoints}" + "\n")
+            pointopen.write(f"{playing_user}, {userpoints}" + "\n")
             pointopen.close()
-        with open('hardscore.txt', 'r') as pointopen:
-            scores = pointopen.read().splitlines()
+        with open('hardscore.txt', 'r') as pointwrite:
+            scores = pointwrite.read().splitlines()
             for score in scores:
-                username, points = score.split(', ')
-                points = int(points)
-                if points < 5:
-                    jumblelabel.config(text=f"Better luck next time {playing_user}!")
-                elif points == 10:
-                    jumblelabel.config(text=f"WOAH a perfect score!! Amazing job {playing_user}!")
-
-                else:
-                    jumblelabel.config(text=f"Great job {playing_user}!")
-                pointlabel = Labels(text=f"You scored {points} out of 10!")
-                pointlabel.grid(row=2, column=0, padx=5, pady=5)
-                wordbutton.config(text="End game!", command = end)
-                break
+                parts = score.split(', ')
+                if len(parts) == 2:
+                    username, points = parts
+                    points = int(points)
+                    if username == playing_user:
+                        if points < 5:
+                            jumblelabel.config(text=f"Better luck next time {playing_user}!")
+                        elif points == 10:
+                            jumblelabel.config(text=f"WOAH a perfect score!! Amazing job {playing_user}!")
+                        else:
+                            jumblelabel.config(text=f"Great job {playing_user}!")
+                        pointlabel = Labels(text=f"You scored {points} out of 10!")
+                        pointlabel.grid(row=2, column=0, padx=5, pady=5)
+                        wordbutton.config(text="End game!", command=end)
+                        break
+                        pointwrite.close()
 
 def backtogame():
     global warningwindow_open

@@ -1020,7 +1020,7 @@ button.pack(pady=20)
 # Run the Tkinter event loop
 top.mainloop()"""
 
-import tkinter as tk
+"""import tkinter as tk
 import ctypes
 
 # Constants from the Windows API
@@ -1041,4 +1041,26 @@ root.title("Non-draggable Window")
 # Call disable_dragging after the window is created
 root.after(1, lambda: disable_dragging(root))
 
-root.mainloop()
+root.mainloop()"""
+
+
+import subprocess
+import sys
+import time
+
+def main():
+    while True:
+        print("Program is running...")
+        time.sleep(1)
+
+if __name__ == "__main__":
+    subprocess.Popen([sys.executable, sys.argv[0]])
+
+    try:
+        main()
+    except SystemExit:
+        pass
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        print("Program has exited.")
