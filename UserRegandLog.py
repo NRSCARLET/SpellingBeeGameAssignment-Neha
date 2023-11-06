@@ -119,6 +119,7 @@ def saveuser():
                 reg.destroy()
                 import Difficulty
                 Difficulty.difficultywindow()
+    print(f"{playing_user}")
 
 
 def validate_input(typed_char):

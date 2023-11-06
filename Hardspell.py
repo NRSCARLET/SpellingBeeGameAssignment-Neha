@@ -13,7 +13,6 @@ AnswerEntryhard = None
 enterbutton = None
 wordbutton = None
 points = None
-username = None
 userpoints = 0
 level = 0
 gamestartpoint = 0
@@ -136,7 +135,6 @@ def actualgame(playing_user):
         points.destroy()
         levels.destroy()
         menub4.destroy()
-        username = playing_user
         with open('hardscore.txt', 'a') as pointopen:
             pointopen.write(f"{username}, {userpoints}" + "\n")
             pointopen.close()

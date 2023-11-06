@@ -14,3 +14,11 @@ harhar, 0
 , 0
 ng, 0
 jug, 0
+, 0
+jug
+got
+ergh, 0
+jug
+got
+ergh
+geg, 0
