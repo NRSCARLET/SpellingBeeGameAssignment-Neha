@@ -2,11 +2,11 @@ from tkinter import *
 import tkinter as tk
 from os import system, name
 from time import sleep
-from UserRegandLog import Labels, Buttons
+from UserRegandLog import Labels, Buttons, playing_user
 from PIL import Image, ImageTk, ImageSequence
 from tkinter import Label, Tk
 is_menu_closing = False
-
+playing_user = ""
 def clear():
     """This definition is to add a mechanism to clear the screan."""
     if name == 'nt':

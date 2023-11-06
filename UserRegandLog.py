@@ -12,10 +12,9 @@ playing_user = ""
 
 #points system to help with sharing code between different systems
 def reset():
-    global regi, menulogpoint, playing_user
+    global regi, menulogpoint
     regi = 0
     menulogpoint = 0
-    playing_user = None
     pass
 
 #Classes for changing colours and fonts of buttons and labels.
@@ -141,7 +140,6 @@ def regwindow():
     okb2.grid(row=2, column=0, padx=3, pady=3)
     menub2 = Buttons(text="Menu", command = menu)
     menub2.grid(row=3, column=0, padx=3, pady=3)
-    reset()
     reg.mainloop()
 
 
@@ -196,5 +194,4 @@ def logwindow():
     okb1.grid(row=2, column=0, padx= 3, pady=3)
     menub1 = Buttons(text="Menu", command = menu)
     menub1.grid(row=3, column=0, padx=3, pady=3)
-    reset()
     login.mainloop()

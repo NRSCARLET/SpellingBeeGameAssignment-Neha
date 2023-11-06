@@ -10,3 +10,7 @@ alf, 0
 b, 0
 , 0
 ger, 0
+harhar, 0
+, 0
+ng, 0
+jug, 0
