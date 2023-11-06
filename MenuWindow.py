@@ -2,7 +2,7 @@ from tkinter import *
 import tkinter as tk
 from os import system, name
 from time import sleep
-from UserRegandLog import Labels, Buttons, playing_user
+from UserRegandLog import Labels, Buttons
 from PIL import Image, ImageTk, ImageSequence
 from tkinter import Label, Tk
 is_menu_closing = False

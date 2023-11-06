@@ -1,20 +1,22 @@
-E2 = None
+
 import sys 
 from tkinter import *
 import tkinter as tk
 #global entry widgets
+E2 = None
 E1 = None
 E2 = None
+#points system to help with sharing code between different systems
 regi = 0
 menulogpoint = 0
 playing_user = ""
 
-
-#points system to help with sharing code between different systems
+#reset the login/register menu
 def reset():
-    global regi, menulogpoint
-    regi = 0
+    global playing_user, menulogpoint, regi
     menulogpoint = 0
+    regi = 0
+    playing_user = ""
     pass
 
 #Classes for changing colours and fonts of buttons and labels.
@@ -101,6 +103,7 @@ def empty():
     okayb.grid(row=1, column=0, padx=3, pady=3)
 
 
+#save the username in the username.txt file
 def saveuser():
     global playing_user
     checking_preused_name = E2.get()
@@ -116,12 +119,12 @@ def saveuser():
                 playing_user = proper_name
                 with open('username.txt', 'a') as useropen:
                     useropen.write(playing_user + "\n")
+                    useropen.close()
                 reg.destroy()
-                useropen.close()
                 import Difficulty
                 Difficulty.difficultywindow()
                 file.close()
-    print(f"{playing_user}")
+                print(f"{playing_user}")
 
 
 def validate_input(typed_char):
@@ -130,6 +133,7 @@ def validate_input(typed_char):
 
 def regwindow():
     global E2, reg, okb2, menub2, Userregister
+    reset()
     reg = Tk()
     reg.geometry("350x150")
     reg.configure (bg = '#6693F5')
@@ -185,6 +189,7 @@ def validate_input(typed_char):
 def logwindow():
     global E1, login, Userlogin, okb1, menub1, menulogpoint
     menulogpoint +=1
+    reset()
     login = Tk()
     login.geometry("250x150")
     login.configure (bg = '#6693F5')

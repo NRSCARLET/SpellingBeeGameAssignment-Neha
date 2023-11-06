@@ -6,6 +6,7 @@ from PIL import Image, ImageTk, ImageSequence
 from UserRegandLog import playing_user, Labels, Buttons
 hard_spell_words_dict={"ytabeu" : "beauty", "bafcir" : "fabric", "shabti" : "habits", "afcdea" : "facade", "kachre" : "hacker", "oachns" : "nachos", "yfacip" : "pacify", "biabtr" : "rabbit", "umacuv" : "vacuum", "ddwlae" : "waddle", "chstay" : "yachts", "gzigde" : "zigged", "baroda" : "abroad", "auslac" : "casual", "eimdum" : "medium", "balces" : "cables", "efaetd" : "defeat", "ibehdn" : "behind", "mereeg" : "emerge", "dibger" : "bridge", "pwrapde" : "wrapped", "balyiti" : "ability", "cpaniat" : "captain", "heantbe" : "beneath", "turceny" : "century", "xniauso" : "anxious", "viddied" : "divided", "conemyo" : "economy", "eadises" : "disease", "awytage" : "gateway", "laehtyh" : "healthy", "leilagl" : "illegal", "tiyjusf" : "justify", "xamiumm" : "maximum", "lqicuky" : "quickly", "siaspve" : "passive", "rmovdee" : "removed", "loevint" : "violent", "tisfasy" : "satisfy", "liyqauf" : "qualify"}
 
+
 jumbled_word = ""
 correct_answer = ""
 printed_key = ""
@@ -26,11 +27,10 @@ def nox():
 
 
 def resetgame():
-    global level, gamestartpoint, userpoints, current_user, playing_user
+    global level, gamestartpoint, userpoints
     level = 0
     userpoints = 0
     gamestartpoint = 0
-    playing_user = ""
     pass
 
 
@@ -59,6 +59,7 @@ def validate_input(typed_char):
 def end():
     hard.destroy()
     resetgame()
+    playing_user = ""
     import EndScreen
     EndScreen
 
@@ -109,6 +110,7 @@ def checkanswer():
 def actualgame(playing_user):
     hard.geometry("520x230")
     global AnswerEntryhard, printed_key, correct_answer, level, enterbutton, wordbutton, points, gamestartpoint, menub4
+    print(f"current user is {playing_user}")
     level +=1
     gamestartpoint +=1
     answerlabel.config(text="")
@@ -169,6 +171,7 @@ def leavemiddlegame():
     global warningwindow_open
     hard.destroy()
     resetgame()
+    playing_user = ""
     warningwindow_open = False
     import MenuWindow
     MenuWindow.menu_wind()

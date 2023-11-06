@@ -1044,23 +1044,54 @@ root.after(1, lambda: disable_dragging(root))
 root.mainloop()"""
 
 
-import subprocess
-import sys
-import time
+"""import tkinter as tk
+from tkinter import messagebox
 
-def main():
-    while True:
-        print("Program is running...")
-        time.sleep(1)
+class MyApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("My App")
+        self.create_widgets()
+
+    def create_widgets(self):
+        self.label = tk.Label(self.root, text="Hello, this is your app!")
+        self.label.pack(pady=20)
+
+        self.quit_button = tk.Button(self.root, text="Quit", command=self.quit_app)
+        self.quit_button.pack()
+
+        self.restart_button = tk.Button(self.root, text="Restart", command=self.restart_app)
+        self.restart_button.pack()
+
+    def quit_app(self):
+        self.root.destroy()
+
+    def restart_app(self):
+        self.root.quit()
+        self.root.destroy()
+
+        # Restart the application by creating a new root window
+        new_root = tk.Tk()
+        app = MyApp(new_root)
+        new_root.mainloop()
 
 if __name__ == "__main__":
-    subprocess.Popen([sys.executable, sys.argv[0]])
+    root = tk.Tk()
+    app = MyApp(root)
+    root.mainloop()"""
 
-    try:
-        main()
-    except SystemExit:
-        pass
-    except Exception as e:
-        print(f"An error occurred: {e}")
-    finally:
-        print("Program has exited.")
+import tkinter as tk
+
+def on_button_click():
+    label.config(text="Button Clicked!")
+    root.quit()  # This will exit the mainloop and terminate the program
+
+root = tk.Tk()
+
+button = tk.Button(root, text="Click Me!", command=on_button_click)
+button.pack()
+
+label = tk.Label(root, text="Hello, Tkinter!")
+label.pack()
+
+root.mainloop()
