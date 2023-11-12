@@ -110,7 +110,6 @@ def checkanswer():
 def actualgame(playing_user):
     hard.geometry("520x230")
     global AnswerEntryhard, printed_key, correct_answer, level, enterbutton, wordbutton, points, gamestartpoint, menub4
-    print(f"current user is {playing_user}")
     level +=1
     gamestartpoint +=1
     answerlabel.config(text="")
@@ -173,8 +172,8 @@ def leavemiddlegame():
     resetgame()
     playing_user = ""
     warningwindow_open = False
-    import MenuWindow
-    MenuWindow.menu_wind()
+    import resetprogram
+    resetprogram.RP()
 
 
 def leavewarning():

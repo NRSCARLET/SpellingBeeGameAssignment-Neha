@@ -124,7 +124,6 @@ def saveuser():
                 import Difficulty
                 Difficulty.difficultywindow()
                 file.close()
-                print(f"{playing_user}")
 
 
 def validate_input(typed_char):
