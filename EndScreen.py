@@ -12,8 +12,8 @@ from tkinter import Label, Tk
 """
 def playagain():
     end.destroy()
-    import MenuWindow
-    MenuWindow.menuwind()
+    import resetprogram
+    resetprogram.RP()
 
 
 def update_image():

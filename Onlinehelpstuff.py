@@ -1155,9 +1155,65 @@ if __name__ == "__main__":
     app = MyApp(root)
     root.mainloop()"""
 
-def main():
-    print("Hello, this is the main script.")
+# main_script.py
+"""import tkinter as tk
+from tkinter import ttk
+import sys
+
+class MyApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Tkinter Restart Example")
+
+        self.label = ttk.Label(root, text="Hello, this is the main script.")
+        self.label.pack(padx=20, pady=20)
+
+        self.restart_button = ttk.Button(root, text="Restart", command=self.restart_program)
+        self.restart_button.pack()
+
+    def restart_program(self):
+        # Close the current Tkinter window
+        self.root.destroy()
+
+        # Restart the program using the launcher script
+        import subprocess
+        subprocess.run(["python", "testlauncher.py"])
 
 if __name__ == "__main__":
-    main()
+    root = tk.Tk()
+    app = MyApp(root)
+    root.mainloop()"""
+
+
+import tkinter as tk
+from tkinter import ttk
+
+class LetterByLetterLabel:
+    def __init__(self, root, text):
+        self.root = root
+        self.text = text
+        self.current_index = 0
+
+        self.label = ttk.Label(root, text="")
+        self.label.pack(padx=20, pady=20)
+
+        # Schedule the function to update the label
+        self.root.after(100, self.update_label)
+
+    def update_label(self):
+        # Add the next letter to the label
+        self.label.config(text=self.text[:self.current_index + 1])
+
+        # Increment the index for the next letter
+        self.current_index += 1
+
+        # Check if there are more letters to display
+        if self.current_index < len(self.text):
+            # Schedule the function again after a delay
+            self.root.after(100, self.update_label)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = LetterByLetterLabel(root, "Hello, World!")
+    root.mainloop()
 

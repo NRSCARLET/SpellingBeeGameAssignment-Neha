@@ -1,3 +1,7 @@
 lill, 0
 lill, 1
 mill, 4
+alf, 2
+blf, 6
+clf, 1
+dlf, 3
