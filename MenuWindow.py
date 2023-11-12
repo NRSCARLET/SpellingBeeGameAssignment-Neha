@@ -6,6 +6,7 @@ from UserRegandLog import Labels, Buttons
 from PIL import Image, ImageTk, ImageSequence
 from tkinter import Label, Tk
 is_menu_closing = False
+instructionwindow_open = False
 playing_user = ""
 def clear():
     """This definition is to add a mechanism to clear the screan."""
@@ -13,6 +14,10 @@ def clear():
         _ = system('cls')
     else:
         _ = system('clear')
+
+
+def nox():
+    pass
 
 
 def register():
@@ -61,20 +66,46 @@ def resize_gif(gif_frames, new_width, new_height):
     return resized_frames
 
 
+def closeinstructions():
+    global instructionwindow_open
+    instructionwindow.destroy()
+    instructionwindow_open = False
+    pass
+
+
+def instructions():
+    global instructionwindow_open, instructionwindow
+    if not instructionwindow_open:
+        instructionwindow_open = True
+        instructionwindow = tk.Toplevel(window)
+        instructionwindow.title("Spelling Bee's Spelling Game!")
+        instructionwindow.geometry("600x290")
+        instructionwindow.configure(bg ='#b4aaf9')
+        instructionwindow.transient(window)
+        instructionwindow.protocol("WM_DELETE_WINDOW", nox)
+        instructionwindow.grab_set()
+        instrctlabel = Label(instructionwindow, text="Game overview:\n>Easy mode: 10 levels, words have 4 letters each\n>Medium mode: 10 levels, words have 5 letters each\nHard mode: 10 levels, words have 6-7 letters each\nHow to play:\n>Register (or log in if you're an existing user)\n>Pick a difficulty (easy, medium, hard)\n>unscramble the word! Based on the letters that appear,\nenter the correct word into the text box!\nGetting the answer correct will reward you with 1 point.\n>Repeat for 10 levels.\n>Once you finish the final level, you will be presented with your score.\n>Play again or exit!\n>Most importantly: HAVE FUN!!", bg='#b4aaf9', fg='#2A0134', font='helvetica 10 bold')
+        instrctlabel.grid(row=0, column=0, padx=5, pady=5)
+        closebutton = Buttons(instructionwindow, text="Close", command = closeinstructions)
+        closebutton.grid(row=1, column=0, padx=3, pady=3)
+
+
 def menu_wind():
     global window, gif_frames_iter, label, gif_frames, gif_frames_resized
     window = tk.Tk()
     window.configure (bg = '#6693F5')
     window.title("Spelling Bee's Spelling Game!")
-    window.geometry("360x300")
+    window.geometry("400x350")
     hello = Labels(text="Welcome to Spelling Bee's Spelling Game!")
-    hello.grid(row=0, column=0, padx=5, pady=5)
+    hello.grid(row=0, column=0, padx=3, pady=5)
     b1 = Buttons(text="Register (new user)", command=register)
     b1.grid(row=2, column=0, padx=3, pady=3)
     b2 = Buttons(text="Login (old user)", command=login)
     b2.grid(row=3, column=0, padx=3, pady=3)
     b3 = Buttons(text="Exit Game", command=exit)
     b3.grid(row=4, column=0, padx=3, pady=3)
+    instructbutton = Buttons(text="?", command=instructions)
+    instructbutton.grid(row=0, column=1, padx=3, pady=3)
     gif_path = "beeidlegif.gif"
     gif = Image.open(gif_path)
     # Extract individual frames from the GIF

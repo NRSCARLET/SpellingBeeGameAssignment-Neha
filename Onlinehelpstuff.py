@@ -1185,7 +1185,7 @@ if __name__ == "__main__":
     root.mainloop()"""
 
 
-import tkinter as tk
+"""import tkinter as tk
 from tkinter import ttk
 
 class LetterByLetterLabel:
@@ -1215,5 +1215,67 @@ class LetterByLetterLabel:
 if __name__ == "__main__":
     root = tk.Tk()
     app = LetterByLetterLabel(root, "Hello, World!")
-    root.mainloop()
+    root.mainloop()"""
+
+
+import tkinter as tk
+from tkinter import ttk
+import subprocess
+def update_label():
+    global current_index
+    loading.config(text=text[:current_index + 1])
+    current_index += 1
+    if current_index < len(text):
+        window.after(100, update_label)
+    else:
+        # After the animation is complete, wait for some time and then relaunch
+        window.after(1000, relaunch)
+def relaunch():
+    python_script = "MenuWindow.py"
+    subprocess.run(["python", python_script])
+
+def show_instructions():
+    instructions = """
+    Welcome to the Spelling Bee Spelling Game!
+
+    Instructions:
+    - Enter the correct spelling for the displayed word.
+    - Click the 'Submit' button to check your answer.
+    - If correct, you earn points!
+    - Have fun and enjoy the game!
+    """
+    instruction_window = tk.Toplevel(window)
+    instruction_window.title("Instructions")
+    instruction_label = ttk.Label(instruction_window, text=instructions, wraplength=300, justify=tk.LEFT)
+    instruction_label.pack(padx=10, pady=10)
+
+def create_round_button(canvas, x, y, radius, text, command):
+    button = canvas.create_oval(x - radius, y - radius, x + radius, y + radius, fill='#6693F5')
+    canvas.create_text(x, y, text=text, font=('Helvetica', 10), fill='white', tags='button')
+    canvas.tag_bind('button', '<Button-1>', lambda event: command())
+
+def RP():
+    global window, loading, current_index, text
+    try:
+        raise SystemExit
+    except SystemExit:
+        window = tk.Tk()
+        window.title("Spelling Bee Spelling Game")
+        window.geometry("230x50")
+        window.configure(bg='#6693F5')
+        text = "Loading... Please Wait..."
+        loading = ttk.Label(window, text="")
+        loading.grid(row=2, column=0, padx=5, pady=5)
+        current_index = 0
+        window.after(100, update_label)
+
+        # Add a round "Instructions" button using a Canvas
+        canvas = tk.Canvas(window, width=100, height=30, bg='#6693F5', highlightthickness=0)
+        canvas.grid(row=3, column=0, padx=5, pady=5)
+
+        create_round_button(canvas, 50, 15, 15, "?", show_instructions)
+
+        window.mainloop()
+
+RP()
 
