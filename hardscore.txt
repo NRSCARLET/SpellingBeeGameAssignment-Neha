@@ -6,3 +6,5 @@ blf, 6
 clf, 1
 dlf, 3
 flf, 1
+glf, 0
+hlf, 0

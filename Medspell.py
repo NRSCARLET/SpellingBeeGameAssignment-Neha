@@ -233,7 +233,7 @@ def medwindow():
     med.geometry('210x200')
     med.configure(bg = '#6693F5')
     med.title("Spelling Bee's Spelling Game!")
-    m = Labels(text="You've picked med mode")
+    m = Labels(text="You've picked medium mode")
     m.grid(row=0, column=0, padx=5, pady=5)
     validate_cmd = med.register(validate_input)
     med.protocol("WM_DELETE_WINDOW", nox)
