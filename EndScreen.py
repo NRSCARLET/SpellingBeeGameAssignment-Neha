@@ -34,15 +34,21 @@ def resize_gif(gif_frames, new_width, new_height):
     return resized_frames
 
 
+def exit():
+    sys.exit()
+
+
 def endgame():
     global gif_frames_iter, label, gif_frames, gif_frames_resized
-    end.geometry("500x220")
+    end.geometry("480x250")
     endlabel.destroy()
     notelabel.destroy()
     menub.destroy()
     difficultyb.destroy()
-    ty = Labels(end, text="Thank you for playing! See you later!\nPlease press the 'x' at the top right of the window to close it.")
+    ty = Labels(end, text="Thank you for playing! See you later!\nPlease press the 'end' button to exit out of the game.")
     ty.grid(row=0, column=0, padx=5, pady=5)
+    exitbutton = Buttons(text="exit", command=exit)
+    exitbutton.grid(row=1, column=0, padx=3, pady=3)
     gif_path = "beebyebye.gif"
     gif = Image.open(gif_path)
     # Extract individual frames from the GIF

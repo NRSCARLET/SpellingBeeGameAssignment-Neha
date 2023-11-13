@@ -230,7 +230,7 @@ def medgamestart():
 def medwindow():
     global med, m, conbutton, backb1, menub4, Gamestartlabel, jumblelabel, answerlabel, points, levels, AnswerEntrymed, enterbutton
     med = Tk()
-    med.geometry('210x200')
+    med.geometry('230x200')
     med.configure(bg = '#6693F5')
     med.title("Spelling Bee's Spelling Game!")
     m = Labels(text="You've picked medium mode")
