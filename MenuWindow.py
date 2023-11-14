@@ -84,6 +84,7 @@ def instructions():
         instructionwindow.transient(window)
         instructionwindow.protocol("WM_DELETE_WINDOW", nox)
         instructionwindow.grab_set()
+        instructionwindow.overrideredirect(1)
         instrctlabel = Label(instructionwindow, text="Game overview:\n>Easy mode: 10 levels, words have 4 letters each\n>Medium mode: 10 levels, words have 5 letters each\nHard mode: 10 levels, words have 6-7 letters each\nHow to play:\n>Register (or log in if you're an existing user)\n>Pick a difficulty (easy, medium, hard)\n>unscramble the word! Based on the letters that appear,\nenter the correct word into the text box!\nGetting the answer correct will reward you with 1 point.\n>Repeat for 10 levels.\n>Once you finish the final level, you will be presented with your score.\n>Play again or exit!\n>Most importantly: HAVE FUN!!", bg='#b4aaf9', fg='#2A0134', font='helvetica 10 bold')
         instrctlabel.grid(row=0, column=0, padx=5, pady=5)
         closebutton = Buttons(instructionwindow, text="Close", command = closeinstructions)
@@ -104,6 +105,7 @@ def menu_wind():
     b2.grid(row=3, column=0, padx=3, pady=3)
     b3 = Buttons(text="Exit Game", command=exit)
     b3.grid(row=4, column=0, padx=3, pady=3)
+    window.overrideredirect(1)
     instructbutton = Buttons(text="?", command=instructions)
     instructbutton.grid(row=0, column=1, padx=3, pady=3)
     gif_path = "beeidlegif.gif"

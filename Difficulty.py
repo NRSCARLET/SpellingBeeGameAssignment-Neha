@@ -25,6 +25,7 @@ def difficultywindow():
     diff.configure (bg = '#6693F5')
     diff.title("Spelling Bee's Spelling Game!")
     dif = Labels(text="Choose a difficulty")
+    diff.overrideredirect(1)
     dif.grid(row=0, column=0, padx=5, pady=5)
     easybut = Buttons(text="Easy", command = Easymode)
     easybut.grid(row=1, column=0, padx=3, pady=3)

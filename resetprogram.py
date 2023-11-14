@@ -30,6 +30,7 @@ def RP():
         window.title("Spelling Bee Spelling Game")
         window.geometry("230x50")
         window.configure (bg = '#6693F5')
+        window.overrideredirect(1)
         loading = Labels(text="")
         text = "Loading... Please wait..."
         loading.grid(row=2, column=0, padx=5, pady=5)

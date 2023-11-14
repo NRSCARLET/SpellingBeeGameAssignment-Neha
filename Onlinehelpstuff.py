@@ -1218,7 +1218,7 @@ if __name__ == "__main__":
     root.mainloop()"""
 
 
-import tkinter as tk
+"""import tkinter as tk
 from tkinter import ttk
 import subprocess
 def update_label():
@@ -1235,7 +1235,7 @@ def relaunch():
     subprocess.run(["python", python_script])
 
 def show_instructions():
-    instructions = """
+    instructions = "
     Welcome to the Spelling Bee Spelling Game!
 
     Instructions:
@@ -1243,7 +1243,7 @@ def show_instructions():
     - Click the 'Submit' button to check your answer.
     - If correct, you earn points!
     - Have fun and enjoy the game!
-    """
+    "
     instruction_window = tk.Toplevel(window)
     instruction_window.title("Instructions")
     instruction_label = ttk.Label(instruction_window, text=instructions, wraplength=300, justify=tk.LEFT)
@@ -1277,5 +1277,21 @@ def RP():
 
         window.mainloop()
 
-RP()
+RP()"""
+
+import tkinter as tk
+
+def remove_buttons():
+    window.attributes('-toolwindow', True)
+
+window = tk.Tk()
+window.title("Tkinter Window")
+
+# Create a button to remove the buttons
+remove_button = tk.Button(window, text="Remove Buttons", command=remove_buttons)
+remove_button.pack(pady=20)
+
+window.mainloop()
+
+
 

@@ -35,7 +35,7 @@ def resize_gif(gif_frames, new_width, new_height):
 
 
 def exit():
-    sys.exit()
+    quit()
 
 
 def endgame():
@@ -45,9 +45,9 @@ def endgame():
     notelabel.destroy()
     menub.destroy()
     difficultyb.destroy()
-    ty = Labels(end, text="Thank you for playing! See you later!\nPlease press the 'end' button to exit out of the game.")
+    ty = Labels(end, text="Thank you for playing! See you later!\nPlease press the 'Exit' button to exit out of the game.")
     ty.grid(row=0, column=0, padx=5, pady=5)
-    exitbutton = Buttons(text="exit", command=exit)
+    exitbutton = Buttons(text="Exit", command=exit)
     exitbutton.grid(row=1, column=0, padx=3, pady=3)
     gif_path = "beebyebye.gif"
     gif = Image.open(gif_path)
@@ -80,6 +80,7 @@ def endwindow():
     endlabel.grid(row=0, column=0, padx=5, pady=5)
     notelabel = Labels(end, text="Note: Pressing the 'Play Again' button will take you back to the menu screen.\nPressing the 'End Game' button will end the game.")
     notelabel.grid(row=1, column=0, padx=5, pady=5)
+    end.overrideredirect(1)
     menub = Buttons(text="End Game", command=endgame)
     menub.grid(row=3, column=0, padx=3, pady=3)
     difficultyb = Buttons(text="Play Again", command=playagain)

@@ -37,6 +37,7 @@ class Labels(Label):
 
 #Code sharing between the login and register sets of code
 def regster():
+    global login, reg
     if regi >= 1:
         reg.destroy()
         import UserRegandLog
@@ -58,15 +59,15 @@ def log():
         UserRegandLog.logwindow()
 
         
-def menu():
-    if menulogpoint == 0:
+def menuR():
         reg.destroy()
         import MenuWindow
         MenuWindow.menu_wind()
-    else:
-        login.destroy()
-        import MenuWindow
-        MenuWindow.menu_wind()
+
+def menuL():
+    login.destroy()
+    import MenuWindow
+    MenuWindow.menu_wind()
 
 
 
@@ -137,6 +138,7 @@ def regwindow():
     reg.geometry("350x150")
     reg.configure (bg = '#6693F5')
     reg.title("Spelling Bee's Spelling Game!")
+    reg.overrideredirect(1)
     validate_cmd = reg.register(validate_input)
     Userregister = Labels(reg, text="Please create a username for your account")
     Userregister.grid(row=0, column=0, padx=5, pady=5)
@@ -144,7 +146,7 @@ def regwindow():
     E2.grid(row=1, column=0, padx=5, pady=5)
     okb2 = Buttons(text="Enter", command = saveuser)
     okb2.grid(row=2, column=0, padx=3, pady=3)
-    menub2 = Buttons(text="Menu", command = menu)
+    menub2 = Buttons(text="Menu", command = menuR)
     menub2.grid(row=3, column=0, padx=3, pady=3)
     reg.mainloop()
 
@@ -177,7 +179,7 @@ def check():
             import Difficulty
             Difficulty.difficultywindow()
             logintxt.close()
-        else:
+        else: 
             LOGEM()
     
 
@@ -194,12 +196,13 @@ def logwindow():
     login.configure (bg = '#6693F5')
     login.title("Spelling Bee's Spelling Game!")
     validate_cmd = login.register(validate_input)
+    login.overrideredirect(1)
     Userlogin = Labels(login, text="Please enter your Username")
     Userlogin.grid(row=0, column= 0, padx= 5, pady=5)
     E1 = tk.Entry(login, bd =5, validate="key", validatecommand=(validate_cmd, "%S"))
     E1.grid(row=1, column=0, padx= 5, pady=5)
     okb1 = Buttons(text="Enter", command = check)
     okb1.grid(row=2, column=0, padx= 3, pady=3)
-    menub1 = Buttons(text="Menu", command = menu)
+    menub1 = Buttons(text="Menu", command = menuL)
     menub1.grid(row=3, column=0, padx=3, pady=3)
     login.mainloop()
