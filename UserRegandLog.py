@@ -110,7 +110,7 @@ def saveuser():
     if checking_preused_name == "":
         empty()
     else:
-        proper_name = checking_preused_name
+        proper_name = checking_preused_name.capitalize()
         with open('username.txt', 'r') as file:
             names = file.read().splitlines()
             if checking_preused_name in names:
@@ -168,7 +168,7 @@ def LOGEM():
 
 def check():
     global playing_user
-    name_check = E1.get()
+    name_check = E1.get().capitalize()
     with open('username.txt', 'r') as logintxt:
         names = logintxt.read().splitlines()
         if name_check in names:

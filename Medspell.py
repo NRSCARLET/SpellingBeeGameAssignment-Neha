@@ -20,6 +20,7 @@ userpoints = 0
 level = 0
 gamestartpoint = 0
 warningwindow_open = False
+instructionwindow_open = False
 
 
 def nox():
@@ -106,6 +107,29 @@ def checkanswer():
         gif_after_id=med.after(50, update_image)
 
 
+def closeinstructions():
+    global instructionwindow_open
+    instructionwindow.destroy()
+    instructionwindow_open = False
+    pass
+
+
+def instructions():
+    global instructionwindow_open, instructionwindow
+    if not instructionwindow_open:
+        instructionwindow_open = True
+        instructionwindow = tk.Toplevel(med)
+        instructionwindow.title("Spelling Bee's Spelling Game!")
+        instructionwindow.geometry("600x290")
+        instructionwindow.configure(bg ='#b4aaf9')
+        instructionwindow.transient(med)
+        instructionwindow.protocol("WM_DELETE_WINDOW", nox)
+        instructionwindow.grab_set()
+        instrctlabel = Label(instructionwindow, text="Game overview:\n>Easy mode: 10 levels, words have 4 letters each\n>Medium mode: 10 levels, words have 5 letters each\nHard mode: 10 levels, words have 6-7 letters each\nHow to play:\n>Register (or log in if you're an existing user)\n>Pick a difficulty (easy, medium, hard)\n>unscramble the word! Based on the letters that appear,\nenter the correct word into the text box!\nGetting the answer correct will reward you with 1 point.\n>Repeat for 10 levels.\n>Once you finish the final level, you will be presented with your score.\n>Play again or exit!\n>Most importantly: HAVE FUN!!", bg='#b4aaf9', fg='#2A0134', font='helvetica 10 bold')
+        instrctlabel.grid(row=0, column=0, padx=5, pady=5)
+        closebutton = Buttons(instructionwindow, text="Close", command = closeinstructions)
+        closebutton.grid(row=1, column=0, padx=3, pady=3)
+
 
 def actualgame(playing_user):
     med.geometry("520x230")
@@ -116,6 +140,8 @@ def actualgame(playing_user):
     points.config(text=f"Points: {userpoints}")
     levels.config(text=f"Level: {level}")
     if level <= 10:
+        instructbutton = Buttons(text="?", command=lambda: instructions())
+        instructbutton.grid(row=2, column=1, padx=3, pady=3)
         AnswerEntrymed.grid(row=2, column=0, padx=5, pady=5)
         AnswerEntrymed.config(state = "normal")
         printed_key = random.choice(list(med_spell_words_dict))
